@@ -1,36 +1,34 @@
 import React from 'react';
-import { DrawerNavigationOptions, createDrawerNavigator } from '@react-navigation/drawer';
-import { ScanScreen, ScanImageScreen, FavortiesScreen, HistoryScreen, MyQRScreen, CreateQRScreen, SettingsScreen, ShareScreen } from '../screens';
+import {
+  DrawerNavigationOptions,
+  createDrawerNavigator
+} from '@react-navigation/drawer';
+import {
+  ScanScreen,
+  ScanImageScreen,
+  FavortiesScreen,
+  HistoryScreen,
+  MyQRScreen,
+  CreateQRScreen,
+  SettingsScreen,
+  ShareScreen
+} from '../screens';
 import { Ionicons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import ViewMoreIcon from '../components/ViewMoreIcon';
-import { Pressable } from 'react-native';
+import CustomHeader from '../components/CustomHeader';
 
 const Drawer = createDrawerNavigator();
 
 const headerOptions: DrawerNavigationOptions = {
-  headerTitleAlign: 'center',
-  headerStyle: {
-    backgroundColor: '#f5f5f5',
-  },
-  headerRight: () => {
-    return (
-      <>
-        <Pressable>
-          <ViewMoreIcon />
-        </Pressable>
-      </>
-    );
-  },
+  header: CustomHeader
 };
 
 export const DrawerNavigator: React.FC = () => {
   return (
-    <Drawer.Navigator initialRouteName="Scan" screenOptions={headerOptions}
-    >
+    <Drawer.Navigator initialRouteName="Scan" screenOptions={headerOptions}>
       <Drawer.Screen name="Scan" component={ScanScreen}
         options={{
           drawerIcon: () => {
