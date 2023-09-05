@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { Appbar, Divider, Menu } from 'react-native-paper';
-import { Platform, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { DrawerHeaderProps } from '@react-navigation/drawer';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -10,16 +10,11 @@ import { Fontisto } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
-const MORE_ICON = Platform.OS === 'ios' ? 'dots-horizontal' : 'dots-vertical';
-
-const CustomHeader: React.FC<DrawerHeaderProps> = (props) => {
+const CustomHeader: React.FC<DrawerHeaderProps> = (props: any) => {
+  const [visible, setVisible] = useState(false);
+  const [filterVisible, setFilterVisible] = useState(false);
 
   const screenName = props.route.name;
-
-  const _handleMore = () => console.log('Shown more');
-
-  const [visible, setVisible] = React.useState(false);
-  const [filterVisible, setFilterVisible] = React.useState(false);
 
   return <Appbar.Header style={styles.header}>
     <Appbar.Action icon="menu" onPress={() => props.navigation.openDrawer()} />

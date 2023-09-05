@@ -23,7 +23,7 @@ import CustomHeader from '../components/CustomHeader';
 const Drawer = createDrawerNavigator();
 
 const headerOptions: DrawerNavigationOptions = {
-  header: CustomHeader
+  header: (props) => <CustomHeader {...props}/>
 };
 
 export const DrawerNavigator: React.FC = () => {
