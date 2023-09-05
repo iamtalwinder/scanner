@@ -11,7 +11,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
 const CustomHeader: React.FC<DrawerHeaderProps> = (props: any) => {
-  
+
   const [visible, setVisible] = useState(false);
   const [filterVisible, setFilterVisible] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
@@ -32,6 +32,7 @@ const CustomHeader: React.FC<DrawerHeaderProps> = (props: any) => {
       setSelectedItem('');
     } else {
       setSelectedItem(item);
+      setVisible(false);
     }
   };
 
@@ -43,7 +44,7 @@ const CustomHeader: React.FC<DrawerHeaderProps> = (props: any) => {
         <Menu
           visible={filterVisible}
           onDismiss={() => setFilterVisible(false)}
-          style={{ marginTop: 50 }}
+          style={styles.item}
           anchor={
             <Appbar.Action
               icon="filter"
@@ -210,12 +211,12 @@ const CustomHeader: React.FC<DrawerHeaderProps> = (props: any) => {
           <Divider />
           <Menu.Item
             onPress={() => {
-              toggleItem('Csv');
+              toggleItem('CsvExport');
             }}
             leadingIcon={() => <MaterialIcons name="file-upload" size={20} color="white" />}
             title="Csv Export"
             style={{
-              backgroundColor: selectedItem === 'Csv Export' ? 'blue' : 'transparent',
+              backgroundColor: selectedItem === 'CsvExport' ? 'blue' : 'transparent',
             }}
           />
           <Divider />
@@ -232,12 +233,12 @@ const CustomHeader: React.FC<DrawerHeaderProps> = (props: any) => {
           <Divider />
           <Menu.Item
             onPress={() => {
-              toggleItem('Csv');
+              toggleItem('CsvImport');
             }}
             leadingIcon={() => <MaterialCommunityIcons name="download" size={20} color="white" />}
             title="Csv Import"
             style={{
-              backgroundColor: selectedItem === 'Csv Import' ? 'blue' : 'transparent',
+              backgroundColor: selectedItem === 'CsvImport' ? 'blue' : 'transparent',
             }}
           />
         </Menu>
@@ -251,10 +252,16 @@ const styles = StyleSheet.create({
     fontSize: '12px',
     flexDirection: 'row',
     justifyContent: 'center',
+    backgroundColor: 'blue'
   },
   title: {
     fontSize: 15,
+    textAlign: 'center',
   },
+  item: {
+    backgroundColor: '#333333',
+    marginTop: 50
+  }
 });
 
 export default CustomHeader;

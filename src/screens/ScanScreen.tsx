@@ -1,10 +1,7 @@
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import FilterDrawer from '../components/FilterDrawer';
-import MenuItem from '../components/MenuItem';
 
 export const ScanScreen: React.FC = () => {
-
   return (
     <View style={styles.container}>
       <Text>Scan ScanScreen</Text>
@@ -18,11 +15,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  centerText: {
-    fontSize: 18,
-    padding: 30,
-    color: '#777',
-  },
+  }
 });
 
