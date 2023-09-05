@@ -36,6 +36,28 @@ const CustomHeader: React.FC<DrawerHeaderProps> = (props: any) => {
     }
   };
 
+  const filterMenuItems = [
+    { name: 'Url', icon: () => <Feather name="link-2" size={20} color="white" /> },
+    { name: 'Text', icon: () => <MaterialCommunityIcons name="format-text" size={20} color="white" /> },
+    { name: 'Wifi', icon: () => <Fontisto name="wifi" size={15} color="white" /> },
+    { name: 'Product', icon: () => <Feather name="shopping-bag" size={20} color="white" /> },
+    { name: 'Barcode', icon: () => <FontAwesome name="barcode" size={20} color="white" /> },
+    { name: 'Phone', icon: () => <FontAwesome name="phone" size={20} color="white" /> },
+    { name: 'Contact', icon: () => <MaterialCommunityIcons name="contacts-outline" size={20} color="white" /> },
+    { name: 'ISBN', icon: () => <AntDesign name="book" size={20} color="white" /> },
+    { name: 'Email', icon: () => <MaterialIcons name="email" size={20} color="white" /> },
+    { name: 'SMS', icon: () => <MaterialIcons name="sms" size={20} color="white" /> },
+    { name: 'Geo', icon: () => <Ionicons name="location-outline" size={20} color="white" /> },
+    { name: 'Calender', icon: () => <Ionicons name="calendar-sharp" size={20} color="white" /> },
+  ];
+
+  const itemMenuItems = [
+    { name: 'Delete', icon: () => <MaterialIcons name="delete-outline" size={20} color="white" /> },
+    { name: 'CsvExport', icon: () => <MaterialIcons name="file-upload" size={20} color="white" /> },
+    { name: 'Text', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" /> },
+    { name: 'CsvImport', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" /> },
+  ];
+
   return (
     <Appbar.Header style={styles.header}>
       <Appbar.Action icon="menu" onPress={() => props.navigation.openDrawer()} />
@@ -52,138 +74,21 @@ const CustomHeader: React.FC<DrawerHeaderProps> = (props: any) => {
             />
           }
         >
-          <Menu.Item
-            onPress={() => {
-              toggleFilter('Url');
-            }}
-            leadingIcon={() => <Feather name="link-2" size={20} color="white" />}
-            title="Url"
-            style={{
-              backgroundColor: selectedFilters.includes('Url') ? 'blue' : 'transparent',
-            }}
-          />
-          <Divider />
-          <Menu.Item
-            onPress={() => {
-              toggleFilter('Text');
-            }}
-            leadingIcon={() => <MaterialCommunityIcons name="format-text" size={20} color="white" />}
-            title="Text"
-            style={{
-              backgroundColor: selectedFilters.includes('Text') ? 'blue' : 'transparent',
-            }}
-          />
-          <Divider />
-          <Menu.Item
-            onPress={() => {
-              toggleFilter('Wifi');
-            }}
-            leadingIcon={() => <Fontisto name="wifi" size={15} color="white" />}
-            title="Wifi"
-            style={{
-              backgroundColor: selectedFilters.includes('Wifi') ? 'blue' : 'transparent',
-            }}
-          />
-          <Divider />
-          <Menu.Item
-            onPress={() => {
-              toggleFilter('Product');
-            }}
-            leadingIcon={() => <Feather name="shopping-bag" size={20} color="white" />}
-            title="Product"
-            style={{
-              backgroundColor: selectedFilters.includes('Product') ? 'blue' : 'transparent',
-            }}
-          />
-          <Divider />
-          <Menu.Item
-            onPress={() => {
-              toggleFilter('Barcode');
-            }}
-            leadingIcon={() => <FontAwesome name="barcode" size={20} color="white" />}
-            title="Barcode"
-            style={{
-              backgroundColor: selectedFilters.includes('Barcode') ? 'blue' : 'transparent',
-            }}
-          />
-          <Divider />
-          <Menu.Item
-            onPress={() => {
-              toggleFilter('Phone');
-            }}
-            leadingIcon={() => <FontAwesome name="phone" size={20} color="white" />}
-            title="Phone"
-            style={{
-              backgroundColor: selectedFilters.includes('Phone') ? 'blue' : 'transparent',
-            }}
-          />
-          <Divider />
-          <Menu.Item
-            onPress={() => {
-              toggleFilter('Contact');
-            }}
-            leadingIcon={() => <MaterialCommunityIcons name="contacts-outline" size={20} color="white" />}
-            title="Contact"
-            style={{
-              backgroundColor: selectedFilters.includes('Contact') ? 'blue' : 'transparent',
-            }}
-          />
-          <Divider />
-          <Menu.Item
-            onPress={() => {
-              toggleFilter('ISBN');
-            }}
-            leadingIcon={() => <AntDesign name="book" size={20} color="white" />}
-            title="ISBN"
-            style={{
-              backgroundColor: selectedFilters.includes('ISBN') ? 'blue' : 'transparent',
-            }}
-          />
-          <Divider />
-          <Menu.Item
-            onPress={() => {
-              toggleFilter('Email');
-            }}
-            leadingIcon={() => <MaterialIcons name="email" size={20} color="white" />}
-            title="Email"
-            style={{
-              backgroundColor: selectedFilters.includes('Email') ? 'blue' : 'transparent',
-            }}
-          />
-          <Divider />
-          <Menu.Item
-            onPress={() => {
-              toggleFilter('SMS');
-            }}
-            leadingIcon={() => <MaterialIcons name="sms" size={20} color="white" />}
-            title="SMS"
-            style={{
-              backgroundColor: selectedFilters.includes('SMS') ? 'blue' : 'transparent',
-            }}
-          />
-          <Divider />
-          <Menu.Item
-            onPress={() => {
-              toggleFilter('Geo');
-            }}
-            leadingIcon={() => <Ionicons name="location-outline" size={20} color="white" />}
-            title="Geo"
-            style={{
-              backgroundColor: selectedFilters.includes('Geo') ? 'blue' : 'transparent',
-            }}
-          />
-          <Divider />
-          <Menu.Item
-            onPress={() => {
-              toggleFilter('Calender');
-            }}
-            leadingIcon={() => <Ionicons name="calendar-sharp" size={20} color="white" />}
-            title="Calender"
-            style={{
-              backgroundColor: selectedFilters.includes('Calender') ? 'blue' : 'transparent',
-            }}
-          />
-          <Divider />
+          {filterMenuItems.map((menuItem) => (
+            <React.Fragment key={menuItem.name}>
+              <Menu.Item
+                onPress={() => {
+                  toggleFilter(menuItem.name);
+                }}
+                leadingIcon={menuItem.icon}
+                title={menuItem.name}
+                style={{
+                  backgroundColor: selectedFilters.includes(menuItem.name) ? 'blue' : 'transparent',
+                }}
+              />
+              <Divider />
+            </React.Fragment>
+          ))}
         </Menu>
       </View>
       <View style={{ marginRight: 10 }}>
@@ -198,49 +103,21 @@ const CustomHeader: React.FC<DrawerHeaderProps> = (props: any) => {
             />
           }
         >
-          <Menu.Item
-            onPress={() => {
-              toggleItem('Delete');
-            }}
-            leadingIcon={() => <MaterialIcons name="delete-outline" size={20} color="white" />}
-            title="Delete"
-            style={{
-              backgroundColor: selectedItem === 'Delete' ? 'blue' : 'transparent',
-            }}
-          />
-          <Divider />
-          <Menu.Item
-            onPress={() => {
-              toggleItem('CsvExport');
-            }}
-            leadingIcon={() => <MaterialIcons name="file-upload" size={20} color="white" />}
-            title="Csv Export"
-            style={{
-              backgroundColor: selectedItem === 'CsvExport' ? 'blue' : 'transparent',
-            }}
-          />
-          <Divider />
-          <Menu.Item
-            onPress={() => {
-              toggleItem('Text');
-            }}
-            leadingIcon={() => <MaterialCommunityIcons name="download" size={20} color="white" />}
-            title="Text"
-            style={{
-              backgroundColor: selectedItem === 'Text' ? 'blue' : 'transparent',
-            }}
-          />
-          <Divider />
-          <Menu.Item
-            onPress={() => {
-              toggleItem('CsvImport');
-            }}
-            leadingIcon={() => <MaterialCommunityIcons name="download" size={20} color="white" />}
-            title="Csv Import"
-            style={{
-              backgroundColor: selectedItem === 'CsvImport' ? 'blue' : 'transparent',
-            }}
-          />
+          {itemMenuItems.map((menuItem) => (
+            <React.Fragment key={menuItem.name}>
+              <Menu.Item
+                onPress={() => {
+                  toggleItem(menuItem.name);
+                }}
+                leadingIcon={menuItem.icon}
+                title={menuItem.name}
+                style={{
+                  backgroundColor: selectedItem === menuItem.name ? 'blue' : 'transparent',
+                }}
+              />
+              <Divider />
+            </React.Fragment>
+          ))}
         </Menu>
       </View>
     </Appbar.Header>
@@ -252,7 +129,7 @@ const styles = StyleSheet.create({
     fontSize: '12px',
     flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: 'blue'
+    backgroundColor: 'blue',
   },
   title: {
     fontSize: 15,
@@ -260,8 +137,8 @@ const styles = StyleSheet.create({
   },
   item: {
     backgroundColor: '#333333',
-    marginTop: 50
-  }
+    marginTop: 50,
+  },
 });
 
 export default CustomHeader;

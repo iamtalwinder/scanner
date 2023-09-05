@@ -6,7 +6,6 @@ import {
 import {
   ScanScreen,
   ScanImageScreen,
-  FavortiesScreen,
   HistoryScreen,
   MyQRScreen,
   CreateQRScreen,
@@ -19,6 +18,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import CustomHeader from '../components/CustomHeader';
+import FavortiesScreen from '../screens/FavortiesScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -56,7 +56,7 @@ export const DrawerNavigator: React.FC = () => {
           }
         }}
       />
-      <Drawer.Screen name="Favorties" component={FavortiesScreen}
+      <Drawer.Screen name="Favorites" component={FavortiesScreen}
         options={{
           drawerIcon: () => {
             return (
