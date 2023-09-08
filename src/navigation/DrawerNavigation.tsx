@@ -12,11 +12,7 @@ import {
   SettingsScreen,
   ShareScreen
 } from '../screens';
-import { Ionicons } from '@expo/vector-icons';
-import { Entypo } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
+import { Ionicons, Entypo, FontAwesome5, AntDesign, MaterialIcons } from '@expo/vector-icons';
 import CustomHeader from '../components/CustomHeader';
 import FavortiesScreen from '../screens/FavortiesScreen';
 
@@ -67,7 +63,8 @@ export const DrawerNavigator: React.FC = () => {
             color: 'white'
           }
         }}
-      />
+
+/>
       <Drawer.Screen name="History" component={HistoryScreen}
         options={{
           drawerIcon: () => {

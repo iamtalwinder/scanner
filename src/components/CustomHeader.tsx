@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { Appbar, Divider, Menu } from 'react-native-paper';
 import { StyleSheet, View } from 'react-native';
 import { DrawerHeaderProps } from '@react-navigation/drawer';
-import { Ionicons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
-import { Fontisto } from '@expo/vector-icons';
-import { FontAwesome } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
+import {
+  Ionicons,
+  MaterialIcons,
+  Feather,
+  Fontisto,
+  FontAwesome,
+  AntDesign,
+  MaterialCommunityIcons,
+} from '@expo/vector-icons';
+
 
 const CustomHeader: React.FC<DrawerHeaderProps> = (props: any) => {
 
@@ -52,10 +55,10 @@ const CustomHeader: React.FC<DrawerHeaderProps> = (props: any) => {
   ];
 
   const itemMenuItems = [
-    { name: 'Delete', icon: () => <MaterialIcons name="delete-outline" size={20} color="white" /> },
-    { name: 'CsvExport', icon: () => <MaterialIcons name="file-upload" size={20} color="white" /> },
-    { name: 'Text', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" /> },
-    { name: 'CsvImport', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" /> },
+    { id: 1, name: 'Delete', icon: () => <MaterialIcons name="delete-outline" size={20} color="white" /> },
+    { id: 2, name: 'Csv Import', icon: () => <MaterialIcons name="file-upload" size={20} color="white" /> },
+    { id: 3, name: 'Text', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" /> },
+    { id: 4, name: 'Csv Export', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" /> },
   ];
 
   return (
@@ -104,16 +107,13 @@ const CustomHeader: React.FC<DrawerHeaderProps> = (props: any) => {
           }
         >
           {itemMenuItems.map((menuItem) => (
-            <React.Fragment key={menuItem.name}>
+            <React.Fragment key={menuItem.id}>
               <Menu.Item
                 onPress={() => {
                   toggleItem(menuItem.name);
                 }}
                 leadingIcon={menuItem.icon}
                 title={menuItem.name}
-                style={{
-                  backgroundColor: selectedItem === menuItem.name ? 'blue' : 'transparent',
-                }}
               />
               <Divider />
             </React.Fragment>
@@ -129,10 +129,10 @@ const styles = StyleSheet.create({
     fontSize: '12px',
     flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: 'blue',
+    backgroundColor: 'violet',
   },
   title: {
-    fontSize: 15,
+    fontSize: 20,
     textAlign: 'center',
   },
   item: {

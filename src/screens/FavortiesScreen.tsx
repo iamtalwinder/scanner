@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Card, IconButton, Divider } from 'react-native-paper';
-import { Feather, FontAwesome } from '@expo/vector-icons';
+import { Card, IconButton, Divider, Menu } from 'react-native-paper';
+import {
+  Feather,
+  FontAwesome,
+  MaterialIcons,
+  Entypo,
+  AntDesign,
+  MaterialCommunityIcons,
+} from '@expo/vector-icons';
 
 interface CardData {
   title: string;
@@ -10,29 +17,86 @@ interface CardData {
   library: 'Feather' | 'FontAwesome';
 }
 
-const cardData: CardData[] = [
+const itemMenuItems = [
   {
-    title: 'Url',
-    subtitle: 'Card Subtitle',
-    icon: 'link-2',
-    library: 'Feather',
+    id: 1, name: 'Delete', icon: () => <MaterialIcons name="delete-outline" size={20} color="white" />,
+    submenu: [
+      { id: 8, name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
+      { id: 9, name: 'Copy', icon: () => <AntDesign name="copy1" size={20} color="white" /> },
+    ]
   },
   {
-    title: 'Product',
-    subtitle: 'Card Subtitle2',
-    icon: 'shopping-bag',
-    library: 'Feather',
+    id: 2, name: 'Text', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" />,
+    submenu: [
+      { id: 10, name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
+      { id: 11, name: 'Copy', icon: () => <AntDesign name="copy1" size={20} color="white" /> },
+    ]
   },
-  {
-    title: 'Barcode',
-    subtitle: 'Card Subtitle3',
-    icon: 'barcode',
-    library: 'FontAwesome',
-  },
+  { id: 3, name: 'Csv', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" /> },
+  { id: 4, name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
+  { id: 5, name: 'Favorties', icon: () => <Entypo name="star-outlined" size={20} color="white" /> },
+  { id: 6, name: 'Edit', icon: () => <MaterialIcons name="mode-edit" size={20} color="white" /> },
+  { id: 7, name: 'Change Name', icon: () => <MaterialCommunityIcons name="rename-box" size={20} color="white" /> }
 ];
 
-const FavortiesScreen: React.FC = () => {
+const FavoritesScreen: React.FC = () => {
+  const [selectedItem, setSelectedItem] = useState<string>('');
+
+  const [cardData, setCardData] = useState<CardData[]>([
+    {
+      title: 'Url',
+      subtitle: '05/09/2023 8:42:43 am, QR_CODE exp://192.168.100.16:19000',
+      icon: 'link-2',
+      library: 'Feather',
+    },
+    {
+      title: 'Product',
+      subtitle: 'Card Subtitle2',
+      icon: 'shopping-bag',
+      library: 'Feather',
+    },
+    {
+      title: 'Barcode',
+      subtitle: 'Card Subtitle3',
+      icon: 'barcode',
+      library: 'FontAwesome',
+    },
+  ]);
+
+  const [menuVisibility, setMenuVisibility] = useState<boolean[]>(
+    Array(cardData.length).fill(false)
+  );
+
+  const toggleItem = (item: string, index: number) => {
+    if (selectedItem === item) {
+      setSelectedItem('');
+    } else {
+      setSelectedItem(item);
+
+      setMenuVisibility((prevVisibility) => {
+        const updatedVisibility = [...prevVisibility];
+        updatedVisibility[index] = !prevVisibility[index];
+        return updatedVisibility;
+      });
+    }
+  };
+
+  const deleteCard = (index: number) => {
+    const updatedCardData = [...cardData];
+    updatedCardData.splice(index, 1);
+
+    setCardData(updatedCardData);
+
+    setMenuVisibility((prevVisibility) => {
+      const updatedVisibility = [...prevVisibility];
+      updatedVisibility[index] = false;
+      return updatedVisibility;
+    });
+  };
+
+
   return (
+    <View style={styles.mainContainer}>
     <View style={styles.container}>
       {cardData.map((data, index) => (
         <Card
@@ -44,6 +108,7 @@ const FavortiesScreen: React.FC = () => {
           ]}
         >
           <Card.Title
+            style={styles.cardTitle}
             title={data.title}
             subtitle={data.subtitle}
             left={(props) =>
@@ -55,8 +120,54 @@ const FavortiesScreen: React.FC = () => {
             }
             right={(props) => (
               <View style={styles.iconContainer}>
-                <IconButton {...props} icon="dots-vertical" />
-                <FontAwesome name="bars" size={24} color="black" />
+                <FontAwesome name="bars" size={20} color="white" style={styles.barIcon} />
+                <Menu
+                  visible={menuVisibility[index]}
+                  onDismiss={() => {
+                    setMenuVisibility((prevVisibility) => {
+                      const updatedVisibility = [...prevVisibility];
+                      updatedVisibility[index] = false;
+                      return updatedVisibility;
+                    });
+                  }}
+                  anchor={
+                    <IconButton
+                      {...props}
+                      icon="dots-vertical"
+                      onPress={() => toggleItem(data.title, index)}
+                    />
+                  }
+                >
+                  {itemMenuItems.map((menuItem) => (
+                    <React.Fragment key={menuItem.id}>
+                      {menuItem.name === 'Delete' ? (
+                        <Menu.Item
+                          onPress={() => {
+                            deleteCard(index);
+                          }}
+                          leadingIcon={menuItem.icon}
+                          title={menuItem.name}
+                          style={{
+                            backgroundColor: selectedItem === menuItem.name ? 'blue' : 'transparent',
+                          }}
+                        />
+                      ) :
+                        (
+                          <Menu.Item
+                            onPress={() => {
+                              toggleItem(menuItem.name, index);
+                            }}
+                            leadingIcon={menuItem.icon}
+                            title={menuItem.name}
+                            style={{
+                              backgroundColor: selectedItem === menuItem.name ? 'blue' : 'transparent',
+                            }}
+                          />
+                        )}
+                      <Divider />
+                    </React.Fragment>
+                  ))}
+                </Menu>
               </View>
             )}
           />
@@ -64,10 +175,15 @@ const FavortiesScreen: React.FC = () => {
         </Card>
       ))}
     </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  mainContainer : {
+    flex: 1,
+    backgroundColor: '#212122'
+  },
   container: {
     marginTop: 20,
   },
@@ -75,7 +191,10 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     borderRadius: 0,
     marginBottom: 0,
-    marginTop: 0
+    marginTop: 0,
+    paddingTop: 8,
+    backgroundColor: '#050301'
+
   },
   firstCard: {
     borderTopLeftRadius: 8,
@@ -86,8 +205,17 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 8,
   },
   iconContainer: {
-    display: 'flex'
+    display: 'flex',
+    flexDirection: 'row',
+    marginRight: 10,
+  },
+  barIcon: {
+    marginTop: 15,
+  },
+  cardTitle: {
+    maxWidth: 500,
+    flexWrap: 'wrap'
   }
 });
 
-export default FavortiesScreen;
+export default FavoritesScreen;
