@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Card, IconButton, Divider, Menu, Button, Dialog, PaperProvider, Portal, TextInput } from 'react-native-paper';
+import { Card, IconButton, Divider, Menu, Button, Dialog, Text, Portal, TextInput } from 'react-native-paper';
 import {
   Feather,
   FontAwesome,
@@ -14,6 +14,7 @@ interface CardData {
   title: string;
   subtitle: string;
   icon: string;
+  text?: string;
   library: 'Feather' | 'FontAwesome';
 }
 
@@ -50,7 +51,8 @@ const FavoritesScreen: React.FC = () => {
   const [cardData, setCardData] = useState<CardData[]>([
     {
       title: 'Url',
-      subtitle: '05/09/2023 8:42:43 am, QR_CODE exp://192.168.100.16:19000',
+      subtitle: '05/09/2023 8:42:43 am,',
+      text: 'QR_CODE exp://192.168.100.16:19000',
       icon: 'link-2',
       library: 'Feather',
     },
@@ -139,7 +141,13 @@ const FavoritesScreen: React.FC = () => {
             <Card.Title
               style={styles.cardTitle}
               title={data.title}
-              subtitle={data.subtitle}
+              subtitle={
+                <>
+                  <Text style={styles.subtitleText}>{data.subtitle} {"\n"} {data.text}</Text>
+                  {/* {'\n'}
+                  <Text style={styles.subtitleText}>{data.text}</Text> */}
+                </>
+              }
               left={(props) =>
                 data.library === 'Feather' ? (
                   <Feather {...props} name={data.icon as any} size={20} color="white" />
@@ -276,7 +284,12 @@ const styles = StyleSheet.create({
   cardTitle: {
     maxWidth: 500,
     flexWrap: 'wrap'
-  }
+  },
+  subtitleText: {
+    fontSize: 16,
+    color: 'white',
+    marginBottom: 5,
+  },
 });
 
 export default FavoritesScreen;
