@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Card, IconButton, Divider, Menu } from 'react-native-paper';
+import { Card, IconButton, Divider, Menu, Button, Dialog, PaperProvider, Portal, TextInput } from 'react-native-paper';
 import {
   Feather,
   FontAwesome,
@@ -41,6 +41,11 @@ const itemMenuItems = [
 
 const FavoritesScreen: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<string>('');
+  const [isInputVisible, setInputVisible] = useState<boolean>(false);
+  const [text, setText] = useState('');
+  const [subMenu, setSubMenu] = useState(false);
+
+  const [dialogVisible, setDialogVisible] = useState(false);
 
   const [cardData, setCardData] = useState<CardData[]>([
     {
@@ -67,11 +72,22 @@ const FavoritesScreen: React.FC = () => {
     Array(cardData.length).fill(false)
   );
 
+  const showDialog = () => setDialogVisible(true);
+
+  const hideDialog = () => setDialogVisible(false);
+
   const toggleItem = (item: string, index: number) => {
     if (selectedItem === item) {
       setSelectedItem('');
     } else {
       setSelectedItem(item);
+
+      if (item === 'Change Name') {
+        setInputVisible(true);
+        showDialog();
+      } else {
+        setInputVisible(false);
+      }
 
       setMenuVisibility((prevVisibility) => {
         const updatedVisibility = [...prevVisibility];
@@ -94,65 +110,88 @@ const FavoritesScreen: React.FC = () => {
     });
   };
 
+  const updateTitle = () => {
+    if (selectedItem === 'Change Name' && text) {
+      const updatedCardData = [...cardData];
+      const selectedIndex = updatedCardData.findIndex((item) => item.title === selectedItem);
+      console.log("selected", updatedCardData)
+      if (selectedIndex !== -1) {
+        updatedCardData[selectedIndex].title = text;
+        setCardData(updatedCardData);
+        setText('');
+        hideDialog();
+      }
+    }
+  };
 
   return (
     <View style={styles.mainContainer}>
-    <View style={styles.container}>
-      {cardData.map((data, index) => (
-        <Card
-          key={index}
-          style={[
-            styles.card,
-            index === 0 && styles.firstCard,
-            index === cardData.length - 1 && styles.lastCard,
-          ]}
-        >
-          <Card.Title
-            style={styles.cardTitle}
-            title={data.title}
-            subtitle={data.subtitle}
-            left={(props) =>
-              data.library === 'Feather' ? (
-                <Feather {...props} name={data.icon as any} size={20} color="white" />
-              ) : (
-                <FontAwesome {...props} name={data.icon as any} size={20} color="white" />
-              )
-            }
-            right={(props) => (
-              <View style={styles.iconContainer}>
-                <FontAwesome name="bars" size={20} color="white" style={styles.barIcon} />
-                <Menu
-                  visible={menuVisibility[index]}
-                  onDismiss={() => {
-                    setMenuVisibility((prevVisibility) => {
-                      const updatedVisibility = [...prevVisibility];
-                      updatedVisibility[index] = false;
-                      return updatedVisibility;
-                    });
-                  }}
-                  anchor={
-                    <IconButton
-                      {...props}
-                      icon="dots-vertical"
-                      onPress={() => toggleItem(data.title, index)}
-                    />
-                  }
-                >
-                  {itemMenuItems.map((menuItem) => (
-                    <React.Fragment key={menuItem.id}>
-                      {menuItem.name === 'Delete' ? (
-                        <Menu.Item
-                          onPress={() => {
-                            deleteCard(index);
-                          }}
-                          leadingIcon={menuItem.icon}
-                          title={menuItem.name}
-                          style={{
-                            backgroundColor: selectedItem === menuItem.name ? 'blue' : 'transparent',
-                          }}
-                        />
-                      ) :
-                        (
+      <View style={styles.container}>
+        {cardData.map((data, index) => (
+          <Card
+            key={index}
+            style={[
+              styles.card,
+              index === 0 && styles.firstCard,
+              index === cardData.length - 1 && styles.lastCard,
+            ]}
+          >
+            <Card.Title
+              style={styles.cardTitle}
+              title={data.title}
+              subtitle={data.subtitle}
+              left={(props) =>
+                data.library === 'Feather' ? (
+                  <Feather {...props} name={data.icon as any} size={20} color="white" />
+                ) : (
+                  <FontAwesome {...props} name={data.icon as any} size={20} color="white" />
+                )
+              }
+              right={(props) => (
+                <View style={styles.iconContainer}>
+                  <FontAwesome name="bars" size={20} color="white" style={styles.barIcon} />
+                  <Menu
+                    visible={menuVisibility[index]}
+                    onDismiss={() => {
+                      setMenuVisibility((prevVisibility) => {
+                        const updatedVisibility = [...prevVisibility];
+                        updatedVisibility[index] = false;
+                        return updatedVisibility;
+                      });
+                    }}
+                    anchor={
+                      <IconButton
+                        {...props}
+                        icon="dots-vertical"
+                        onPress={() => toggleItem(data.title, index)}
+                      />
+                    }
+                  >
+                    {itemMenuItems.map((menuItem) => (
+                      <React.Fragment key={menuItem.id}>
+                        {menuItem.name === 'Delete' ? (
+                          <Menu.Item
+                            onPress={() => {
+                              deleteCard(index);
+                            }}
+                            leadingIcon={menuItem.icon}
+                            title={menuItem.name}
+                            style={{
+                              backgroundColor: selectedItem === menuItem.name ? 'blue' : 'transparent',
+                            }}
+                          />
+                        ) : menuItem.name === 'Change Name' ? (
+                          <Menu.Item
+                            onPress={() => {
+                              toggleItem(menuItem.name, index);
+                            }}
+                            leadingIcon={menuItem.icon}
+                            title={menuItem.name}
+                            style={{
+                              backgroundColor: selectedItem === menuItem.name ? 'blue' : 'transparent',
+                            }}
+                          />
+                        ) : (
                           <Menu.Item
                             onPress={() => {
                               toggleItem(menuItem.name, index);
@@ -164,23 +203,45 @@ const FavoritesScreen: React.FC = () => {
                             }}
                           />
                         )}
-                      <Divider />
-                    </React.Fragment>
-                  ))}
-                </Menu>
-              </View>
-            )}
-          />
-          <Divider />
-        </Card>
-      ))}
-    </View>
+                        {menuItem.name !== 'Change Name' && <Divider />}
+                      </React.Fragment>
+                    ))}
+                  </Menu>
+                </View>
+              )}
+            />
+            <Divider />
+          </Card>
+        ))}
+      </View>
+      <Portal>
+        <Dialog visible={dialogVisible} onDismiss={hideDialog}>
+          <Dialog.Content>
+            <TextInput
+              placeholder={selectedItem}
+              value={text}
+              onChangeText={setText}
+            />
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button onPress={hideDialog}>Cancel</Button>
+            <Button
+              onPress={() => {
+                updateTitle();
+              }}
+            >
+              Ok
+            </Button>
+          </Dialog.Actions>
+        </Dialog>
+      </Portal>
     </View>
   );
 };
 
+
 const styles = StyleSheet.create({
-  mainContainer : {
+  mainContainer: {
     flex: 1,
     backgroundColor: '#212122'
   },
