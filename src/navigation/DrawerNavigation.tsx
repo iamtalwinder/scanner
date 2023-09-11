@@ -77,7 +77,7 @@ export const DrawerNavigator: React.FC = () => {
           }
         }}
       />
-      <Drawer.Screen name="My QR" component={MyQRScreen}
+      <Drawer.Screen name="Create" component={MyQRScreen}
         options={{
           drawerIcon: () => {
             return (
