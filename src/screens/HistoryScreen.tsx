@@ -1,21 +1,20 @@
 import { StyleSheet, Text, View } from 'react-native';
+import CustomCard from '../components/CustomCard';
+import React, { useState } from 'react';
+import { CardData } from '../components/CustomCard';
 
 export const HistoryScreen: React.FC = () => {
+  
   return (
-    <View style={styles.container}>
-      <Text>History Screen</Text>
-    </View>
-  );
+    <>
+      <CustomCard
+      screenType='History'
+      //  toggleFavorite={toggleFavorite} 
+      //  updateCardData={() => setCardData(cardData)} 
+       />
+    </>
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#212122'
-  },
-});
 
 export default HistoryScreen;
 
