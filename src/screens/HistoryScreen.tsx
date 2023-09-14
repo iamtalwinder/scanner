@@ -1,17 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
 import CustomCard from '../components/CustomCard';
-import React, { useState } from 'react';
-import { CardData } from '../components/CustomCard';
+import { getAllScannedItems } from '../context/ScannedItemsSelectors';
+import { useScannedItems } from '../context/ScannedItemsContext';
 
 export const HistoryScreen: React.FC = () => {
+  const { state } = useScannedItems();
+  const allScannedItems = getAllScannedItems(state);
   
   return (
     <>
       <CustomCard
-      screenType='History'
-      //  toggleFavorite={toggleFavorite} 
-      //  updateCardData={() => setCardData(cardData)} 
-       />
+        items={allScannedItems}
+        screenType='History'
+      />
     </>
   )
 }

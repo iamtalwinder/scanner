@@ -1,147 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Card, IconButton, Divider, Menu, Button, Dialog, Text, Portal, TextInput } from 'react-native-paper';
-import {
-  Feather,
-  FontAwesome,
-  MaterialIcons,
-  Entypo,
-  AntDesign,
-  MaterialCommunityIcons,
-} from '@expo/vector-icons';
-
-
-export interface CardData {
-  title: string;
-  subtitle: string;
-  icon: string;
-  text?: string;
-  library: 'Feather' | 'FontAwesome';
-  isFavorite: boolean
-}
+import { Card, Divider, IconButton, Menu, Text } from 'react-native-paper';
+import { ScannedItemTypeEnum, ScannedItems, useScannedItems } from '../context/ScannedItemsContext';
+import { ScannedItemActionEnum } from '../context/ScannedItemsContext'
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
+import { Feather, FontAwesome, MaterialIcons, Entypo, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 
 interface CustomCardProps {
+  items?: ScannedItems[];
   screenType: 'Favorite' | 'History';
-  toggleFavorite?: (card: CardData) => void;
-  updateCardData?: (updatedData: CardData[]) => void;
 }
 
-export const itemMenuItems = [
+export interface MenuItems {
+  id: string;
+  name: string;
+  icon: () => ReactNode;
+  submenu?: MenuItems[];
+}
+
+ const MenuItems: MenuItems[] = [
   {
-    id: 1, name: 'Delete', icon: () => <MaterialIcons name="delete-outline" size={20} color="white" />,
+    id: uuidv4(), name: 'Delete', icon: () => <MaterialIcons name="delete-outline" size={20} color="white" />,
     submenu: [
-      { id: 8, name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
-      { id: 9, name: 'Copy', icon: () => <AntDesign name="copy1" size={20} color="white" /> },
+      { id: uuidv4(), name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
+      { id: uuidv4(), name: 'Copy', icon: () => <AntDesign name="copy1" size={20} color="white" /> },
     ]
   },
   {
-    id: 2, name: 'Text', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" />,
+    id: uuidv4(), name: 'Text', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" />,
     submenu: [
-      { id: 10, name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
-      { id: 11, name: 'Copy', icon: () => <AntDesign name="copy1" size={20} color="white" /> },
+      { id: uuidv4(), name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
+      { id: uuidv4(), name: 'Copy', icon: () => <AntDesign name="copy1" size={20} color="white" /> },
     ]
   },
-  { id: 3, name: 'Csv', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" /> },
-  { id: 4, name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
-  { id: 5, name: 'Favorties', icon: () => <Entypo name="star-outlined" size={20} color="white" /> },
-  { id: 6, name: 'Edit', icon: () => <MaterialIcons name="mode-edit" size={20} color="white" /> },
-  { id: 7, name: 'Change Name', icon: () => <MaterialCommunityIcons name="rename-box" size={20} color="white" /> }
+  { id: uuidv4(), name: 'Csv', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" /> },
+  { id: uuidv4(), name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
+  { id: uuidv4(), name: 'Favorites', icon: () => <Entypo name="star-outlined" size={20} color="white" /> },
+  { id: uuidv4(), name: 'Edit', icon: () => <MaterialIcons name="mode-edit" size={20} color="white" /> },
+  { id: uuidv4(), name: 'Change Name', icon: () => <MaterialCommunityIcons name="rename-box" size={20} color="white" /> }
 ];
 
+
 const CustomCard: React.FC<CustomCardProps> = (props: any) => {
-  const { screenType } = props;
-
+  const { items, screenType } = props;
   const [selectedItem, setSelectedItem] = useState<string>('');
-  const [isInputVisible, setInputVisible] = useState<boolean>(false);
-  const [text, setText] = useState('');
-  const [subMenu, setSubMenu] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false);
+  const { state, dispatch } = useScannedItems();
 
-  const [dialogVisible, setDialogVisible] = useState(false);
-
-  const [cardData, setCardData] = useState<CardData[]>([
-    {
-      title: 'Url',
-      subtitle: '05/09/2023 8:42:43 am,',
-      text: 'QR_CODE exp://192.168.100.16:19000',
-      icon: 'link-2',
-      library: 'Feather',
-      isFavorite: true,
-    },
-    {
-      title: 'Product',
-      subtitle: 'Card Subtitle2',
-      icon: 'shopping-bag',
-      library: 'Feather',
-      isFavorite: true,
-
-    },
-    {
-      title: 'Barcode',
-      subtitle: 'Card Subtitle3',
-      icon: 'barcode',
-      library: 'FontAwesome',
-      isFavorite: false,
-    },
-    {
-      title: 'Text',
-      subtitle: 'Card Subtitle3',
-      icon: 'text-height',
-      library: 'FontAwesome',
-      isFavorite: false,
-    },
-    {
-      title: 'Headphones',
-      subtitle: '05/09/2023 8:42:43 am,',
-      text: 'QR_CODE exp://192.168.100.16:19000',
-      icon: 'headphones',
-      library: 'Feather',
-      isFavorite: false,
-    },
-  ]);
-
-
-  const filteredCardData = cardData.filter((card) =>
-    screenType === 'Favorite' ? card.isFavorite : true
-  );
-
-  const [cardFavorites, setCardFavorites] = useState<boolean[]>(
-    cardData.map((card) => card.isFavorite)
-  );
   const [menuVisibility, setMenuVisibility] = useState<boolean[]>(
-    Array(cardData.length).fill(false)
+    Array(MenuItems.length).fill(false)
   );
 
-  const toggleFavorite = (index: number) => {
-    setCardFavorites((prevFavorites) => {
-      const updatedFavorites = [...prevFavorites];
-      updatedFavorites[index] = !prevFavorites[index];
-      console.log("update", updatedFavorites)
-      return updatedFavorites;
-    });
-
-    const updatedCardData = [...cardData];
-    updatedCardData[index].isFavorite = !cardData[index].isFavorite;
-    setCardData(updatedCardData);
-
-  };
-
-
-  const showDialog = () => setDialogVisible(true);
-
-  const hideDialog = () => setDialogVisible(false);
-
-  const toggleItem = (item: string, index: number) => {
+  const toggleItem = (item: any, index: number) => {
+    console.log('selected', selectedItem)
     if (selectedItem === item) {
       setSelectedItem('');
     } else {
       setSelectedItem(item);
-
-      if (item === 'Change Name') {
-        setInputVisible(true);
-        showDialog();
-      } else {
-        setInputVisible(false);
-      }
+      setMenuVisible(true);
 
       setMenuVisibility((prevVisibility) => {
         const updatedVisibility = [...prevVisibility];
@@ -151,170 +68,125 @@ const CustomCard: React.FC<CustomCardProps> = (props: any) => {
     }
   };
 
-  const deleteCard = (index: number) => {
-    const updatedCardData = [...cardData];
-    updatedCardData.splice(index, 1);
+  // const closeMenu = (index: number) => {
+  //   setMenuVisibility((prevVisibility) => {
+  //     const updatedVisibility = [...prevVisibility];
+  //     updatedVisibility[index] = false;
+  //     return updatedVisibility;
+  //   });
+  // };
 
-    setCardData(updatedCardData);
-
-    setMenuVisibility((prevVisibility) => {
-      const updatedVisibility = [...prevVisibility];
-      updatedVisibility[index] = false;
-      return updatedVisibility;
-    });
-  };
-
-  const updateTitle = () => {
-    if (selectedItem === 'Change Name' && text) {
-      const updatedCardData = [...cardData];
-      const selectedIndex = updatedCardData.findIndex((item) => item.title === selectedItem);
-      console.log("selected", updatedCardData)
-      if (selectedIndex !== -1) {
-        updatedCardData[selectedIndex].title = text;
-        setCardData(updatedCardData);
-        setText('');
-        hideDialog();
-      }
+  const addToFavorites = (id: string, isFavorite: boolean) => {
+    if (!isFavorite) {
+      dispatch({
+        type: ScannedItemActionEnum.ADD_TO_FAVORITE,
+        id: id,
+      });
+    } else {
+      dispatch({
+        type: ScannedItemActionEnum.REMOVE_FROM_FAVORITE,
+        id: id,
+      });
     }
   };
 
+
+  const renderIconBasedOnType = (itemType: ScannedItemTypeEnum) => {
+    switch (itemType) {
+      case ScannedItemTypeEnum.Product:
+        return <Feather name="shopping-bag" size={24} color="white" />;
+      case ScannedItemTypeEnum.Barcode:
+        return <FontAwesome name="barcode" size={24} color="white" />;
+      case ScannedItemTypeEnum.Text:
+        return <Feather name="file-text" size={24} color="white" />;
+      case ScannedItemTypeEnum.Url:
+        return <Feather name="link-2" size={24} color="white" />;
+      default:
+        return null;
+    }
+  }
+
+
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.container}>
-        {filteredCardData.map((data, index) => (
-          <Card
-            key={index}
-            style={[
-              styles.card,
-              index === 0 && styles.firstCard,
-              index === cardData.length - 1 && styles.lastCard,
-            ]}
-          >
-            <Card.Title
-              style={styles.cardTitle}
-              title={data.title}
-              subtitle={
-                <>
-                  <Text style={styles.subtitleText}>{data.subtitle} {"\n"} {data.text}</Text>
-                  {/* {'\n'}
-                  <Text style={styles.subtitleText}>{data.text}</Text> */}
-                </>
-              }
-              left={(props) =>
-                data.library === 'Feather' ? (
-                  <Feather {...props} name={data.icon as any} size={20} color="white" />
+      {items.map((data: ScannedItems, index: number) => (
+        <Card
+          key={index}
+          style={styles.card}
+        >
+          <Card.Title
+            title={data.type}
+            subtitle={
+              <>
+                <Text style={styles.subtitleText}>{data.timestamp}</Text>
+                <Text numberOfLines={2}>{data.text}</Text>
+              </>
+            }
+            left={() => (
+              <View style={styles.iconContainer}>
+                {renderIconBasedOnType(data.type)}
+              </View>
+            )}
+            right={(props) => (
+              <View style={styles.iconContainer}>
+                {screenType === 'History' ? (
+                  <Entypo
+                    name={data.isFavorite ? 'star' : 'star-outlined'}
+                    size={20}
+                    color="white"
+                    style={styles.barIcon}
+                    onPress={() => addToFavorites(data.id, data.isFavorite)}
+                  />
                 ) : (
-                  <FontAwesome {...props} name={data.icon as any} size={20} color="white" />
-                )
-              }
-              right={(props) => (
-                <View style={styles.iconContainer}>
-                  {screenType === 'History' ?
-                    <Entypo name={cardFavorites[index] ? 'star' : 'star-outlined'}
-                      size={24}
-                      color="white"
-                      style={styles.barIcon}
-                      onPress={() => toggleFavorite(index)}
+                  <FontAwesome name="bars" size={20} color="white" style={styles.barIcon} />
+                )}
+                <Menu
+                  visible={menuVisibility[index]}
+                  onDismiss={() => {
+                    setMenuVisibility((prevVisibility) => {
+                      const updatedVisibility = [...prevVisibility];
+                      updatedVisibility[index] = false;
+                      return updatedVisibility;
+                    });
+                  }}
+                  anchor={
+                    <IconButton
+                      {...props}
+                      icon="dots-vertical"
+                      onPress={() => toggleItem(data.text, index)}
                     />
-                    :
-                    <FontAwesome name="bars" size={20} color="white" style={styles.barIcon} />
                   }
-                  <Menu
-                    visible={menuVisibility[index]}
-                    onDismiss={() => {
-                      setMenuVisibility((prevVisibility) => {
-                        const updatedVisibility = [...prevVisibility];
-                        updatedVisibility[index] = false;
-                        return updatedVisibility;
-                      });
-                    }}
-                    anchor={
-                      <IconButton
-                        {...props}
-                        icon="dots-vertical"
-                        onPress={() => toggleItem(data.title, index)}
+                >
+                  {MenuItems.map((menuItem: MenuItems, index: number) => (
+                    <React.Fragment key={menuItem.id}>
+                      <Menu.Item
+                        leadingIcon={menuItem.icon}
+                        title={menuItem.name}
+                        // onPress={() => {
+                        //   closeMenu(index);
+                        // }}
+                      // style={{
+                      //   backgroundColor: selectedItem === menuItem.name ? 'blue' : 'transparent',
+                      // }}
                       />
-                    }
-                  >
-                    {itemMenuItems.map((menuItem) => (
-                      <React.Fragment key={menuItem.id}>
-                        {menuItem.name === 'Delete' ? (
-                          <Menu.Item
-                            onPress={() => {
-                              deleteCard(index);
-                            }}
-                            leadingIcon={menuItem.icon}
-                            title={menuItem.name}
-                            style={{
-                              backgroundColor: selectedItem === menuItem.name ? 'blue' : 'transparent',
-                            }}
-                          />
-                        ) : menuItem.name === 'Change Name' ? (
-                          <Menu.Item
-                            onPress={() => {
-                              toggleItem(menuItem.name, index);
-                            }}
-                            leadingIcon={menuItem.icon}
-                            title={menuItem.name}
-                            style={{
-                              backgroundColor: selectedItem === menuItem.name ? 'blue' : 'transparent',
-                            }}
-                          />
-                        ) : (
-                          <Menu.Item
-                            onPress={() => {
-                              toggleItem(menuItem.name, index);
-                            }}
-                            leadingIcon={menuItem.icon}
-                            title={menuItem.name}
-                            style={{
-                              backgroundColor: selectedItem === menuItem.name ? 'blue' : 'transparent',
-                            }}
-                          />
-                        )}
-                        {menuItem.name !== 'Change Name' && <Divider />}
-                      </React.Fragment>
-                    ))}
-                  </Menu>
-                </View>
-              )}
-            />
-            <Divider />
-          </Card>
-        ))}
-      </View>
-      <Portal>
-        <Dialog visible={dialogVisible} onDismiss={hideDialog}>
-          <Dialog.Content>
-            <TextInput
-              placeholder={selectedItem}
-              value={text}
-              onChangeText={setText}
-            />
-          </Dialog.Content>
-          <Dialog.Actions>
-            <Button onPress={hideDialog}>Cancel</Button>
-            <Button
-              onPress={() => {
-                updateTitle();
-              }}
-            >
-              Ok
-            </Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
+                    </React.Fragment>
+                  ))}
+                </Menu>
+              </View>
+            )}
+          />
+          <Divider />
+        </Card>
+      ))}
     </View>
   );
-};
-
+}
 
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: '#212122'
-  },
-  container: {
+    backgroundColor: '#212122',
+    padding: 10,
     marginTop: 20,
   },
   card: {
@@ -323,16 +195,12 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     marginTop: 0,
     paddingTop: 8,
-    backgroundColor: '#050301'
-
+    backgroundColor: '#050301',
   },
-  firstCard: {
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
-  },
-  lastCard: {
-    borderBottomLeftRadius: 8,
-    borderBottomRightRadius: 8,
+  subtitleText: {
+    fontSize: 16,
+    color: 'white',
+    marginBottom: 5,
   },
   iconContainer: {
     display: 'flex',
@@ -341,15 +209,6 @@ const styles = StyleSheet.create({
   },
   barIcon: {
     marginTop: 13,
-  },
-  cardTitle: {
-    maxWidth: 500,
-    flexWrap: 'wrap'
-  },
-  subtitleText: {
-    fontSize: 16,
-    color: 'white',
-    marginBottom: 5,
   },
 });
 

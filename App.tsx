@@ -1,17 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { Button, PaperProvider } from 'react-native-paper';
+import { StyleSheet } from 'react-native';
+import { PaperProvider } from 'react-native-paper';
 import theme from './src/theme';
 import { NavigationContainer } from '@react-navigation/native';
 import { DrawerNavigator } from './src/navigation';
+import { ScannedItemsProvider } from './src/context/ScannedItemsContext';
 
 export default function App() {
   return (
-    <PaperProvider theme={theme}>
-      <NavigationContainer>
-        <DrawerNavigator />
-      </NavigationContainer>
-    </PaperProvider>
+    <ScannedItemsProvider>
+      <PaperProvider theme={theme}>
+        <NavigationContainer>
+          <DrawerNavigator />
+        </NavigationContainer>
+      </PaperProvider>
+    </ScannedItemsProvider>
   );
 }
 

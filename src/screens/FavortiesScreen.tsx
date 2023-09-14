@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CustomCard from '../components/CustomCard';
-import { CardData } from '../components/CustomCard';
+import { getAllFavorite } from '../context/ScannedItemsSelectors';
+import { useScannedItems } from '../context/ScannedItemsContext';
 
 const FavortieScreen = () => {
+  const { state } = useScannedItems();
+  const allFavorites = getAllFavorite(state);
 
   return (
     <>
-      <CustomCard screenType='Favorite' />
+      <CustomCard
+        items={allFavorites}
+        screenType='Favorite'
+      />
     </>
   )
 }
