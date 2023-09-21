@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
+import React, { useState } from "react";
+import { AntDesign } from '@expo/vector-icons';
+import { View, Button, TextInput, StyleSheet, Text } from "react-native";
 
-export const MyQRScreen: React.FC = () => {
+export const ContactScreen: React.FC = () => {
 
   const [formData, setFormData] = useState([
     { name: 'FullName', value: '' },
@@ -29,23 +28,10 @@ export const MyQRScreen: React.FC = () => {
   };
 
   return (
-    <>
-      <View style={styles.container}>
-        <View style={styles.headline}>
-          <Ionicons name="person" size={24} color="white" />
-          <Text style={styles.heading}>My QR</Text>
-        </View>
-        <View>
-          <Text style={styles.share}>Share your contact info via QR.</Text>
-        </View>
-        <View>
-          <View style={styles.content}>
-            <Text style={styles.content}>Only enter data you want to share. When done click
-              <MaterialIcons style={styles.doneIcon} name="done" size={20} color="white" />
-            </Text>
-            <Text style={styles.content}>Next time you open My QR your contact QR will be displayed</Text>
-          </View>
-        </View>
+    <View style={styles.mainContainer}>
+      <View style={styles.title}>
+        <AntDesign name="contacts" size={24} color="white" />
+        <Text style={styles.headline}>Contact</Text>
       </View>
       <View style={styles.formContainer}>
         {formData.map((field) => (
@@ -58,15 +44,16 @@ export const MyQRScreen: React.FC = () => {
               keyboardType={field.name === 'Email' ? 'email-address' : 'default'}
               multiline={field.name === 'Notes' ? true : false}
               placeholderTextColor="white"
-              numberOfLines={field.name === 'Notes' ? 4 : 2}
+              numberOfLines={field.name === 'Notes' ? 6 : 2}
             />
           </View>
         ))}
         <Button title="Submit" onPress={handleSubmit} />
       </View>
-    </>
-  );
+    </View>
+  )
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -76,26 +63,24 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     paddingTop: 20,
   },
+  title: {
+    gap: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: 10,
+    marginBottom: 10
+  },
+  mainContainer: {
+    flex: 1,
+    padding: 15,
+    backgroundColor: '#212122',
+  },
   headline: {
     display: 'flex',
     gap: 15,
-    flexDirection: 'row',
-  },
-  heading: {
-    color: 'white'
-  },
-  share: {
-    color: 'white',
     fontSize: 18,
-    marginTop: 20,
-    marginBottom: 20
-  },
-  content: {
-    display: 'flex',
     color: 'white',
-  },
-  doneIcon: {
-    margin: 10
+    flexDirection: 'row',
   },
   formContainer: {
     paddingLeft: 16,
@@ -113,6 +98,3 @@ const styles = StyleSheet.create({
     marginBottom: 15
   },
 });
-
-export default MyQRScreen;
-

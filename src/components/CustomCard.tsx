@@ -1,49 +1,23 @@
-import React, { useState, ReactNode } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Card, Divider, IconButton, Menu, Text } from 'react-native-paper';
 import { ScannedItemTypeEnum, ScannedItems, useScannedItems } from '../context/ScannedItemsContext';
 import { ScannedItemActionEnum } from '../context/ScannedItemsContext'
-import 'react-native-get-random-values';
-import { v4 as uuidv4 } from 'uuid';
-import { Feather, FontAwesome, MaterialIcons, Entypo, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Feather, FontAwesome, Entypo } from '@expo/vector-icons';
 
 interface CustomCardProps {
-  items?: ScannedItems[];
+  items: ScannedItems[];
   screenType: 'Favorite' | 'History';
+  MenuItems: React.ComponentType<any>;
 }
 
-export interface MenuItems {
-  id: string;
-  name: string;
-  icon: () => ReactNode;
-  submenu?: MenuItems[];
+interface GroupedCardData {
+  [key: string]: ScannedItems[];
 }
 
- const MenuItems: MenuItems[] = [
-  {
-    id: uuidv4(), name: 'Delete', icon: () => <MaterialIcons name="delete-outline" size={20} color="white" />,
-    submenu: [
-      { id: uuidv4(), name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
-      { id: uuidv4(), name: 'Copy', icon: () => <AntDesign name="copy1" size={20} color="white" /> },
-    ]
-  },
-  {
-    id: uuidv4(), name: 'Text', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" />,
-    submenu: [
-      { id: uuidv4(), name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
-      { id: uuidv4(), name: 'Copy', icon: () => <AntDesign name="copy1" size={20} color="white" /> },
-    ]
-  },
-  { id: uuidv4(), name: 'Csv', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" /> },
-  { id: uuidv4(), name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
-  { id: uuidv4(), name: 'Favorites', icon: () => <Entypo name="star-outlined" size={20} color="white" /> },
-  { id: uuidv4(), name: 'Edit', icon: () => <MaterialIcons name="mode-edit" size={20} color="white" /> },
-  { id: uuidv4(), name: 'Change Name', icon: () => <MaterialCommunityIcons name="rename-box" size={20} color="white" /> }
-];
+const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
+  const { items, screenType, MenuItems } = props;
 
-
-const CustomCard: React.FC<CustomCardProps> = (props: any) => {
-  const { items, screenType } = props;
   const [selectedItem, setSelectedItem] = useState<string>('');
   const [menuVisible, setMenuVisible] = useState(false);
   const { state, dispatch } = useScannedItems();
@@ -53,7 +27,6 @@ const CustomCard: React.FC<CustomCardProps> = (props: any) => {
   );
 
   const toggleItem = (item: any, index: number) => {
-    console.log('selected', selectedItem)
     if (selectedItem === item) {
       setSelectedItem('');
     } else {
@@ -68,14 +41,6 @@ const CustomCard: React.FC<CustomCardProps> = (props: any) => {
     }
   };
 
-  // const closeMenu = (index: number) => {
-  //   setMenuVisibility((prevVisibility) => {
-  //     const updatedVisibility = [...prevVisibility];
-  //     updatedVisibility[index] = false;
-  //     return updatedVisibility;
-  //   });
-  // };
-
   const addToFavorites = (id: string, isFavorite: boolean) => {
     if (!isFavorite) {
       dispatch({
@@ -89,7 +54,6 @@ const CustomCard: React.FC<CustomCardProps> = (props: any) => {
       });
     }
   };
-
 
   const renderIconBasedOnType = (itemType: ScannedItemTypeEnum) => {
     switch (itemType) {
@@ -106,78 +70,85 @@ const CustomCard: React.FC<CustomCardProps> = (props: any) => {
     }
   }
 
+  const sortedItems = [...items].sort((itemA, itemB) => {
+    const dateA = new Date(itemA.date);
+    const dateB = new Date(itemB.date);
+  
+    return (dateB.getTime() - dateA.getTime());
+  });
+  
+  console.log('sorted-array', sortedItems);
 
   return (
     <View style={styles.mainContainer}>
       {items.map((data: ScannedItems, index: number) => (
-        <Card
-          key={index}
-          style={styles.card}
-        >
-          <Card.Title
-            title={data.type}
-            subtitle={
-              <>
-                <Text style={styles.subtitleText}>{data.timestamp}</Text>
-                <Text numberOfLines={2}>{data.text}</Text>
-              </>
-            }
-            left={() => (
-              <View style={styles.iconContainer}>
-                {renderIconBasedOnType(data.type)}
-              </View>
-            )}
-            right={(props) => (
-              <View style={styles.iconContainer}>
-                {screenType === 'History' ? (
-                  <Entypo
-                    name={data.isFavorite ? 'star' : 'star-outlined'}
-                    size={20}
-                    color="white"
-                    style={styles.barIcon}
-                    onPress={() => addToFavorites(data.id, data.isFavorite)}
-                  />
-                ) : (
-                  <FontAwesome name="bars" size={20} color="white" style={styles.barIcon} />
-                )}
-                <Menu
-                  visible={menuVisibility[index]}
-                  onDismiss={() => {
-                    setMenuVisibility((prevVisibility) => {
-                      const updatedVisibility = [...prevVisibility];
-                      updatedVisibility[index] = false;
-                      return updatedVisibility;
-                    });
-                  }}
-                  anchor={
-                    <IconButton
-                      {...props}
-                      icon="dots-vertical"
-                      onPress={() => toggleItem(data.text, index)}
+        <View>
+          <View>
+            <Text style={styles.dateHeader}>{data.date}</Text>
+          </View>
+          <Card
+            key={data.id}
+            style={styles.card}
+          >
+
+            <Card.Title
+              title={data.type}
+              subtitle={
+                <>
+                  <Text style={styles.subtitleText}>{data.date}{data.time}</Text>
+                  <Text numberOfLines={2}>{data.text}</Text>
+                </>
+              }
+              left={() => (
+                <View style={styles.iconContainer}>
+                  {renderIconBasedOnType(data.type)}
+                </View>
+              )}
+              right={() => (
+                <View style={styles.iconContainer}>
+                  {screenType === 'History' ? (
+                    <Entypo
+                      name={data.isFavorite ? 'star' : 'star-outlined'}
+                      size={20}
+                      color="white"
+                      style={styles.barIcon}
+                      onPress={() => addToFavorites(data.id, data.isFavorite)}
                     />
-                  }
-                >
-                  {MenuItems.map((menuItem: MenuItems, index: number) => (
-                    <React.Fragment key={menuItem.id}>
-                      <Menu.Item
-                        leadingIcon={menuItem.icon}
-                        title={menuItem.name}
-                        // onPress={() => {
-                        //   closeMenu(index);
-                        // }}
-                      // style={{
-                      //   backgroundColor: selectedItem === menuItem.name ? 'blue' : 'transparent',
-                      // }}
+                  ) : (
+                    <FontAwesome name="bars" size={20} color="white" style={styles.barIcon} />
+                  )}
+                  <Menu
+                    visible={menuVisibility[index]}
+                    onDismiss={() => {
+                      setMenuVisibility((prevVisibility) => {
+                        const updatedVisibility = [...prevVisibility];
+                        updatedVisibility[index] = false;
+                        return updatedVisibility;
+                      });
+                    }}
+                    anchor={
+                      <IconButton
+                        {...props}
+                        icon="dots-vertical"
+                        onPress={() => toggleItem(data.text, index)}
                       />
-                    </React.Fragment>
-                  ))}
-                </Menu>
-              </View>
-            )}
-          />
-          <Divider />
-        </Card>
+                    }
+                  >
+                    <View>
+                      <MenuItems item={data} />
+                    </View>
+                  </Menu>
+                </View>
+              )}
+            />
+            <Divider />
+          </Card>
+        </View>
+
       ))}
+      {/* </View>
+      ))} */}
+
     </View>
   );
 }
@@ -209,6 +180,13 @@ const styles = StyleSheet.create({
   },
   barIcon: {
     marginTop: 13,
+  },
+  dateHeader: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'white',
+    marginTop: 10,
+    marginBottom: 5,
   },
 });
 

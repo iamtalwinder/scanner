@@ -13,13 +13,15 @@ export enum ScannedItemActionEnum {
   ADD_SCANNED_ITEM = 'ADD_SCANNED_ITEM',
   REMOVE_SCANNED_ITEM = 'REMOVE_SCANNED_ITEM',
   ADD_TO_FAVORITE = 'ADD_TO_FAVORITE',
-  REMOVE_FROM_FAVORITE = 'REMOVE_FROM_FAVORITE'
+  REMOVE_FROM_FAVORITE = 'REMOVE_FROM_FAVORITE',
+  TOOGLE_FAVORITE = 'TOOGLE_FAVORITE'
 }
 
 export interface ScannedItems {
   id: string;
   type: ScannedItemTypeEnum;
-  timestamp: string;
+  date: string;
+  time: string;
   isFavorite: boolean;
   text: string;
 }
@@ -28,35 +30,40 @@ export type Action =
   | { type: ScannedItemActionEnum.ADD_SCANNED_ITEM; item: ScannedItems }
   | { type: ScannedItemActionEnum.REMOVE_SCANNED_ITEM; id: string }
   | { type: ScannedItemActionEnum.ADD_TO_FAVORITE; id: string }
-  | { type: ScannedItemActionEnum.REMOVE_FROM_FAVORITE; id: string };
+  | { type: ScannedItemActionEnum.REMOVE_FROM_FAVORITE; id: string }
+  | { type: ScannedItemActionEnum.TOOGLE_FAVORITE; item: ScannedItems };
 
 
 const scannedItems: ScannedItems[] = [
   {
     id: uuidv4(),
     type: ScannedItemTypeEnum.Url,
-    timestamp: '05/09/2023 8:42:43 am,',
+    date: '05/09/2023 ',
+    time:'8:42:43 am,',
     text: 'QR_CODE exp://192.168.100.16:19000',
     isFavorite: true,
   },
   {
     id: uuidv4(),
     type: ScannedItemTypeEnum.Product,
-    timestamp: '07/08/2023 8:10:20 am,',
+    date: '07/08/2023',
+    time: '8:10:20 am,',
     text: 'Product exp://192.168.100.16:19000',
     isFavorite: true,
   },
   {
     id: uuidv4(),
     type: ScannedItemTypeEnum.Barcode,
-    timestamp: '03/08/2023 10:30:20 am,',
+    date: '03/07/2023 ',
+    time: '10:30:20 am,',
     text: 'Barcode exp://192.168.100.16:19000',
     isFavorite: false,
   },
   {
     id: uuidv4(),
     type: ScannedItemTypeEnum.Text,
-    timestamp: '16/08/2023 05:10:30 pm,',
+    date: '16/08/2023',
+    time: ' 05:10:30 pm,',
     text: 'Text exp://192.168.100.16:19000',
     isFavorite: false,
   }
@@ -64,10 +71,12 @@ const scannedItems: ScannedItems[] = [
 
 export interface State {
   scannedItems: ScannedItems[];
+  // favoriteItems?: ScannedItems[];
 }
 
 const initialState: State = {
   scannedItems: scannedItems,
+  // favoriteItems: [],
 };
 
 const ScannedItemsContext = createContext<{ state: State; dispatch: Dispatch<Action> } | undefined>(undefined);
@@ -98,6 +107,14 @@ const scannedItemsReducer = (state: State, action: Action): State => {
           item.id === action.id ? { ...item, isFavorite: false } : item
         ),
       };
+
+    // case ScannedItemActionEnum.TOOGLE_FAVORITE:
+    //   return {
+    //     ...state,
+    //     scannedItems: state.scannedItems.map((item) =>
+    //       item.id === action.item.id ? { ...item, isFavorite: !action.item.isFavorite } : item
+    //     ),
+    //   };
 
     default:
       return state;

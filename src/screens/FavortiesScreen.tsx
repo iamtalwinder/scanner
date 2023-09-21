@@ -1,9 +1,84 @@
-import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import 'react-native-get-random-values';
+import React, { ReactNode } from "react";
 import CustomCard from '../components/CustomCard';
 import { getAllFavorite } from '../context/ScannedItemsSelectors';
-import { useScannedItems } from '../context/ScannedItemsContext';
+import { ScannedItems, useScannedItems } from '../context/ScannedItemsContext';
+import { MaterialIcons, Entypo, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
+import { ScannedItemActionEnum } from "../context/ScannedItemsContext";
+import { Menu } from "react-native-paper";
 
-const FavortieScreen = () => {
+export interface MenuItemsType {
+  id: string;
+  name: string;
+  icon: () => ReactNode;
+  submenu?: MenuItemsType[];
+}
+
+export const MenuIListItems: MenuItemsType[] = [
+  {
+    id: uuidv4(), name: 'Delete', icon: () => <MaterialIcons name="delete-outline" size={20} color="white" />,
+    submenu: [
+      { id: uuidv4(), name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
+      { id: uuidv4(), name: 'Copy', icon: () => <AntDesign name="copy1" size={20} color="white" /> },
+    ]
+  },
+  {
+    id: uuidv4(), name: 'Text', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" />,
+    submenu: [
+      { id: uuidv4(), name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
+      { id: uuidv4(), name: 'Copy', icon: () => <AntDesign name="copy1" size={20} color="white" /> },
+    ]
+  },
+  { id: uuidv4(), name: 'Csv', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" /> },
+  { id: uuidv4(), name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
+  { id: uuidv4(), name: 'Favorites', icon: () => <Entypo name="star-outlined" size={20} color="white" /> },
+  { id: uuidv4(), name: 'Edit', icon: () => <MaterialIcons name="mode-edit" size={20} color="white" /> },
+  { id: uuidv4(), name: 'Change Name', icon: () => <MaterialCommunityIcons name="rename-box" size={20} color="white" /> }
+];
+
+interface MenuItemProps {
+  item: ScannedItems;
+}
+
+const MenuItem = ({ item }: MenuItemProps) => {
+
+  const { dispatch } = useScannedItems();
+
+  const deleteScannedItemFromFavorites = (id: string) => {
+    console.log('id', id)
+    dispatch({
+      type: ScannedItemActionEnum.REMOVE_FROM_FAVORITE,
+      id: id
+    })
+  }
+
+  return (
+    <>
+      {MenuIListItems.map((menuItem: MenuItemsType) => (
+        <React.Fragment key={menuItem.id}>
+          {menuItem.name === 'Delete' ? (
+            <Menu.Item
+              onPress={() => {
+                deleteScannedItemFromFavorites(item.id);
+              }}
+              leadingIcon={menuItem.icon}
+              title={menuItem.name}
+            />
+          )
+            : (
+              <Menu.Item
+                leadingIcon={menuItem.icon}
+                title={menuItem.name}
+              />
+            )}
+        </React.Fragment>
+      ))}
+    </>
+  )
+}
+
+const FavortieScreen: React.FC<MenuItemProps> = () => {
   const { state } = useScannedItems();
   const allFavorites = getAllFavorite(state);
 
@@ -12,6 +87,7 @@ const FavortieScreen = () => {
       <CustomCard
         items={allFavorites}
         screenType='Favorite'
+        MenuItems={MenuItem}
       />
     </>
   )
