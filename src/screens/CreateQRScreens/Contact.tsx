@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AntDesign } from '@expo/vector-icons';
-import { View, Button, TextInput, StyleSheet, Text } from "react-native";
+import { View, Button, TextInput, StyleSheet, Text, ScrollView } from "react-native";
 
 export const ContactScreen: React.FC = () => {
 
@@ -28,7 +28,7 @@ export const ContactScreen: React.FC = () => {
   };
 
   return (
-    <View style={styles.mainContainer}>
+    <ScrollView style={styles.mainContainer}>
       <View style={styles.title}>
         <AntDesign name="contacts" size={24} color="white" />
         <Text style={styles.headline}>Contact</Text>
@@ -50,7 +50,7 @@ export const ContactScreen: React.FC = () => {
         ))}
         <Button title="Submit" onPress={handleSubmit} />
       </View>
-    </View>
+    </ScrollView>
   )
 }
 
@@ -68,7 +68,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
+    marginLeft: 15
   },
   mainContainer: {
     flex: 1,
@@ -91,10 +92,12 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 5,
-    paddingLeft: 10,
     paddingRight: 10,
     fontSize: 16,
     color: 'white',
-    marginBottom: 15
+    marginBottom: 15,
+    padding: 5,
+    paddingLeft: 20,
+    textAlignVertical: 'top',
   },
 });

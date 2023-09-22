@@ -11,11 +11,7 @@ import {
   Ionicons,
   FontAwesome,
 } from "@expo/vector-icons";
-import { Button, Card, Divider } from "react-native-paper";
-import { URLScreen } from "./URLScreen";
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import { ClipboardScreen } from "./ClipBoard";
+import { Button, Divider } from "react-native-paper";
 
 export interface CreateQRType {
   id: string;
@@ -172,28 +168,37 @@ export const QRCodeListType = ({ navigation }: any) => {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Create QR</Text>
-      {CreateQRList.map((item: CreateQRType) => (
-        <Button
-          key={item.id}
-          icon={item.icon}
-          style={styles.button}
-          onPress={() => navigation.navigate(item.pathname)}
-        >
-          <Text style={styles.itemName}>{item.name}</Text>
-        </Button>
-      ))}
+      <View style={styles.buttonContainer}>
+        {CreateQRList.map((item: CreateQRType) => (
+          <Button
+            key={item.id}
+            icon={item.icon}
+            style={styles.button}
+            onPress={() => navigation.navigate(item.pathname)}
+          >
+            <Text style={styles.itemName}>{item.name}</Text>
+          </Button>
+        ))}
+      </View>
       <Divider />
       <Text style={styles.types}>Other Types</Text>
-      {OtherTypeList.map((items: CreateQRType) => (
-        <Button key={items.id} icon={items.icon} style={styles.button}>
-         <Text style={styles.itemName}>{items.name}</Text>
-        </Button>
-      ))}
+      <View style={styles.buttonContainer}>
+        {OtherTypeList.map((items: CreateQRType) => (
+          <Button key={items.id} icon={items.icon} style={styles.button}>
+            <Text style={styles.itemName}>{items.name}</Text>
+          </Button>
+        ))}
+      </View>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  buttonContainer: {
+    padding: 5,
+    backgroundColor: 'white',
+    borderRadius: 6
+  },
   itemName: {
     color: 'white',
   },
@@ -211,7 +216,7 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     marginTop: 0,
     paddingTop: 6,
-    paddingBottom:6,
+    paddingBottom: 6,
     borderRadius: 0,
     backgroundColor: "#050301",
     alignItems: "flex-start",

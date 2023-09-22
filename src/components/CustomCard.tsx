@@ -77,7 +77,6 @@ const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
     return (dateB.getTime() - dateA.getTime());
   });
   
-  console.log('sorted-array', sortedItems);
 
   return (
     <View style={styles.mainContainer}>

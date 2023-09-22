@@ -1,6 +1,7 @@
-import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import React, { createContext, useReducer, useContext, Dispatch, ReactNode } from 'react';
+import 'react-native-get-random-values';
+
 
 export enum ScannedItemTypeEnum {
   Product = 'product',
@@ -71,12 +72,10 @@ const scannedItems: ScannedItems[] = [
 
 export interface State {
   scannedItems: ScannedItems[];
-  // favoriteItems?: ScannedItems[];
 }
 
 const initialState: State = {
   scannedItems: scannedItems,
-  // favoriteItems: [],
 };
 
 const ScannedItemsContext = createContext<{ state: State; dispatch: Dispatch<Action> } | undefined>(undefined);

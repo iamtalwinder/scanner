@@ -5,8 +5,8 @@ import { FontAwesome } from '@expo/vector-icons';
 export const PhoneScreen: React.FC = () => {
   const [phone, setPhone] = useState();
 
-  const handleInputChange = (e: any) => {
-    setPhone(e.target.value);
+  const handleInputChange = () => {
+    setPhone(phone);
   }
 
   return (
@@ -18,10 +18,10 @@ export const PhoneScreen: React.FC = () => {
       <View style={styles.formContainer}>
         <TextInput
           style={styles.input}
-          onChangeText={(value) => handleInputChange(value)}
+          onChangeText={handleInputChange}
           value={phone}
           placeholder='Phone'
-          placeholderTextColor="white"
+          placeholderTextColor='white'
         />
       </View>
     </View>
@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
+    marginLeft: 10
   },
   mainContainer: {
     flex: 1,
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     fontSize: 16,
     color: 'white',
-    marginBottom: 15
+    marginBottom: 15,
+    minHeight: 50,
   },
 });

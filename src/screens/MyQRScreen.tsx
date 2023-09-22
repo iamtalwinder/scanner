@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
@@ -29,7 +29,7 @@ export const MyQRScreen: React.FC = () => {
   };
 
   return (
-    <>
+    <ScrollView>
       <View style={styles.container}>
         <View style={styles.headline}>
           <Ionicons name="person" size={24} color="white" />
@@ -64,7 +64,7 @@ export const MyQRScreen: React.FC = () => {
         ))}
         <Button title="Submit" onPress={handleSubmit} />
       </View>
-    </>
+    </ScrollView>
   );
 }
 
@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 20,
+    paddingBottom: 10
   },
   headline: {
     display: 'flex',
@@ -106,11 +107,13 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 5,
-    paddingLeft: 10,
     paddingRight: 10,
     fontSize: 16,
     color: 'white',
-    marginBottom: 15
+    marginBottom: 15,
+    padding: 5,
+    paddingLeft: 20,
+    textAlignVertical: 'top',
   },
 });
 

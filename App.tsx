@@ -4,6 +4,8 @@ import theme from './src/theme';
 import { NavigationContainer } from '@react-navigation/native';
 import { DrawerNavigator } from './src/navigation';
 import { ScannedItemsProvider } from './src/context/ScannedItemsContext';
+import React from 'react';
+import 'react-native-get-random-values';
 
 export default function App() {
   return (

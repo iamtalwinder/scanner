@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import { View, TextInput, StyleSheet, Text } from "react-native";
-import { MaterialIcons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { View, TextInput, StyleSheet, Text } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-export const SMSScreen: React.FC = () => {
-  
+export const GeoScreen: React.FC = () => {
+
   const [formData, setFormData] = useState([
-    { name: 'Phone', value: '' },
-    { name: 'Message', value: '' },
+    { name: 'Latitude', value: '' },
+    { name: 'Longitude', value: '' },
+    { name: 'Query', value: '' }
   ]);
 
   const handleInputChange = (name: string, text: string) => {
@@ -16,12 +17,11 @@ export const SMSScreen: React.FC = () => {
     setFormData(updatedFormData);
   };
 
-
   return (
     <View style={styles.mainContainer}>
       <View style={styles.title}>
-        <MaterialIcons name="sms" size={24} color="white" />
-        <Text style={styles.headline}>SMS</Text>
+        <Ionicons name="location-outline" size={24} color="white" />
+        <Text style={styles.headline}>Geo</Text>
       </View>
       <View style={styles.formContainer}>
         {formData.map((field) => (
@@ -31,9 +31,9 @@ export const SMSScreen: React.FC = () => {
               onChangeText={(text) => handleInputChange(field.name, text)}
               value={field.value}
               placeholder={field.name}
-              multiline={field.name === 'Message' ? true : false}
               placeholderTextColor="white"
-              numberOfLines={field.name === 'Message' ? 10 : 2}
+              multiline={true}
+              numberOfLines={2}
             />
           </View>
         ))}
@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
+    marginLeft: 10
   },
   mainContainer: {
     flex: 1,
@@ -82,6 +83,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     fontSize: 16,
     color: 'white',
-    marginBottom: 15
+    marginBottom: 15,
+    minHeight: 50,
   },
 });

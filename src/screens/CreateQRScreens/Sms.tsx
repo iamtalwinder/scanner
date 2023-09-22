@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { View, TextInput, StyleSheet, Text } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
-import { View, Button, TextInput, StyleSheet, Text } from "react-native";
 
-export const EmailScreen: React.FC = () => {
+export const SMSScreen: React.FC = () => {
+
   const [formData, setFormData] = useState([
-    { name: 'Email', value: '' },
-    { name: 'Subject', value: '' },
-    { name: 'Body', value: '' },
+    { name: 'Phone', value: '' },
+    { name: 'Message', value: '' },
   ]);
 
   const handleInputChange = (name: string, text: string) => {
@@ -16,11 +16,12 @@ export const EmailScreen: React.FC = () => {
     setFormData(updatedFormData);
   };
 
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.title}>
-        <MaterialIcons name="email" size={24} color="white" />
-        <Text style={styles.headline}>Email</Text>
+        <MaterialIcons name="sms" size={24} color="white" />
+        <Text style={styles.headline}>SMS</Text>
       </View>
       <View style={styles.formContainer}>
         {formData.map((field) => (
@@ -30,10 +31,9 @@ export const EmailScreen: React.FC = () => {
               onChangeText={(text) => handleInputChange(field.name, text)}
               value={field.value}
               placeholder={field.name}
-              keyboardType={field.name === 'Email' ? 'email-address' : 'default'}
-              multiline={field.name === 'Body' ? true : false}
+              multiline={field.name === 'Message' ? true : false}
               placeholderTextColor="white"
-              numberOfLines={field.name === 'Body' ? 10 : 2}
+              numberOfLines={field.name === 'Message' ? 10 : 2}
             />
           </View>
         ))}
@@ -41,7 +41,6 @@ export const EmailScreen: React.FC = () => {
     </View>
   )
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -56,7 +55,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
+    marginLeft: 16
   },
   mainContainer: {
     flex: 1,
@@ -79,10 +79,12 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 5,
-    paddingLeft: 10,
     paddingRight: 10,
     fontSize: 16,
     color: 'white',
-    marginBottom: 15
+    marginBottom: 15,
+    padding: 5,
+    paddingLeft: 20,
+    textAlignVertical: 'top',
   },
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
-export const TextScreen: React.FC = () => {
+export const ClipboardScreen: React.FC = () => {
   const [text, setText] = React.useState('');
 
   return (
@@ -39,9 +39,11 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
+    marginLeft: 7
   },
   textarea: {
+    color: 'white',
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 10,
@@ -49,5 +51,10 @@ const styles = StyleSheet.create({
     minHeight: 100,
     textAlign: 'left',
     marginTop: 0,
+    padding: 5,
+    paddingLeft: 20,
+    textAlignVertical: 'top',
   },
 })
+
+

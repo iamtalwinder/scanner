@@ -118,7 +118,6 @@ const CustomCard: React.FC<CustomCardProps> = (props: any) => {
     setCardFavorites((prevFavorites) => {
       const updatedFavorites = [...prevFavorites];
       updatedFavorites[index] = !prevFavorites[index];
-      console.log("update", updatedFavorites)
       return updatedFavorites;
     });
 
@@ -169,7 +168,6 @@ const CustomCard: React.FC<CustomCardProps> = (props: any) => {
     if (selectedItem === 'Change Name' && text) {
       const updatedCardData = [...cardData];
       const selectedIndex = updatedCardData.findIndex((item) => item.title === selectedItem);
-      console.log("selected", updatedCardData)
       if (selectedIndex !== -1) {
         updatedCardData[selectedIndex].title = text;
         setCardData(updatedCardData);

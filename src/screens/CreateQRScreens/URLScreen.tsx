@@ -4,7 +4,7 @@ import { Feather } from '@expo/vector-icons';
 
 export const URLScreen: React.FC = () => {
   const [text, setText] = React.useState('http://');
-  const permanentPrefix = 'https://';
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.title}>
@@ -40,13 +40,15 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
+    marginLeft: 7
   },
   input: {
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 10,
     minHeight: 50,
-    padding: 5
+    padding: 5,
+    color: 'white'
   }
 })

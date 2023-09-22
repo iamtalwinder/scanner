@@ -6,7 +6,7 @@ import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import { MaterialIcons, Entypo, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 import { ScannedItemActionEnum } from "../context/ScannedItemsContext";
-import { IconButton, Menu } from "react-native-paper";
+import { Menu } from "react-native-paper";
 
 export interface MenuItemsType {
   id: string;
