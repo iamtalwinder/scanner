@@ -26,6 +26,7 @@ export const CreateQRScreen: React.FC = () => {
         <Stack.Screen name="SMSScreen" component={SMSScreen} />
         <Stack.Screen name="GeoScreen" component={GeoScreen} />
         <Stack.Screen name="PhoneScreen" component={PhoneScreen} />
+        <Stack.Screen name="WifiScreen" component={PhoneScreen} />
 
         <Stack.Screen name="list" component={QRCodeListType} />
       </Stack.Navigator>

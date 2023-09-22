@@ -78,7 +78,7 @@ export const CreateQRList: CreateQRType[] = [
   {
     id: uuidv4(),
     name: "Wifi",
-    pathname: "wifi",
+    pathname: "WifiScreen",
     icon: () => <FontAwesome name="wifi" size={24} color="white" />,
   },
   {
