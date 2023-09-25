@@ -32,7 +32,7 @@ export const MyQRScreen: React.FC = () => {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.headline}>
-          <Ionicons name="person" size={24} color="white" />
+          <Ionicons name='person' size={24} color='white' />
           <Text style={styles.heading}>My QR</Text>
         </View>
         <View>
@@ -41,7 +41,7 @@ export const MyQRScreen: React.FC = () => {
         <View>
           <View style={styles.content}>
             <Text style={styles.content}>Only enter data you want to share. When done click
-              <MaterialIcons style={styles.doneIcon} name="done" size={20} color="white" />
+              <MaterialIcons style={styles.doneIcon} name='done' size={20} color='white' />
             </Text>
             <Text style={styles.content}>Next time you open My QR your contact QR will be displayed</Text>
           </View>
@@ -57,12 +57,12 @@ export const MyQRScreen: React.FC = () => {
               placeholder={field.name}
               keyboardType={field.name === 'Email' ? 'email-address' : 'default'}
               multiline={field.name === 'Notes' ? true : false}
-              placeholderTextColor="white"
+              placeholderTextColor='white'
               numberOfLines={field.name === 'Notes' ? 4 : 2}
             />
           </View>
         ))}
-        <Button title="Submit" onPress={handleSubmit} />
+        <Button title='Submit' onPress={handleSubmit} />
       </View>
     </ScrollView>
   );
@@ -116,6 +116,4 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top',
   },
 });
-
-export default MyQRScreen;
 

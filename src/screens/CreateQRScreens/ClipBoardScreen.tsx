@@ -8,14 +8,14 @@ export const ClipboardScreen: React.FC = () => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.title}>
-        <Entypo name="text" size={24} color="white" />
+        <Entypo name='text' size={24} color='white' />
         <Text style={styles.headline}>Text</Text>
       </View>
       <TextInput
         style={styles.textarea}
         multiline={true}
         numberOfLines={8}
-        placeholder="Text"
+        placeholder='Text'
         onChangeText={(inputText) => setText(inputText)}
         value={text}
         placeholderTextColor='white'

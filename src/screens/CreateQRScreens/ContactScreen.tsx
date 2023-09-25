@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import { AntDesign } from '@expo/vector-icons';
-import { View, Button, TextInput, StyleSheet, Text, ScrollView } from "react-native";
+import { View, Button, TextInput, StyleSheet, Text, ScrollView } from 'react-native';
 
 export const ContactScreen: React.FC = () => {
 
@@ -30,7 +30,7 @@ export const ContactScreen: React.FC = () => {
   return (
     <ScrollView style={styles.mainContainer}>
       <View style={styles.title}>
-        <AntDesign name="contacts" size={24} color="white" />
+        <AntDesign name='contacts' size={24} color='white' />
         <Text style={styles.headline}>Contact</Text>
       </View>
       <View style={styles.formContainer}>
@@ -43,12 +43,12 @@ export const ContactScreen: React.FC = () => {
               placeholder={field.name}
               keyboardType={field.name === 'Email' ? 'email-address' : 'default'}
               multiline={field.name === 'Notes' ? true : false}
-              placeholderTextColor="white"
+              placeholderTextColor='white'
               numberOfLines={field.name === 'Notes' ? 6 : 2}
             />
           </View>
         ))}
-        <Button title="Submit" onPress={handleSubmit} />
+        <Button title='Submit' onPress={handleSubmit} />
       </View>
     </ScrollView>
   )

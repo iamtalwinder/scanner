@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react';
-import CustomCard from '../components/CustomCard';
-import { getAllScannedItems } from '../context/ScannedItemsSelectors';
-import { ScannedItems, useScannedItems } from '../context/ScannedItemsContext';
-import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
+import 'react-native-get-random-values';
+import React, { ReactNode } from "react";
+import CustomCard from '../../components/CustomCard';
+import { getAllFavorite } from '../../context/ScannedItemsSelectors';
+import { ScannedItems, useScannedItems } from '../../context/ScannedItemsContext';
 import { MaterialIcons, Entypo, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
-import { ScannedItemActionEnum } from "../context/ScannedItemsContext";
+import { ScannedItemActionEnum } from "../../context/ScannedItemsContext";
 import { Menu } from "react-native-paper";
 
 export interface MenuItemsType {
@@ -15,7 +15,7 @@ export interface MenuItemsType {
   submenu?: MenuItemsType[];
 }
 
-const MenuIListItems: MenuItemsType[] = [
+export const MenuIListItems: MenuItemsType[] = [
   {
     id: uuidv4(), name: 'Delete', icon: () => <MaterialIcons name="delete-outline" size={20} color="white" />,
     submenu: [
@@ -32,6 +32,7 @@ const MenuIListItems: MenuItemsType[] = [
   },
   { id: uuidv4(), name: 'Csv', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" /> },
   { id: uuidv4(), name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
+  { id: uuidv4(), name: 'Favorites', icon: () => <Entypo name="star-outlined" size={20} color="white" /> },
   { id: uuidv4(), name: 'Edit', icon: () => <MaterialIcons name="mode-edit" size={20} color="white" /> },
   { id: uuidv4(), name: 'Change Name', icon: () => <MaterialCommunityIcons name="rename-box" size={20} color="white" /> }
 ];
@@ -40,13 +41,14 @@ interface MenuItemProps {
   item: ScannedItems;
 }
 
-export const MenuItem = ({ item }: MenuItemProps) => {
+const MenuItem = ({ item }: MenuItemProps) => {
 
   const { dispatch } = useScannedItems();
 
   const deleteScannedItemFromFavorites = (id: string) => {
+    console.log('id', id)
     dispatch({
-      type: ScannedItemActionEnum.REMOVE_SCANNED_ITEM,
+      type: ScannedItemActionEnum.REMOVE_FROM_FAVORITE,
       id: id
     })
   }
@@ -76,20 +78,17 @@ export const MenuItem = ({ item }: MenuItemProps) => {
   )
 }
 
-export const HistoryScreen: React.FC = () => {
+export const FavortieScreen: React.FC = () => {
   const { state } = useScannedItems();
-  const allScannedItems = getAllScannedItems(state);
+  const allFavorites = getAllFavorite(state);
 
   return (
     <>
       <CustomCard
-        items={allScannedItems}
-        screenType='History'
+        items={allFavorites}
+        screenType='Favorite'
         MenuItems={MenuItem}
       />
     </>
   )
 }
-
-export default HistoryScreen;
-

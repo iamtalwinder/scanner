@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export const ScanImageScreen: React.FC = () => {
+export const ShareScreen: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text>Scan Image1</Text>
+      <Text>Share Screen</Text>
     </View>
   );
 }
@@ -17,6 +17,4 @@ const styles = StyleSheet.create({
     backgroundColor: '#212122'
   },
 });
-
-export default ScanImageScreen;
 

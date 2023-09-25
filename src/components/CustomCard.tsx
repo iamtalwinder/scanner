@@ -58,13 +58,13 @@ const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
   const renderIconBasedOnType = (itemType: ScannedItemTypeEnum) => {
     switch (itemType) {
       case ScannedItemTypeEnum.Product:
-        return <Feather name="shopping-bag" size={24} color="white" />;
+        return <Feather name='shopping-bag' size={24} color='white' />;
       case ScannedItemTypeEnum.Barcode:
-        return <FontAwesome name="barcode" size={24} color="white" />;
+        return <FontAwesome name='barcode' size={24} color='white' />;
       case ScannedItemTypeEnum.Text:
-        return <Feather name="file-text" size={24} color="white" />;
+        return <Feather name='file-text' size={24} color='white' />;
       case ScannedItemTypeEnum.Url:
-        return <Feather name="link-2" size={24} color="white" />;
+        return <Feather name='link-2' size={24} color='white' />;
       default:
         return null;
     }
@@ -73,10 +73,10 @@ const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
   const sortedItems = [...items].sort((itemA, itemB) => {
     const dateA = new Date(itemA.date);
     const dateB = new Date(itemB.date);
-  
+
     return (dateB.getTime() - dateA.getTime());
   });
-  
+
 
   return (
     <View style={styles.mainContainer}>
@@ -109,12 +109,12 @@ const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
                     <Entypo
                       name={data.isFavorite ? 'star' : 'star-outlined'}
                       size={20}
-                      color="white"
+                      color='white'
                       style={styles.barIcon}
                       onPress={() => addToFavorites(data.id, data.isFavorite)}
                     />
                   ) : (
-                    <FontAwesome name="bars" size={20} color="white" style={styles.barIcon} />
+                    <FontAwesome name='bars' size={20} color='white' style={styles.barIcon} />
                   )}
                   <Menu
                     visible={menuVisibility[index]}
@@ -128,7 +128,7 @@ const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
                     anchor={
                       <IconButton
                         {...props}
-                        icon="dots-vertical"
+                        icon='dots-vertical'
                         onPress={() => toggleItem(data.text, index)}
                       />
                     }

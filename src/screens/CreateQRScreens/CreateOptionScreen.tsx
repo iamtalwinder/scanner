@@ -164,7 +164,7 @@ export const OtherTypeList: CreateQRType[] = [
   },
 ];
 
-export const QRCodeListType = ({ navigation }: any) => {
+export const CreateOptionScreen: React.FC = ({ navigation }: any) => {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Create QR</Text>
