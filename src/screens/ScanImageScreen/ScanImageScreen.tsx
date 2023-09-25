@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import { styles } from './ScanImage.styles';
 
 export const ScanImageScreen: React.FC = () => {
   return (
@@ -8,13 +9,3 @@ export const ScanImageScreen: React.FC = () => {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#212122'
-  },
-});
-

@@ -1,15 +1,15 @@
 import React from 'react';
 import 'react-native-get-random-values';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ClipboardScreen } from './ClipBoardScreen';
-import { CreateOptionScreen } from './CreateOptionScreen';
-import { URLScreen } from './URLScreen';
-import { TextScreen } from './TextScreen';
-import { ContactScreen } from './ContactScreen';
-import { EmailScreen } from './EmailScreen';
-import { SMSScreen } from './SmsScreen';
-import { GeoScreen } from './GeoScreen';
-import { PhoneScreen } from './PhoneScreen';
+import { ClipboardScreen } from './ClipBoardScreen/ClipBoardScreen';
+import { CreateOptionScreen } from './CreateOptionScreen/CreateOptionScreen';
+import { URLScreen } from './UrlScreen/URLScreen';
+import { TextScreen } from './TextScreen/TextScreen';
+import { ContactScreen } from './ContactScreen/ContactScreen';
+import { EmailScreen } from './EmailScreen/EmailScreen';
+import { SMSScreen } from './SmsScreen/SmsScreen';
+import { GeoScreen } from './GeoScreen/GeoScreen';
+import { PhoneScreen } from './PhoneScreen/PhoneScreen';
 
 const Stack = createStackNavigator();
 

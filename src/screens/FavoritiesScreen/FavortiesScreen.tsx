@@ -1,12 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
 import 'react-native-get-random-values';
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 import CustomCard from '../../components/CustomCard';
 import { getAllFavorite } from '../../context/ScannedItemsSelectors';
 import { ScannedItems, useScannedItems } from '../../context/ScannedItemsContext';
 import { MaterialIcons, Entypo, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
-import { ScannedItemActionEnum } from "../../context/ScannedItemsContext";
-import { Menu } from "react-native-paper";
+import { ScannedItemActionEnum } from '../../context/ScannedItemsContext';
+import { Menu } from 'react-native-paper';
 
 export interface MenuItemsType {
   id: string;
@@ -17,24 +17,24 @@ export interface MenuItemsType {
 
 export const MenuIListItems: MenuItemsType[] = [
   {
-    id: uuidv4(), name: 'Delete', icon: () => <MaterialIcons name="delete-outline" size={20} color="white" />,
+    id: uuidv4(), name: 'Delete', icon: () => <MaterialIcons name='delete-outline' size={20} color='white' />,
     submenu: [
-      { id: uuidv4(), name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
-      { id: uuidv4(), name: 'Copy', icon: () => <AntDesign name="copy1" size={20} color="white" /> },
+      { id: uuidv4(), name: 'Share', icon: () => <Entypo name='share' size={20} color='white' /> },
+      { id: uuidv4(), name: 'Copy', icon: () => <AntDesign name='copy1' size={20} color='white' /> },
     ]
   },
   {
-    id: uuidv4(), name: 'Text', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" />,
+    id: uuidv4(), name: 'Text', icon: () => <MaterialCommunityIcons name='download' size={20} color='white' />,
     submenu: [
-      { id: uuidv4(), name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
-      { id: uuidv4(), name: 'Copy', icon: () => <AntDesign name="copy1" size={20} color="white" /> },
+      { id: uuidv4(), name: 'Share', icon: () => <Entypo name='share' size={20} color='white' /> },
+      { id: uuidv4(), name: 'Copy', icon: () => <AntDesign name='copy1' size={20} color='white' /> },
     ]
   },
-  { id: uuidv4(), name: 'Csv', icon: () => <MaterialCommunityIcons name="download" size={20} color="white" /> },
-  { id: uuidv4(), name: 'Share', icon: () => <Entypo name="share" size={20} color="white" /> },
-  { id: uuidv4(), name: 'Favorites', icon: () => <Entypo name="star-outlined" size={20} color="white" /> },
-  { id: uuidv4(), name: 'Edit', icon: () => <MaterialIcons name="mode-edit" size={20} color="white" /> },
-  { id: uuidv4(), name: 'Change Name', icon: () => <MaterialCommunityIcons name="rename-box" size={20} color="white" /> }
+  { id: uuidv4(), name: 'Csv', icon: () => <MaterialCommunityIcons name='download' size={20} color='white' /> },
+  { id: uuidv4(), name: 'Share', icon: () => <Entypo name='share' size={20} color='white' /> },
+  { id: uuidv4(), name: 'Favorites', icon: () => <Entypo name='star-outlined' size={20} color='white' /> },
+  { id: uuidv4(), name: 'Edit', icon: () => <MaterialIcons name='mode-edit' size={20} color='white' /> },
+  { id: uuidv4(), name: 'Change Name', icon: () => <MaterialCommunityIcons name='rename-box' size={20} color='white' /> }
 ];
 
 interface MenuItemProps {
