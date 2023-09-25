@@ -9,7 +9,6 @@ interface CustomCardProps {
   items: ScannedItems[];
   screenType: 'Favorite' | 'History';
   MenuItems: React.ComponentType<any>;
-  ImportExportMenuComponent?: React.ComponentType<any>;
   actions?: ReactNode
 }
 
@@ -86,9 +85,7 @@ const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
         <View key={data.id}>
           <View style={styles.cardDate}>
             <Text style={styles.dateHeader}>{data.date}</Text>
-            {/* <View style={styles.rightComponent}> */}
             {actions && actions}
-            {/* </View> */}
           </View>
           <Card
             key={data.id}
@@ -170,7 +167,6 @@ const styles = StyleSheet.create({
     borderRadius: 0,
     marginBottom: 0,
     marginTop: 0,
-    // paddingTop: 8,
     backgroundColor: '#050301',
   },
   subtitleText: {
@@ -181,7 +177,6 @@ const styles = StyleSheet.create({
   iconContainer: {
     display: 'flex',
     flexDirection: 'row',
-    // marginRight: 10,
   },
   barIcon: {
     marginTop: 13,
