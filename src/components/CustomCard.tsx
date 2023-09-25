@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Card, Divider, IconButton, Menu, Text } from 'react-native-paper';
 import { ScannedItemTypeEnum, ScannedItems, useScannedItems } from '../context/ScannedItemsContext';
@@ -9,6 +9,8 @@ interface CustomCardProps {
   items: ScannedItems[];
   screenType: 'Favorite' | 'History';
   MenuItems: React.ComponentType<any>;
+  ImportExportMenuComponent?: React.ComponentType<any>;
+  actions?: ReactNode
 }
 
 interface GroupedCardData {
@@ -16,7 +18,7 @@ interface GroupedCardData {
 }
 
 const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
-  const { items, screenType, MenuItems } = props;
+  const { items, screenType, MenuItems, actions } = props;
 
   const [selectedItem, setSelectedItem] = useState<string>('');
   const [menuVisible, setMenuVisible] = useState(false);
@@ -81,9 +83,12 @@ const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
   return (
     <View style={styles.mainContainer}>
       {items.map((data: ScannedItems, index: number) => (
-        <View>
-          <View>
+        <View key={data.id}>
+          <View style={styles.cardDate}>
             <Text style={styles.dateHeader}>{data.date}</Text>
+            {/* <View style={styles.rightComponent}> */}
+            {actions && actions}
+            {/* </View> */}
           </View>
           <Card
             key={data.id}
@@ -92,6 +97,7 @@ const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
 
             <Card.Title
               title={data.type}
+              titleStyle={styles.titleCss}
               subtitle={
                 <>
                   <Text style={styles.subtitleText}>{data.date}{data.time}</Text>
@@ -164,7 +170,7 @@ const styles = StyleSheet.create({
     borderRadius: 0,
     marginBottom: 0,
     marginTop: 0,
-    paddingTop: 8,
+    // paddingTop: 8,
     backgroundColor: '#050301',
   },
   subtitleText: {
@@ -175,7 +181,7 @@ const styles = StyleSheet.create({
   iconContainer: {
     display: 'flex',
     flexDirection: 'row',
-    marginRight: 10,
+    // marginRight: 10,
   },
   barIcon: {
     marginTop: 13,
@@ -187,6 +193,22 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 5,
   },
+  rightComponent: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'row',
+    marginRight: 30
+  },
+  cardDate: {
+    gap: 22,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  titleCss: {
+    fontWeight: 'bold',
+    fontSize: 20
+  }
 });
 
 export default CustomCard;

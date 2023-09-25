@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { MaterialIcons, Entypo, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 import { ScannedItemActionEnum } from '../../context/ScannedItemsContext';
 import { Menu } from 'react-native-paper';
+import { ImportExportMenuComponent } from '../../components/ImportExportMenu';
 
 interface MenuItemsType {
   id: string;
@@ -76,6 +77,12 @@ export const MenuItem = ({ item }: MenuItemProps) => {
   )
 }
 
+const Actions: React.FC = () => {
+  return <>
+    <ImportExportMenuComponent />
+  </>
+}
+
 export const HistoryScreen: React.FC = () => {
   const { state } = useScannedItems();
   const allScannedItems = getAllScannedItems(state);
@@ -86,6 +93,7 @@ export const HistoryScreen: React.FC = () => {
         items={allScannedItems}
         screenType='History'
         MenuItems={MenuItem}
+        actions={<Actions />}
       />
     </>
   )

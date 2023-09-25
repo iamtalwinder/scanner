@@ -4,7 +4,7 @@ import 'react-native-get-random-values';
 
 
 export enum ScannedItemTypeEnum {
-  Product = 'product',
+  Product = 'Product',
   Url = 'Url',
   Barcode = 'Barcode',
   Text = 'Text'
