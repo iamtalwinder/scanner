@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, ScrollView, Text, TextInput, Button } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { styles } from './WifiScreen.styles';
+import { ICON_SIZE_XL } from '../../../components/Icons';
 
 export const WifiScreen: React.FC = () => {
 
@@ -27,7 +28,7 @@ export const WifiScreen: React.FC = () => {
   return (
     <ScrollView style={styles.mainContainer}>
       <View style={styles.title}>
-        <FontAwesome name='wifi' size={24} color='white' />
+        <FontAwesome name='wifi' size={ICON_SIZE_XL} color='white' />
         <Text style={styles.headline}>Contact</Text>
       </View>
       <View style={styles.formContainer}>

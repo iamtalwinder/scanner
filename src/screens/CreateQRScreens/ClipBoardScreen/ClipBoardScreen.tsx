@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import { styles } from './ClipBoardScreen.styles';
+import { ICON_SIZE_XL } from '../../../components/Icons';
 
 export const ClipboardScreen: React.FC = () => {
   const [text, setText] = React.useState('');
@@ -9,7 +10,7 @@ export const ClipboardScreen: React.FC = () => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.title}>
-        <Entypo name='text' size={24} color='white' />
+        <Entypo name='text' size={ICON_SIZE_XL} color='white' />
         <Text style={styles.headline}>Text</Text>
       </View>
       <TextInput

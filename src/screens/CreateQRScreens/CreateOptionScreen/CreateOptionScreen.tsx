@@ -13,7 +13,7 @@ import {
 } from '@expo/vector-icons';
 import { Button, Divider } from 'react-native-paper';
 import { styles } from './CreateOptionScreen.styles';
-
+import { ICON_SIZE_XL } from '../../../components/Icons';
 
 export interface CreateQRType {
   id: string;
@@ -27,67 +27,67 @@ export const CreateQRList: CreateQRType[] = [
     id: uuidv4(),
     name: 'Content from clipboard',
     pathname: 'ClipboardScreen',
-    icon: () => <FontAwesome5 name='clipboard' size={24} color='white' />,
+    icon: () => <FontAwesome5 name='clipboard' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'URL',
     pathname: 'URLScreen',
-    icon: () => <Feather name='link-2' size={24} color='white' />,
+    icon: () => <Feather name='link-2' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'Text',
     pathname: 'TextScreen',
-    icon: () => <Entypo name='text' size={24} color='white' />,
+    icon: () => <Entypo name='text' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'Contact',
     pathname: 'ContactScreen',
-    icon: () => <AntDesign name='contacts' size={24} color='white' />,
+    icon: () => <AntDesign name='contacts' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'Email',
     pathname: 'EmailScreen',
-    icon: () => <MaterialIcons name='email' size={24} color='white' />,
+    icon: () => <MaterialIcons name='email' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'SMS',
     pathname: 'SMSScreen',
-    icon: () => <MaterialIcons name='sms' size={24} color='white' />,
+    icon: () => <MaterialIcons name='sms' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'Geo',
     pathname: 'GeoScreen',
-    icon: () => <Ionicons name='location-outline' size={24} color='white' />,
+    icon: () => <Ionicons name='location-outline' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'Phone',
     pathname: 'PhoneScreen',
-    icon: () => <FontAwesome name='phone' size={24} color='white' />,
+    icon: () => <FontAwesome name='phone' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'Calender',
     pathname: 'CalenderScreen',
-    icon: () => <AntDesign name='calendar' size={24} color='white' />,
+    icon: () => <AntDesign name='calendar' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'Wifi',
     pathname: 'WifiScreen',
-    icon: () => <FontAwesome name='wifi' size={24} color='white' />,
+    icon: () => <FontAwesome name='wifi' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'My QR',
     pathname: 'myqr',
-    icon: () => <AntDesign name='qrcode' size={24} color='white' />,
+    icon: () => <AntDesign name='qrcode' size={ICON_SIZE_XL} color='white' />,
   },
 ];
 
@@ -96,73 +96,73 @@ export const OtherTypeList: CreateQRType[] = [
     id: uuidv4(),
     name: 'EAN_8',
     pathname: 'ean-8',
-    icon: () => <FontAwesome name='barcode' size={24} color='white' />,
+    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'EAN_13',
     pathname: 'ean-13',
-    icon: () => <FontAwesome name='barcode' size={24} color='white' />,
+    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'UPC_E',
     pathname: 'upc-e',
-    icon: () => <FontAwesome name='barcode' size={24} color='white' />,
+    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'UPC_A',
     pathname: 'upc-a',
-    icon: () => <FontAwesome name='barcode' size={24} color='white' />,
+    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'CODE_39',
     pathname: 'code-39',
-    icon: () => <FontAwesome name='barcode' size={24} color='white' />,
+    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'CODE_93',
     pathname: 'code-93',
-    icon: () => <FontAwesome name='barcode' size={24} color='white' />,
+    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'CODE_128',
     pathname: 'code-128',
-    icon: () => <FontAwesome name='barcode' size={24} color='white' />,
+    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'ITF',
     pathname: 'itf',
-    icon: () => <FontAwesome name='barcode' size={24} color='white' />,
+    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'PDF_417',
     pathname: 'pdf-417',
-    icon: () => <FontAwesome name='barcode' size={24} color='white' />,
+    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'CODABAR',
     pathname: 'codabar',
-    icon: () => <FontAwesome name='barcode' size={24} color='white' />,
+    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'DATA_MATRIX',
     pathname: 'data-matrix',
-    icon: () => <FontAwesome name='barcode' size={24} color='white' />,
+    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
   },
   {
     id: uuidv4(),
     name: 'AZTEC',
     pathname: 'aztec',
-    icon: () => <FontAwesome name='barcode' size={24} color='white' />,
+    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
   },
 ];
 

@@ -47,7 +47,7 @@ const scannedItems: ScannedItems[] = [
   {
     id: uuidv4(),
     type: ScannedItemTypeEnum.Product,
-    date: '07/08/2023',
+    date: '07/08/2023 ',
     time: '8:10:20 am,',
     text: 'Product exp://192.168.100.16:19000',
     isFavorite: true,
@@ -63,7 +63,7 @@ const scannedItems: ScannedItems[] = [
   {
     id: uuidv4(),
     type: ScannedItemTypeEnum.Text,
-    date: '16/08/2023',
+    date: '16/08/2023 ',
     time: ' 05:10:30 pm,',
     text: 'Text exp://192.168.100.16:19000',
     isFavorite: false,

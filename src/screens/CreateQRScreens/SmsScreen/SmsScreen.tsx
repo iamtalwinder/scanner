@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Text } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { styles } from './SmsScreen.styles';
+import { ICON_SIZE_XL } from '../../../components/Icons';
 
 export const SMSScreen: React.FC = () => {
 
@@ -20,7 +21,7 @@ export const SMSScreen: React.FC = () => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.title}>
-        <MaterialIcons name='sms' size={24} color='white' />
+        <MaterialIcons name='sms' size={ICON_SIZE_XL} color='white' />
         <Text style={styles.headline}>SMS</Text>
       </View>
       <View style={styles.formContainer}>

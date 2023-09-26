@@ -4,7 +4,7 @@ import { Card, Divider, IconButton, Menu, Text } from 'react-native-paper';
 import { ScannedItemTypeEnum, ScannedItems, useScannedItems } from '../context/ScannedItemsContext';
 import { ScannedItemActionEnum } from '../context/ScannedItemsContext'
 import { Feather, FontAwesome, Entypo } from '@expo/vector-icons';
-
+import { ICON_SIZE_XL, ICON_SIZE_L } from './Icons';
 interface CustomCardProps {
   items: ScannedItems[];
   screenType: 'Favorite' | 'History';
@@ -59,13 +59,13 @@ const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
   const renderIconBasedOnType = (itemType: ScannedItemTypeEnum) => {
     switch (itemType) {
       case ScannedItemTypeEnum.Product:
-        return <Feather name='shopping-bag' size={24} color='white' />;
+        return <Feather name='shopping-bag' size={ICON_SIZE_XL} color='white' />;
       case ScannedItemTypeEnum.Barcode:
-        return <FontAwesome name='barcode' size={24} color='white' />;
+        return <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />;
       case ScannedItemTypeEnum.Text:
-        return <Feather name='file-text' size={24} color='white' />;
+        return <Feather name='file-text' size={ICON_SIZE_XL} color='white' />;
       case ScannedItemTypeEnum.Url:
-        return <Feather name='link-2' size={24} color='white' />;
+        return <Feather name='link-2' size={ICON_SIZE_XL} color='white' />;
       default:
         return null;
     }
@@ -97,8 +97,9 @@ const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
               titleStyle={styles.titleCss}
               subtitle={
                 <>
-                  <Text style={styles.subtitleText}>{data.date}{data.time}</Text>
-                  <Text numberOfLines={2}>{data.text}</Text>
+                  <View>
+                    <Text style={styles.subtitleText}>{data.date}{data.time}</Text>
+                  </View>
                 </>
               }
               left={() => (
@@ -111,13 +112,13 @@ const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
                   {screenType === 'History' ? (
                     <Entypo
                       name={data.isFavorite ? 'star' : 'star-outlined'}
-                      size={20}
+                      size={ICON_SIZE_L}
                       color='white'
                       style={styles.barIcon}
                       onPress={() => addToFavorites(data.id, data.isFavorite)}
                     />
                   ) : (
-                    <FontAwesome name='bars' size={20} color='white' style={styles.barIcon} />
+                    <FontAwesome name='bars' size={ICON_SIZE_L} color='white' style={styles.barIcon} />
                   )}
                   <Menu
                     visible={menuVisibility[index]}
@@ -143,7 +144,12 @@ const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
                 </View>
               )}
             />
-            <Divider />
+            <Card.Content>
+              <View>
+                <Text style={styles.subtitle}>{data.text}</Text>
+              </View>
+            </Card.Content>
+            {/* <Divider /> */}
           </Card>
         </View>
 
@@ -160,13 +166,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#212122',
     padding: 10,
-    marginTop: 20,
   },
   card: {
     marginVertical: 5,
     borderRadius: 0,
     marginBottom: 0,
     marginTop: 0,
+    paddingBottom: 5,
     backgroundColor: '#050301',
   },
   subtitleText: {
@@ -179,7 +185,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   barIcon: {
-    marginTop: 13,
+    marginTop: 15,
   },
   dateHeader: {
     fontSize: 18,
@@ -203,6 +209,10 @@ const styles = StyleSheet.create({
   titleCss: {
     fontWeight: 'bold',
     fontSize: 20
+  },
+  subtitle: {
+    color: 'white',
+    textAlign: 'center'
   }
 });
 

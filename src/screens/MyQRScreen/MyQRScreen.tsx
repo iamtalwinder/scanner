@@ -3,6 +3,8 @@ import { Text, View, Button, TextInput, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { styles } from './MyQRScreen.styles';
+import { ICON_SIZE_L, ICON_SIZE_XL } from '../../components/Icons';
+
 
 export const MyQRScreen: React.FC = () => {
 
@@ -33,7 +35,7 @@ export const MyQRScreen: React.FC = () => {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.headline}>
-          <Ionicons name='person' size={24} color='white' />
+          <Ionicons name='person' size={ICON_SIZE_XL} color='white' />
           <Text style={styles.heading}>My QR</Text>
         </View>
         <View>
@@ -42,9 +44,9 @@ export const MyQRScreen: React.FC = () => {
         <View>
           <View style={styles.content}>
             <Text style={styles.content}>Only enter data you want to share. When done click
-              <MaterialIcons style={styles.doneIcon} name='done' size={20} color='white' />
+              <MaterialIcons style={styles.doneIcon} name='done' size={ICON_SIZE_L} color='white' />
             </Text>
-            <Text style={styles.content}>Next time you open My QR your contact QR will be displayed</Text>
+            <Text style={styles.content}>Next time you open My QR your contact QR will be displayed.</Text>
           </View>
         </View>
       </View>

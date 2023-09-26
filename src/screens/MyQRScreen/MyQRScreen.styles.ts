@@ -10,12 +10,14 @@ export const styles = StyleSheet.create({
     paddingBottom: 10
   },
   headline: {
-    display: 'flex',
     gap: 15,
+    display: 'flex',
     flexDirection: 'row',
   },
   heading: {
-    color: 'white'
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold'
   },
   share: {
     color: 'white',
@@ -26,9 +28,11 @@ export const styles = StyleSheet.create({
   content: {
     display: 'flex',
     color: 'white',
+    fontSize: 14
   },
   doneIcon: {
-    margin: 10
+    marginTop: 15,
+    marginLeft: 10
   },
   formContainer: {
     paddingLeft: 16,

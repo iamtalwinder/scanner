@@ -28,6 +28,7 @@ import {
   AntDesign,
   MaterialIcons,
 } from '@expo/vector-icons';
+import { ICON_SIZE_XL } from '../components/Icons';
 
 const Drawer = createDrawerNavigator();
 
@@ -49,7 +50,7 @@ export const DrawerNavigator: React.FC = () => {
         options={{
           header: (props) => <ScanHeader {...props} />,
           drawerIcon: () => {
-            return <Ionicons name='scan' size={24} color='white' />;
+            return <Ionicons name='scan' size={ICON_SIZE_XL} color='white' />;
           },
         }}
       />
@@ -59,7 +60,7 @@ export const DrawerNavigator: React.FC = () => {
         options={{
           header: (props) => <ScanImageHeader {...props} />,
           drawerIcon: () => {
-            return <AntDesign name='scan1' size={24} color='white' />;
+            return <AntDesign name='scan1' size={ICON_SIZE_XL} color='white' />;
           },
         }}
       />
@@ -69,7 +70,7 @@ export const DrawerNavigator: React.FC = () => {
         options={{
           header: (props) => <FavoriteHeader {...props} />,
           drawerIcon: () => {
-            return <Entypo name='star-outlined' size={24} color='white' />;
+            return <Entypo name='star-outlined' size={ICON_SIZE_XL} color='white' />;
           },
         }}
       />
@@ -79,7 +80,7 @@ export const DrawerNavigator: React.FC = () => {
         options={{
           header: (props) => <HistoryHeader {...props} />,
           drawerIcon: () => {
-            return <FontAwesome5 name='history' size={24} color='white' />;
+            return <FontAwesome5 name='history' size={ICON_SIZE_XL} color='white' />;
           },
         }}
       />
@@ -89,7 +90,7 @@ export const DrawerNavigator: React.FC = () => {
         options={{
           header: (props) => <MyQRHeader {...props} />,
           drawerIcon: () => {
-            return <AntDesign name='qrcode' size={24} color='white' />;
+            return <AntDesign name='qrcode' size={ICON_SIZE_XL} color='white' />;
           },
         }}
       />
@@ -99,7 +100,7 @@ export const DrawerNavigator: React.FC = () => {
         options={{
           header: (props) => <CreateQRHeader {...props}/>,
           drawerIcon: () => {
-            return <MaterialIcons name='create' size={24} color='white' />;
+            return <MaterialIcons name='create' size={ICON_SIZE_XL} color='white' />;
           },
         }}
       />
@@ -109,7 +110,7 @@ export const DrawerNavigator: React.FC = () => {
         options={{
           header: (props) => <SettingsHeader {...props}/>,
           drawerIcon: () => {
-            return <Ionicons name='settings-outline' size={24} color='white' />;
+            return <Ionicons name='settings-outline' size={ICON_SIZE_XL} color='white' />;
           },
         }}
       />
@@ -119,7 +120,7 @@ export const DrawerNavigator: React.FC = () => {
         options={{
           header: (props) => <ShareHeader {...props}/>,
           drawerIcon: () => {
-            return <Entypo name='share' size={24} color='white' />;
+            return <Entypo name='share' size={ICON_SIZE_XL} color='white' />;
           },
         }}
       />

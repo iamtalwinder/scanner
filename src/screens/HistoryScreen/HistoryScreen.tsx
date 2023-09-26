@@ -8,6 +8,7 @@ import { MaterialIcons, Entypo, AntDesign, MaterialCommunityIcons } from '@expo/
 import { ScannedItemActionEnum } from '../../context/ScannedItemsContext';
 import { Menu } from 'react-native-paper';
 import { ImportExportMenuComponent } from '../../components/ImportExportMenu';
+import { ICON_SIZE_L } from '../../components/Icons';
 
 interface MenuItemsType {
   id: string;
@@ -18,23 +19,23 @@ interface MenuItemsType {
 
 const MenuIListItems: MenuItemsType[] = [
   {
-    id: uuidv4(), name: 'Delete', icon: () => <MaterialIcons name='delete-outline' size={20} color='white' />,
+    id: uuidv4(), name: 'Delete', icon: () => <MaterialIcons name='delete-outline' size={ICON_SIZE_L} color='white' />,
     submenu: [
-      { id: uuidv4(), name: 'Share', icon: () => <Entypo name='share' size={20} color='white' /> },
-      { id: uuidv4(), name: 'Copy', icon: () => <AntDesign name='copy1' size={20} color='white' /> },
+      { id: uuidv4(), name: 'Share', icon: () => <Entypo name='share' size={ICON_SIZE_L} color='white' /> },
+      { id: uuidv4(), name: 'Copy', icon: () => <AntDesign name='copy1' size={ICON_SIZE_L} color='white' /> },
     ]
   },
   {
-    id: uuidv4(), name: 'Text', icon: () => <MaterialCommunityIcons name='download' size={20} color='white' />,
+    id: uuidv4(), name: 'Text', icon: () => <MaterialCommunityIcons name='download' size={ICON_SIZE_L} color='white' />,
     submenu: [
-      { id: uuidv4(), name: 'Share', icon: () => <Entypo name='share' size={20} color='white' /> },
-      { id: uuidv4(), name: 'Copy', icon: () => <AntDesign name='copy1' size={20} color='white' /> },
+      { id: uuidv4(), name: 'Share', icon: () => <Entypo name='share' size={ICON_SIZE_L} color='white' /> },
+      { id: uuidv4(), name: 'Copy', icon: () => <AntDesign name='copy1' size={ICON_SIZE_L} color='white' /> },
     ]
   },
-  { id: uuidv4(), name: 'Csv', icon: () => <MaterialCommunityIcons name='download' size={20} color='white' /> },
-  { id: uuidv4(), name: 'Share', icon: () => <Entypo name='share' size={20} color='white' /> },
-  { id: uuidv4(), name: 'Edit', icon: () => <MaterialIcons name='mode-edit' size={20} color='white' /> },
-  { id: uuidv4(), name: 'Change Name', icon: () => <MaterialCommunityIcons name='rename-box' size={20} color='white' /> }
+  { id: uuidv4(), name: 'Csv', icon: () => <MaterialCommunityIcons name='download' size={ICON_SIZE_L} color='white' /> },
+  { id: uuidv4(), name: 'Share', icon: () => <Entypo name='share' size={ICON_SIZE_L} color='white' /> },
+  { id: uuidv4(), name: 'Edit', icon: () => <MaterialIcons name='mode-edit' size={ICON_SIZE_L} color='white' /> },
+  { id: uuidv4(), name: 'Change Name', icon: () => <MaterialCommunityIcons name='rename-box' size={ICON_SIZE_L} color='white' /> }
 ];
 
 interface MenuItemProps {
