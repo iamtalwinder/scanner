@@ -36,6 +36,7 @@ export const FavoritesMenuComponent: React.FC<FavoritesMenuProps> = (props: Favo
             }}
             leadingIcon={() => <Icons name={menuItem.icon} size={menuItem.size} />}
             title={menuItem.title}
+            style={styles.menuItem}
           />
           <Divider />
         </React.Fragment>

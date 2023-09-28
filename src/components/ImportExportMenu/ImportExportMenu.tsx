@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Appbar, Divider, Menu } from 'react-native-paper';
 import { IMPORT_EXPORT_MENU_ITEMS } from './MenuItems';
 import { Icons } from '../Icons';
+import { styles } from './ImportExportMenu.styles';
 
 type ImportExportMenuProps = {};
 
@@ -23,7 +24,7 @@ export const ImportExportMenuComponent: React.FC<ImportExportMenuProps> = (props
     <Menu
       visible={visible}
       onDismiss={() => setVisible(false)}
-      style={{ marginTop: 50 }}
+      style={styles.item}
       anchor={
         <Appbar.Action icon='dots-vertical' onPress={() => setVisible(true)} />
       }
@@ -36,6 +37,7 @@ export const ImportExportMenuComponent: React.FC<ImportExportMenuProps> = (props
             }}
             leadingIcon={() => <Icons name={menuItem.icon} size={menuItem.size} />}
             title={menuItem.title}
+            style={styles.menuItem}
           />
           <Divider />
         </React.Fragment>

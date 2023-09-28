@@ -2,10 +2,9 @@ import { v4 as uuidv4 } from 'uuid';
 import React, { createContext, useReducer, useContext, Dispatch, ReactNode } from 'react';
 import 'react-native-get-random-values';
 
-
 export enum ScannedItemTypeEnum {
   Product = 'Product',
-  Url = 'Url',
+  Url = 'URL',
   Barcode = 'Barcode',
   Text = 'Text'
 }
@@ -24,6 +23,7 @@ export interface ScannedItems {
   timeStamp: string;
   isFavorite: boolean;
   text: string;
+  typeName: string
 }
 
 export type Action =
@@ -38,29 +38,57 @@ const scannedItems: ScannedItems[] = [
   {
     id: uuidv4(),
     type: ScannedItemTypeEnum.Url,
-    timeStamp:'05/09/2023  8:42:43 am,',
+    timeStamp: '2023-09-05T08:42:43Z',
+    typeName: 'QR_CODE',
     text: 'exp://192.168.100.16:19000',
     isFavorite: true,
   },
   {
     id: uuidv4(),
     type: ScannedItemTypeEnum.Product,
-    timeStamp: '07/08/2023  8:10:20 am,',
+    timeStamp: '2023-08-07T08:10:20Z',
+    typeName: 'UPC_A',
+    text: 'exp://192.168.100.16:19000',
+    isFavorite: true,
+  },
+  {
+    id: uuidv4(),
+    type: ScannedItemTypeEnum.Product,
+    timeStamp: '2023-06-07T08:10:20Z',
+    typeName: 'UPC_E',
+    text: 'exp://192.168.100.16:12000',
+    isFavorite: true,
+  },
+  {
+    id: uuidv4(),
+    type: ScannedItemTypeEnum.Barcode,
+    timeStamp: '2023-07-03T10:30:20Z',
+    typeName: 'QR_CODE',
     text: 'exp://192.168.100.16:19000',
     isFavorite: true,
   },
   {
     id: uuidv4(),
     type: ScannedItemTypeEnum.Barcode,
-    timeStamp: '03/07/2023  10:30:20 am,',
+    timeStamp: '2023-07-03T11:30:20Z',
+    typeName: 'QR_CODE',
+    text: 'exp://192.168.100.16:19000',
+    isFavorite: true,
+  },
+  {
+    id: uuidv4(),
+    type: ScannedItemTypeEnum.Text,
+    timeStamp: '2023-08-16T05:20:30Z',
+    typeName: 'CODE_128',
     text: 'exp://192.168.100.16:19000',
     isFavorite: false,
   },
   {
     id: uuidv4(),
     type: ScannedItemTypeEnum.Text,
-    timeStamp: '16/08/2023  05:10:30 pm,',
-    text: 'exp://192.168.100.16:19000',
+    timeStamp: '2023-08-20T05:10:20Z',
+    typeName: 'CODE_93',
+    text: 'exp://192.168.100.16:17000',
     isFavorite: false,
   }
 ];

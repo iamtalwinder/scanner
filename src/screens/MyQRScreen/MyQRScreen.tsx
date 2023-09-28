@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, Button, TextInput, ScrollView } from 'react-native';
+import { Text, View, TextInput, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { styles } from './MyQRScreen.styles';
@@ -24,15 +24,8 @@ export const MyQRScreen: React.FC = () => {
     setFormData(updatedFormData);
   };
 
-  const handleSubmit = () => {
-    console.log('Form submitted:');
-    formData.forEach((field: any) => {
-      console.log(field.name + ': ' + field.value);
-    });
-  };
-
   return (
-    <ScrollView>
+    <ScrollView style={styles.mainContainer}>
       <View style={styles.container}>
         <View style={styles.headline}>
           <Ionicons name='person' size={ICON_SIZE_XL} color='white' />
@@ -65,7 +58,6 @@ export const MyQRScreen: React.FC = () => {
             />
           </View>
         ))}
-        <Button title='Submit' onPress={handleSubmit} />
       </View>
     </ScrollView>
   );

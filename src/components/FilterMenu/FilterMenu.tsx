@@ -38,7 +38,7 @@ export const FilterMenuComponent: React.FC<FilterMenuProps> = (props: FilterMenu
             style={{
               backgroundColor: selectedFilters.includes(menuItem.title)
                 ? 'blue'
-                : 'transparent',
+                : '#333333',
             }}
           />
           <Divider />

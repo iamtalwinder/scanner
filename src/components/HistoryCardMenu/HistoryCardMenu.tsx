@@ -36,6 +36,7 @@ export const HistoryMenuComponent: React.FC<HistoryMenuProps> = (props: HistoryM
             }}
             leadingIcon={() => <Icons name={menuItem.icon} size={menuItem.size} />}
             title={menuItem.title}
+            style={styles.menuItem}
           />
           <Divider />
         </React.Fragment>

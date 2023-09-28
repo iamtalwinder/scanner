@@ -1,8 +1,9 @@
 import React, { ReactNode } from 'react';
 import { ScrollView, View } from 'react-native';
-import { Card, Title, Paragraph, Text } from 'react-native-paper';
+import { Card, Text } from 'react-native-paper';
 import { styles } from './CustomCard.styles';
 import { ScannedItems } from '../../context/ScannedItemsContext';
+import { formatDateTime } from '../../utils/dateAndTime';
 
 export type CustomCardActionProps = {
   item: ScannedItems;
@@ -26,7 +27,12 @@ export const CustomCard: React.FC<CustomCardProps> = ({
           </View>
           <View style={styles.textContainer}>
             <Text>{item.type}</Text>
-            <Text>{item.timeStamp}</Text>
+            <View style={styles.timeStamp}>
+              <Text style={styles.timeStamp}>
+                {formatDateTime(item.timeStamp)}
+              </Text>
+              <Text>{item.typeName}</Text>
+            </View>
             <Text>{item.text}</Text>
           </View>
           <View style={styles.actionsContainer}>

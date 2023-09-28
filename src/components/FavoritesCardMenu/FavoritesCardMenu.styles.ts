@@ -7,6 +7,10 @@ export const styles = StyleSheet.create({
     width: '40%',
     right: 0,
     marginBottom: 0,
-    paddingBottom: 0
+    paddingBottom: 0,
+    backgroundColor: '#333333',
   },
+  menuItem: {
+    backgroundColor: '#333333'
+  }
 });

@@ -1,11 +1,12 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  menuItem: {
+    backgroundColor: '#333333'
+  },
   item: {
     marginTop: 50,
     position: 'absolute',
-    width: '50%',
-    right: 0,
     backgroundColor: '#333333'
-  },
-});
+  }
+})
