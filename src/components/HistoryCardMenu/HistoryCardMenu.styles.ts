@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   item: {
     marginTop: 50,
     position: 'absolute',
-    width: '50%',
+    width: '40%',
     right: 0,
   },
 });

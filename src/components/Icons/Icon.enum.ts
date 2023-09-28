@@ -15,5 +15,11 @@ export enum IconEnum {
   fileUpload = 'file-upload',
   deleteOutline = 'delete-outline',
   personOutline = 'person-outline',
-  done = 'done'
+  done = 'done',
+  share = 'share',
+  edit = 'mode-edit',
+  rename = 'rename-box',
+  star = 'star',
+  starOutline = 'star-outline',
+  bars = 'bars'
 }

@@ -1,31 +1,34 @@
 import React, { useState, ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Card, Divider, IconButton, Menu, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import { ScannedItemTypeEnum, ScannedItems, useScannedItems } from '../context/ScannedItemsContext';
 import { ScannedItemActionEnum } from '../context/ScannedItemsContext'
-import { Feather, FontAwesome, Entypo } from '@expo/vector-icons';
-import { ICON_SIZE_XL, ICON_SIZE_L } from './Icons';
+import { Feather, FontAwesome } from '@expo/vector-icons';
+import { ICON_SIZE_XL } from './Icons';
+import { CustomCard, CustomCardActionProps } from './CustomCard/CustomCard';
+import { ImportExportMenuComponent } from './ImportExportMenu';
+
 interface CustomCardProps {
   items: ScannedItems[];
-  screenType: 'Favorite' | 'History';
-  MenuItems: React.ComponentType<any>;
-  actions?: ReactNode
+  // screenType: 'Favorite' | 'History';
+  // MenuItems: React.ComponentType<any>;
+  actions?: (props: CustomCardActionProps) => React.ReactNode,
 }
 
 interface GroupedCardData {
   [key: string]: ScannedItems[];
 }
 
-const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
-  const { items, screenType, MenuItems, actions } = props;
+export const ScannedItemList: React.FC<CustomCardProps> = (props: CustomCardProps) => {
+  const { items, actions } = props;
 
   const [selectedItem, setSelectedItem] = useState<string>('');
   const [menuVisible, setMenuVisible] = useState(false);
   const { state, dispatch } = useScannedItems();
 
-  const [menuVisibility, setMenuVisibility] = useState<boolean[]>(
-    Array(MenuItems.length).fill(false)
-  );
+  // const [menuVisibility, setMenuVisibility] = useState<boolean[]>(
+  //   Array(MenuItems.length).fill(false)
+  // );
 
   const toggleItem = (item: any, index: number) => {
     if (selectedItem === item) {
@@ -34,11 +37,11 @@ const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
       setSelectedItem(item);
       setMenuVisible(true);
 
-      setMenuVisibility((prevVisibility) => {
-        const updatedVisibility = [...prevVisibility];
-        updatedVisibility[index] = !prevVisibility[index];
-        return updatedVisibility;
-      });
+      // setMenuVisibility((prevVisibility) => {
+      //   const updatedVisibility = [...prevVisibility];
+      //   updatedVisibility[index] = !prevVisibility[index];
+      //   return updatedVisibility;
+      // });
     }
   };
 
@@ -72,8 +75,8 @@ const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
   }
 
   const sortedItems = [...items].sort((itemA, itemB) => {
-    const dateA = new Date(itemA.date);
-    const dateB = new Date(itemB.date);
+    const dateA = new Date(itemA.timeStamp);
+    const dateB = new Date(itemB.timeStamp);
 
     return (dateB.getTime() - dateA.getTime());
   });
@@ -84,14 +87,49 @@ const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
       {items.map((data: ScannedItems, index: number) => (
         <View key={data.id}>
           <View style={styles.cardDate}>
-            <Text style={styles.dateHeader}>{data.date}</Text>
-            {actions && actions}
+            <Text style={styles.dateHeader}>{data.timeStamp}</Text>
+            {/* {actions && actions} */}
+            <ImportExportMenuComponent />
           </View>
-          <Card
+          <CustomCard
+            item={data}
+            logo={renderIconBasedOnType(data.type)}
+            // timeStamp={data.timeStamp}
+            // title={data.type}
+            // isFavorite={data.isFavorite}
+            // scannedContent={data.text}
+            actions={actions}
+          // onAction1Press=
+          // {
+          //   <Menu
+          //     visible={menuVisibility[index]}
+          //     onDismiss={() => {
+          //       setMenuVisibility((prevVisibility) => {
+          //         const updatedVisibility = [...prevVisibility];
+          //         updatedVisibility[index] = false;
+          //         return updatedVisibility;
+          //       });
+          //     }}
+          //     // anchor={
+          //     //   <IconButton
+          //     //     {...props}
+          //     //     icon='dots-vertical'
+          //     //     onPress={() => toggleItem(data.text, index)}
+          //     //   />
+          //     // }
+          //   >
+          //     <View>
+          //       <MenuItems item={data} />
+          //     </View>
+          //   </Menu>
+          // }
+          // onAction2Press=
+
+          />
+          {/* <Card
             key={data.id}
             style={styles.card}
           >
-
             <Card.Title
               title={data.type}
               titleStyle={styles.titleCss}
@@ -100,14 +138,53 @@ const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
                   <View>
                     <Text style={styles.subtitleText}>{data.date}{data.time}</Text>
                   </View>
+                  <Text style={styles.subtitle}>{data.text}</Text>
                 </>
               }
-              left={() => (
-                <View style={styles.iconContainer}>
-                  {renderIconBasedOnType(data.type)}
-                </View>
-              )}
-              right={() => (
+              // left={() => (
+              //   <View style={styles.iconContainer}>
+              //     {renderIconBasedOnType(data.type)}
+              //   </View>
+              // )}
+              // right={() => (
+              //   <View style={styles.iconContainer}>
+              //     {screenType === 'History' ? (
+              //       <Entypo
+              //         name={data.isFavorite ? 'star' : 'star-outlined'}
+              //         size={ICON_SIZE_L}
+              //         color='white'
+              //         style={styles.barIcon}
+              //         onPress={() => addToFavorites(data.id, data.isFavorite)}
+              //       />
+              //     ) : (
+              //       <FontAwesome name='bars' size={ICON_SIZE_L} color='white' style={styles.barIcon} />
+              //     )}
+              //     <Menu
+              //       visible={menuVisibility[index]}
+              //       onDismiss={() => {
+              //         setMenuVisibility((prevVisibility) => {
+              //           const updatedVisibility = [...prevVisibility];
+              //           updatedVisibility[index] = false;
+              //           return updatedVisibility;
+              //         });
+              //       }}
+              //       anchor={
+              //         <IconButton
+              //           {...props}
+              //           icon='dots-vertical'
+              //           onPress={() => toggleItem(data.text, index)}
+              //         />
+              //       }
+              //     >
+              //       <View>
+              //         <MenuItems item={data} />
+              //       </View>
+              //     </Menu>
+              //   </View>
+              // )}
+            />
+            <Card.Actions>
+           
                 <View style={styles.iconContainer}>
                   {screenType === 'History' ? (
                     <Entypo
@@ -142,20 +219,11 @@ const CustomCard: React.FC<CustomCardProps> = (props: CustomCardProps) => {
                     </View>
                   </Menu>
                 </View>
-              )}
-            />
-            <Card.Content>
-              <View>
-                <Text style={styles.subtitle}>{data.text}</Text>
-              </View>
-            </Card.Content>
-            {/* <Divider /> */}
-          </Card>
+            </Card.Actions>
+          </Card> */}
         </View>
 
       ))}
-      {/* </View>
-      ))} */}
 
     </View>
   );
@@ -183,6 +251,7 @@ const styles = StyleSheet.create({
   iconContainer: {
     display: 'flex',
     flexDirection: 'row',
+    marginVertical: 6
   },
   barIcon: {
     marginTop: 15,
@@ -212,8 +281,13 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     color: 'white',
-    textAlign: 'center'
-  }
+    // textAlign: 'center'
+  },
+  cardPart: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
-export default CustomCard;

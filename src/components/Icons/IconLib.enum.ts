@@ -6,4 +6,5 @@ export enum IconLibEnum {
   AntDesign = 'AntDesign',
   MaterialIcons = 'MaterialIcons',
   Ionicons = 'Ionicons',
+  Entypo = 'Entypo'
 }

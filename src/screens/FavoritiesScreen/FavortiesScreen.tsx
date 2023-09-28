@@ -1,13 +1,17 @@
 import { v4 as uuidv4 } from 'uuid';
 import 'react-native-get-random-values';
 import React, { ReactNode } from 'react';
-import CustomCard from '../../components/CustomCard';
+// import CustomCard from '../../components/ScannedItemList';
 import { getAllFavorite } from '../../context/ScannedItemsSelectors';
 import { ScannedItems, useScannedItems } from '../../context/ScannedItemsContext';
 import { MaterialIcons, Entypo, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 import { ScannedItemActionEnum } from '../../context/ScannedItemsContext';
 import { Menu } from 'react-native-paper';
 import { ICON_SIZE_L } from '../../components/Icons';
+import { CustomCardActionProps } from '../../components/CustomCard/CustomCard';
+import { ScannedItemList } from '../../components/ScannedItemList';
+import { FavoritesMenuComponent } from '../../components/FavoritesCardMenu/FavoritesCardMenu';
+import { ScanResultComponent } from '../../components/ScanResult/ScanResult';
 export interface MenuItemsType {
   id: string;
   name: string;
@@ -78,17 +82,25 @@ const MenuItem = ({ item }: MenuItemProps) => {
   )
 }
 
+const Actions: React.FC<CustomCardActionProps> = (props: CustomCardActionProps) => {
+  return <>
+    <ScanResultComponent />
+    <FavoritesMenuComponent />
+  </>
+}
 export const FavortieScreen: React.FC = () => {
   const { state } = useScannedItems();
   const allFavorites = getAllFavorite(state);
 
   return (
     <>
-      <CustomCard
+      <ScannedItemList items={allFavorites} actions={(props: CustomCardActionProps) => <Actions {...props} />} />
+
+      {/* <CustomCard
         items={allFavorites}
         screenType='Favorite'
         MenuItems={MenuItem}
-      />
+      /> */}
     </>
   )
 }

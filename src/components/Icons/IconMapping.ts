@@ -19,4 +19,10 @@ export const ICON_MAPPING = {
   [IconEnum.calenderSharp]: IconLibEnum.Ionicons,
   [IconEnum.personOutline]: IconLibEnum.Ionicons,
   [IconEnum.done]: IconLibEnum.MaterialIcons,
+  [IconEnum.share]: IconLibEnum.Entypo,
+  [IconEnum.edit]: IconLibEnum.MaterialIcons,
+  [IconEnum.rename]: IconLibEnum.MaterialCommunityIcons,
+  [IconEnum.star]: IconLibEnum.Entypo,
+  [IconEnum.starOutline]: IconLibEnum.Entypo,
+  [IconEnum.bars]: IconLibEnum.FontAwesome
 }

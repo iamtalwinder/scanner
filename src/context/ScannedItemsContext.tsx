@@ -21,8 +21,7 @@ export enum ScannedItemActionEnum {
 export interface ScannedItems {
   id: string;
   type: ScannedItemTypeEnum;
-  date: string;
-  time: string;
+  timeStamp: string;
   isFavorite: boolean;
   text: string;
 }
@@ -39,33 +38,29 @@ const scannedItems: ScannedItems[] = [
   {
     id: uuidv4(),
     type: ScannedItemTypeEnum.Url,
-    date: '05/09/2023 ',
-    time:'8:42:43 am,',
-    text: 'QR_CODE exp://192.168.100.16:19000',
+    timeStamp:'05/09/2023  8:42:43 am,',
+    text: 'exp://192.168.100.16:19000',
     isFavorite: true,
   },
   {
     id: uuidv4(),
     type: ScannedItemTypeEnum.Product,
-    date: '07/08/2023 ',
-    time: '8:10:20 am,',
-    text: 'Product exp://192.168.100.16:19000',
+    timeStamp: '07/08/2023  8:10:20 am,',
+    text: 'exp://192.168.100.16:19000',
     isFavorite: true,
   },
   {
     id: uuidv4(),
     type: ScannedItemTypeEnum.Barcode,
-    date: '03/07/2023 ',
-    time: '10:30:20 am,',
-    text: 'Barcode exp://192.168.100.16:19000',
+    timeStamp: '03/07/2023  10:30:20 am,',
+    text: 'exp://192.168.100.16:19000',
     isFavorite: false,
   },
   {
     id: uuidv4(),
     type: ScannedItemTypeEnum.Text,
-    date: '16/08/2023 ',
-    time: ' 05:10:30 pm,',
-    text: 'Text exp://192.168.100.16:19000',
+    timeStamp: '16/08/2023  05:10:30 pm,',
+    text: 'exp://192.168.100.16:19000',
     isFavorite: false,
   }
 ];
