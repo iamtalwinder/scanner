@@ -24,5 +24,11 @@ export const ICON_MAPPING = {
   [IconEnum.rename]: IconLibEnum.MaterialCommunityIcons,
   [IconEnum.star]: IconLibEnum.Entypo,
   [IconEnum.starOutline]: IconLibEnum.Entypo,
-  [IconEnum.bars]: IconLibEnum.FontAwesome
+  [IconEnum.bars]: IconLibEnum.FontAwesome,
+  [IconEnum.scan]: IconLibEnum.Ionicons,
+  [IconEnum.scan1]: IconLibEnum.AntDesign,
+  [IconEnum.history]: IconLibEnum.FontAwesome5,
+  [IconEnum.qrcode]: IconLibEnum.AntDesign,
+  [IconEnum.create]: IconLibEnum.MaterialIcons,
+  [IconEnum.settingOutline]: IconLibEnum.Ionicons,
 }

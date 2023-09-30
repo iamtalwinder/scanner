@@ -26,7 +26,7 @@ export const CustomCard: React.FC<CustomCardProps> = ({
             {logo}
           </View>
           <View style={styles.textContainer}>
-            <Text>{item.type}</Text>
+            <Text style={styles.type}>{item.type}</Text>
             <View style={styles.timeStamp}>
               <Text style={styles.timeStamp}>
                 {formatDateTime(item.timeStamp)}

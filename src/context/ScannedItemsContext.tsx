@@ -61,6 +61,14 @@ const scannedItems: ScannedItems[] = [
   },
   {
     id: uuidv4(),
+    type: ScannedItemTypeEnum.Url,
+    timeStamp: '2023-09-29T08:42:43Z',
+    typeName: 'QR_CODE',
+    text: 'exp://192.168.100.16:19000',
+    isFavorite: true,
+  },
+  {
+    id: uuidv4(),
     type: ScannedItemTypeEnum.Barcode,
     timeStamp: '2023-07-03T10:30:20Z',
     typeName: 'QR_CODE',

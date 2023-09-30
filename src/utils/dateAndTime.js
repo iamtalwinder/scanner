@@ -3,7 +3,7 @@ import { format, parseISO } from 'date-fns';
 export const formatDateTime = (timestamp) => {
   try {
     const date = parseISO(timestamp);
-    const formattedDateTime = format(date, 'MM/dd/yyyy hh:mm:ss a');
+    const formattedDateTime = format(date, 'dd/MM/yyyy hh:mm:ss a');
 
     return formattedDateTime;
   } catch (error) {

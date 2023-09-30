@@ -21,5 +21,11 @@ export enum IconEnum {
   rename = 'rename-box',
   star = 'star',
   starOutline = 'star-outline',
-  bars = 'bars'
+  bars = 'bars',
+  scan = 'scan',
+  scan1 = 'scan1',
+  history = 'history',
+  qrcode = 'qrcode',
+  create = 'create',
+  settingOutline = 'settings-outline'
 }

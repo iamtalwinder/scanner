@@ -2,8 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   card: {
-    marginVertical: 5,
-    marginBottom: 0,
+    // marginVertical: 5,
     marginTop: 0,
     paddingBottom: 5,
     backgroundColor: '#050301',
@@ -32,4 +31,8 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row'
   },
+  type: {
+    fontWeight: 'bold',
+    fontSize: 18
+  }
 });

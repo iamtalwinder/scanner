@@ -1,5 +1,5 @@
 import React, { useState, ReactNode } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { Text } from 'react-native-paper';
 import { ScannedItemTypeEnum, ScannedItems, useScannedItems } from '../../context/ScannedItemsContext';
 import { ScannedItemActionEnum } from '../../context/ScannedItemsContext'
@@ -9,11 +9,11 @@ import { CustomCard, CustomCardActionProps } from '../CustomCard/CustomCard';
 import { ImportExportMenuComponent } from '../ImportExportMenu';
 import { ScrollView } from 'react-native-gesture-handler';
 import { formatDate } from '../../utils/date';
-import { styles } from './ScannedItemList.styles'; 
+import { styles } from './ScannedItemList.styles';
 
 interface CustomCardProps {
   items: ScannedItems[];
-  actions?: (props: CustomCardActionProps) => React.ReactNode,
+  actions?: (props: CustomCardActionProps) => ReactNode,
 }
 
 export const ScannedItemList: React.FC<CustomCardProps> = (props: CustomCardProps) => {
@@ -22,6 +22,8 @@ export const ScannedItemList: React.FC<CustomCardProps> = (props: CustomCardProp
   const [selectedItem, setSelectedItem] = useState<string>('');
   const [menuVisible, setMenuVisible] = useState(false);
   const { state, dispatch } = useScannedItems();
+
+  let previousDate = '';
 
   // const [menuVisibility, setMenuVisibility] = useState<boolean[]>(
   //   Array(MenuItems.length).fill(false)
@@ -74,53 +76,64 @@ export const ScannedItemList: React.FC<CustomCardProps> = (props: CustomCardProp
   const sortedItems = [...items].sort((itemA, itemB) => {
     const dateA = new Date(itemA.timeStamp);
     const dateB = new Date(itemB.timeStamp);
-
-    return (dateB.getTime() - dateA.getTime());
+    return dateB.getTime() - dateA.getTime();
   });
 
 
   return (
     <ScrollView style={styles.mainContainer}>
-      {items.map((data: ScannedItems, index: number) => (
-        <View key={data.id}>
-          <View style={styles.cardDate}>
-            <Text style={styles.dateHeader}>
-           {formatDate(data.timeStamp)}
-            </Text>
-            <ImportExportMenuComponent />
-          </View>
-          <CustomCard
-            item={data}
-            logo={renderIconBasedOnType(data.type)}
-            actions={actions}
-          // onAction1Press=
-          // {
-          //   <Menu
-          //     visible={menuVisibility[index]}
-          //     onDismiss={() => {
-          //       setMenuVisibility((prevVisibility) => {
-          //         const updatedVisibility = [...prevVisibility];
-          //         updatedVisibility[index] = false;
-          //         return updatedVisibility;
-          //       });
-          //     }}
-          //     // anchor={
-          //     //   <IconButton
-          //     //     {...props}
-          //     //     icon='dots-vertical'
-          //     //     onPress={() => toggleItem(data.text, index)}
-          //     //   />
-          //     // }
-          //   >
-          //     <View>
-          //       <MenuItems item={data} />
-          //     </View>
-          //   </Menu>
-          // }
-          // onAction2Press=
+      {sortedItems.map((data: ScannedItems, index: number) => {
 
-          />
-          {/* <Card
+        const itemDate = formatDate(data.timeStamp);
+        const displayDate = itemDate !== previousDate;
+        previousDate = itemDate;
+        
+        return (
+          // {sortedItems.map((data: ScannedItems, index: number) => (
+          <View key={data.id}>
+            {displayDate && (
+              <View style={styles.cardDate}>
+                <Text style={styles.dateHeader}>
+                  <Text style={styles.dateHeader}>
+                    {itemDate}
+                  </Text>
+                  {/* {formatDate(data.timeStamp)} */}
+                </Text>
+                <ImportExportMenuComponent />
+              </View>
+            )}
+            <CustomCard
+              item={data}
+              logo={renderIconBasedOnType(data.type)}
+              actions={actions}
+            // onAction1Press=
+            // {
+            //   <Menu
+            //     visible={menuVisibility[index]}
+            //     onDismiss={() => {
+            //       setMenuVisibility((prevVisibility) => {
+            //         const updatedVisibility = [...prevVisibility];
+            //         updatedVisibility[index] = false;
+            //         return updatedVisibility;
+            //       });
+            //     }}
+            //     // anchor={
+            //     //   <IconButton
+            //     //     {...props}
+            //     //     icon='dots-vertical'
+            //     //     onPress={() => toggleItem(data.text, index)}
+            //     //   />
+            //     // }
+            //   >
+            //     <View>
+            //       <MenuItems item={data} />
+            //     </View>
+            //   </Menu>
+            // }
+            // onAction2Press=
+
+            />
+            {/* <Card
             key={data.id}
             style={styles.card}
           >
@@ -215,8 +228,9 @@ export const ScannedItemList: React.FC<CustomCardProps> = (props: CustomCardProp
                 </View>
             </Card.Actions>
           </Card> */}
-        </View>
-      ))}
+          </View>
+        );
+      })}
     </ScrollView>
   );
 }
