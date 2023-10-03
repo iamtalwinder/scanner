@@ -9,6 +9,7 @@ type FilterMenuProps = {};
 export const FilterMenuComponent: React.FC<FilterMenuProps> = (props: FilterMenuProps) => {
   const [filterVisible, setFilterVisible] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const [filterApplied, setFilterApplied] = useState(false);
 
   const toggleFilter = (filter: string) => {
     if (selectedFilters.includes(filter)) {
@@ -18,13 +19,25 @@ export const FilterMenuComponent: React.FC<FilterMenuProps> = (props: FilterMenu
     }
   };
 
+  const isFilterSelected = selectedFilters.length > 0;
+
   return (
     <Menu
       visible={filterVisible}
       onDismiss={() => setFilterVisible(false)}
       style={styles.item}
       anchor={
-        <Appbar.Action icon='filter' onPress={() => setFilterVisible(true)} />
+        isFilterSelected || filterApplied ? (
+          <Appbar.Action icon='filter' onPress={() => {
+            setFilterVisible(true);
+            setFilterApplied(true);
+          }} />
+        ) : (
+          <Appbar.Action icon='filter-off' onPress={() => {
+            setFilterApplied(false);
+            setFilterVisible(true);
+          }} />
+        )
       }
     >
       {FILTER_MENU_ITEMS.map((menuItem) => (

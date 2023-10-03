@@ -31,4 +31,5 @@ export const ICON_MAPPING = {
   [IconEnum.qrcode]: IconLibEnum.AntDesign,
   [IconEnum.create]: IconLibEnum.MaterialIcons,
   [IconEnum.settingOutline]: IconLibEnum.Ionicons,
+  [IconEnum.copy]: IconLibEnum.AntDesign
 }

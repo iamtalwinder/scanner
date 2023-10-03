@@ -1,38 +1,14 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { getAllScannedItems } from '../../context/ScannedItemsSelectors';
 import { ScannedItems, useScannedItems } from '../../context/ScannedItemsContext';
 import 'react-native-get-random-values';
-import { v4 as uuidv4 } from 'uuid';
-import { MaterialIcons, Entypo, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
-import { ScannedItemActionEnum } from '../../context/ScannedItemsContext';
-import { Menu } from 'react-native-paper';
-import { ICON_SIZE_L } from '../../components/Icons';
 import { HistoryMenuComponent } from '../../components/HistoryCardMenu/HistoryCardMenu';
 import { ScannedItemList } from '../../components/ScannedItemList/ScannedItemList';
 import { HistoryFavorites } from '../../components/HistoryFavorite/HistoryFavorites';
 import { CustomCardActionProps } from '../../components/CustomCard/CustomCard';
 
-interface MenuItemsType {
-  id: string;
-  name: string;
-  icon: () => ReactNode;
-  submenu?: MenuItemsType[];
-}
-
 interface MenuItemProps {
   item: ScannedItems;
-}
-
-export const MenuItem = ({ item }: MenuItemProps) => {
-
-  const { dispatch } = useScannedItems();
-
-  const deleteScannedItemFromFavorites = (id: string) => {
-    dispatch({
-      type: ScannedItemActionEnum.REMOVE_SCANNED_ITEM,
-      id: id
-    })
-  }
 }
 
 const Actions: React.FC<CustomCardActionProps> = ({item}: CustomCardActionProps) => {

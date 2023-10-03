@@ -22,6 +22,7 @@ export const styles = StyleSheet.create({
   },
   actionsContainer: {
     flex: 1,
+    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -29,7 +30,7 @@ export const styles = StyleSheet.create({
   timeStamp: {
     marginRight: 10,
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   type: {
     fontWeight: 'bold',

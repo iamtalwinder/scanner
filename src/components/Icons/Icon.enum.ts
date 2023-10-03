@@ -27,5 +27,6 @@ export enum IconEnum {
   history = 'history',
   qrcode = 'qrcode',
   create = 'create',
-  settingOutline = 'settings-outline'
+  settingOutline = 'settings-outline',
+  copy = 'copy1'
 }

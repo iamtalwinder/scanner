@@ -1,12 +1,12 @@
 import React from 'react';
 import { ICON_SIZE_L, IconEnum, Icons } from '../Icons';
 import { View } from 'react-native';
-import { styles } from './ScanResult.styles';
+import { styles } from './CardBars.styles';
 
 type ScanResultIconProps = {
 }
 
-export const ScanResultComponent: React.FC<ScanResultIconProps> = (props: ScanResultIconProps) => {
+export const CardBars: React.FC<ScanResultIconProps> = (props: ScanResultIconProps) => {
   return (
     <>
       <View style={styles.iconContainer}>

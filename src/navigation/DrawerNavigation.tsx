@@ -29,6 +29,7 @@ import {
   MaterialIcons,
 } from '@expo/vector-icons';
 import { ICON_SIZE_XL } from '../components/Icons';
+import { ScanNavigation } from '../screens/ScanScreen/ScanNavigation';
 
 const Drawer = createDrawerNavigator();
 
@@ -46,7 +47,7 @@ export const DrawerNavigator: React.FC = () => {
     <Drawer.Navigator initialRouteName='Scan' screenOptions={headerOptions}>
       <Drawer.Screen
         name='Scan'
-        component={ScanScreen}
+        component={ScanNavigation}
         options={{
           header: (props) => <ScanHeader {...props} />,
           drawerIcon: () => {

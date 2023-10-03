@@ -1,12 +1,11 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import { styles } from './ScanScreen.styles';
+import { Text } from 'react-native';
 
 export const ScanScreen: React.FC = () => {
   return (
-    <View style={styles.container}>
-      <Text>Scan ScanScreen</Text>
-    </View>
+    <>
+    <Text>Scan screen</Text>
+    </>
   );
 }
 

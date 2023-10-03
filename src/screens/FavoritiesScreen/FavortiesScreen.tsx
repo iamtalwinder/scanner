@@ -5,7 +5,7 @@ import { ScannedItemActionEnum } from '../../context/ScannedItemsContext';
 import { CustomCardActionProps } from '../../components/CustomCard/CustomCard';
 import { ScannedItemList } from '../../components/ScannedItemList/ScannedItemList';
 import { FavoritesMenuComponent } from '../../components/FavoritesCardMenu/FavoritesCardMenu';
-import { ScanResultComponent } from '../../components/ScanResult/ScanResult';
+import { CardBars } from '../../components/CardBars/CardBars';
 export interface MenuItemsType {
   id: string;
   name: string;
@@ -32,7 +32,7 @@ const MenuItem = ({ item }: MenuItemProps) => {
 
 const Actions: React.FC<CustomCardActionProps> = (props: CustomCardActionProps) => {
   return <>
-    <ScanResultComponent />
+    <CardBars />
     <FavoritesMenuComponent />
   </>
 }
