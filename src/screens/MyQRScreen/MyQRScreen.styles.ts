@@ -22,7 +22,8 @@ export const styles = StyleSheet.create({
   heading: {
     color: 'white',
     fontSize: 16,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    marginTop: 13
   },
   share: {
     color: 'white',

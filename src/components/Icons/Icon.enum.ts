@@ -28,5 +28,10 @@ export enum IconEnum {
   qrcode = 'qrcode',
   create = 'create',
   settingOutline = 'settings-outline',
-  copy = 'copy1'
+  copy = 'copy1',
+  fileText = 'file-text',
+  text= 'text',
+  contacts = 'contacts',
+  clipboard = 'clipboard-outline',
+  calendar = 'calender'
 }

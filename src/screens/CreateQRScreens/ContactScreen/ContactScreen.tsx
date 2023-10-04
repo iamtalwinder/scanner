@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { AntDesign } from '@expo/vector-icons';
 import { View, Button, TextInput, Text, ScrollView } from 'react-native';
 import { styles } from './ContactScreen.styles';
-import { ICON_SIZE_XL } from '../../../components/Icons';
+import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../../../components/Icons';
+import { IconButton } from 'react-native-paper';
 
 export const ContactScreen: React.FC = () => {
 
@@ -32,7 +32,9 @@ export const ContactScreen: React.FC = () => {
   return (
     <ScrollView style={styles.mainContainer}>
       <View style={styles.title}>
-        <AntDesign name='contacts' size={ICON_SIZE_XL} color='white' />
+        <IconButton
+        icon={() => <Icons name={IconEnum.contacts} size={ICON_SIZE_XL} color={DEFAULT_COLOR}/>}
+        />
         <Text style={styles.headline}>Contact</Text>
       </View>
       <View style={styles.formContainer}>

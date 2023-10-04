@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Card, IconButton, Divider, Menu, Button, Dialog, Text, Portal, TextInput } from 'react-native-paper';
 import { Feather, FontAwesome, MaterialIcons, Entypo, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
+import { DEFAULT_COLOR } from './Icons';
 
 export interface CardData {
   title: string;
@@ -45,7 +46,7 @@ export const itemMenuItems = [
   { id: 7, name: 'Change Name', icon: () => <MaterialCommunityIcons name="rename-box" size={20} color="white" /> }
 ];
 
-const CustomCard: React.FC<CustomCardProps> = (props: any) => {
+const CustomCardComponent: React.FC<CustomCardProps> = (props: any) => {
   const { screenType } = props;
 
   const [selectedItem, setSelectedItem] = useState<string>('');
@@ -220,9 +221,9 @@ const CustomCard: React.FC<CustomCardProps> = (props: any) => {
                   }
                   left={(props) =>
                     data.library === 'Feather' ? (
-                      <Feather {...props} name={data.icon as any} size={20} color="white" />
+                      <Feather {...props} name={data.icon as any} size={20} color={DEFAULT_COLOR} />
                     ) : (
-                      <FontAwesome {...props} name={data.icon as any} size={20} color="white" />
+                      <FontAwesome {...props} name={data.icon as any} size={20} color={DEFAULT_COLOR} />
                     )
                   }
                   right={(props) => (
@@ -378,4 +379,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CustomCard;
+export default CustomCardComponent;

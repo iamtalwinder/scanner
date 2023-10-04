@@ -27,6 +27,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     color: 'white',
     flexDirection: 'row',
+    marginTop: 15
   },
   formContainer: {
     paddingLeft: 16,

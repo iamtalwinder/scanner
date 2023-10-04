@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { MaterialIcons } from '@expo/vector-icons';
 import { View, TextInput, Text } from 'react-native';
 import { styles } from './EmailScreen.styles';
-import { ICON_SIZE_XL } from '../../../components/Icons';
+import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../../../components/Icons';
+import { IconButton } from 'react-native-paper';
 
 export const EmailScreen: React.FC = () => {
   const [formData, setFormData] = useState([
@@ -21,7 +21,10 @@ export const EmailScreen: React.FC = () => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.title}>
-        <MaterialIcons name='email' size={ICON_SIZE_XL} color='white' />
+        <IconButton
+          icon={() => <Icons name={IconEnum.email} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
+          }
+        />
         <Text style={styles.headline}>Email</Text>
       </View>
       <View style={styles.formContainer}>

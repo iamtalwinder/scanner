@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, TextInput } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
 import { styles } from './ClipBoardScreen.styles';
-import { ICON_SIZE_XL } from '../../../components/Icons';
+import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../../../components/Icons';
+import { IconButton } from 'react-native-paper';
 
 export const ClipboardScreen: React.FC = () => {
   const [text, setText] = React.useState('');
@@ -10,7 +10,10 @@ export const ClipboardScreen: React.FC = () => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.title}>
-        <Entypo name='text' size={ICON_SIZE_XL} color='white' />
+        <IconButton
+          icon={() => <Icons name={IconEnum.text} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
+          }
+        />
         <Text style={styles.headline}>Text</Text>
       </View>
       <TextInput

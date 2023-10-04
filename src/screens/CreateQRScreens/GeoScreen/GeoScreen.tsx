@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, TextInput, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { styles } from './GeoScreen.styles';
-import { ICON_SIZE_XL } from '../../../components/Icons';
+import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../../../components/Icons';
+import { IconButton } from 'react-native-paper';
 
 export const GeoScreen: React.FC = () => {
 
@@ -22,7 +22,10 @@ export const GeoScreen: React.FC = () => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.title}>
-        <Ionicons name='location-outline' size={ICON_SIZE_XL} color='white' />
+        <IconButton
+          icon={() => <Icons name={IconEnum.locationOutline} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
+          }
+        />
         <Text style={styles.headline}>Geo</Text>
       </View>
       <View style={styles.formContainer}>

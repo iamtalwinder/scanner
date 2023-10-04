@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { Card, IconButton } from 'react-native-paper';
 import { formatDateTime } from '../../utils/dateAndTime';
 import { styles } from './ScanResultCard.styles';
-import { ICON_SIZE_XXL, IconEnum, Icons } from '../Icons';
+import { DEFAULT_COLOR, ICON_SIZE_XXL, IconEnum, Icons } from '../Icons';
 import { ScanResultActionProps, ScannedItemResult } from '../../screens/ScanScreen/ScanResult';
 
 
@@ -47,11 +47,11 @@ export const ScanResultCard: React.FC<ScanResultCardProps> = (props: ScanResultC
         <View style={styles.icons}>
           <IconButton
             icon={() =>
-              <Icons name={IconEnum.share} size={ICON_SIZE_XXL} color='white' />}
+              <Icons name={IconEnum.share} size={ICON_SIZE_XXL} color={DEFAULT_COLOR} />}
           />
           <IconButton
             icon={() =>
-              <Icons name={IconEnum.copy} size={ICON_SIZE_XXL} color='white' />}
+              <Icons name={IconEnum.copy} size={ICON_SIZE_XXL} color={DEFAULT_COLOR} />}
           />
         </View>
       </View>

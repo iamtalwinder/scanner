@@ -3,8 +3,7 @@ import { View } from 'react-native';
 import { Text } from 'react-native-paper';
 import { ScannedItemTypeEnum, ScannedItems, useScannedItems } from '../../context/ScannedItemsContext';
 import { ScannedItemActionEnum } from '../../context/ScannedItemsContext'
-import { Feather, FontAwesome } from '@expo/vector-icons';
-import { ICON_SIZE_XL } from '../Icons';
+import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../Icons';
 import { CustomCard, CustomCardActionProps } from '../CustomCard/CustomCard';
 import { ImportExportMenuComponent } from '../ImportExportMenu';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -61,13 +60,13 @@ export const ScannedItemList: React.FC<CustomCardProps> = (props: CustomCardProp
   const renderIconBasedOnType = (itemType: ScannedItemTypeEnum) => {
     switch (itemType) {
       case ScannedItemTypeEnum.Product:
-        return <Feather name='shopping-bag' size={ICON_SIZE_XL} color='white' />;
+        return <Icons name={IconEnum.shoppingBag} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
       case ScannedItemTypeEnum.Barcode:
-        return <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />;
+        return <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR}/>
       case ScannedItemTypeEnum.Text:
-        return <Feather name='file-text' size={ICON_SIZE_XL} color='white' />;
+        return <Icons name={IconEnum.fileText} size={ICON_SIZE_XL} color={DEFAULT_COLOR}/>
       case ScannedItemTypeEnum.Url:
-        return <Feather name='link-2' size={ICON_SIZE_XL} color='white' />;
+        return <Icons name={IconEnum.link2} size={ICON_SIZE_XL} color={DEFAULT_COLOR}/>
       default:
         return null;
     }
@@ -87,7 +86,7 @@ export const ScannedItemList: React.FC<CustomCardProps> = (props: CustomCardProp
         const itemDate = formatDate(data.timeStamp);
         const displayDate = itemDate !== previousDate;
         previousDate = itemDate;
-        
+
         return (
           // {sortedItems.map((data: ScannedItems, index: number) => (
           <View key={data.id}>

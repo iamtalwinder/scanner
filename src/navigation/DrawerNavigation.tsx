@@ -21,14 +21,8 @@ import {
   SettingsHeader,
   ShareHeader,
 } from '../screens';
-import {
-  Ionicons,
-  Entypo,
-  FontAwesome5,
-  AntDesign,
-  MaterialIcons,
-} from '@expo/vector-icons';
-import { ICON_SIZE_XL } from '../components/Icons';
+
+import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../components/Icons';
 import { ScanNavigation } from '../screens/ScanScreen/ScanNavigation';
 
 const Drawer = createDrawerNavigator();
@@ -51,7 +45,7 @@ export const DrawerNavigator: React.FC = () => {
         options={{
           header: (props) => <ScanHeader {...props} />,
           drawerIcon: () => {
-            return <Ionicons name='scan' size={ICON_SIZE_XL} color='white' />;
+            return <Icons name={IconEnum.scan} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           },
         }}
       />
@@ -61,7 +55,7 @@ export const DrawerNavigator: React.FC = () => {
         options={{
           header: (props) => <ScanImageHeader {...props} />,
           drawerIcon: () => {
-            return <AntDesign name='scan1' size={ICON_SIZE_XL} color='white' />;
+            return <Icons name={IconEnum.scan1} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           },
         }}
       />
@@ -71,7 +65,7 @@ export const DrawerNavigator: React.FC = () => {
         options={{
           header: (props) => <FavoriteHeader {...props} />,
           drawerIcon: () => {
-            return <Entypo name='star-outlined' size={ICON_SIZE_XL} color='white' />;
+            return <Icons name={IconEnum.starOutline} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           },
         }}
       />
@@ -81,7 +75,7 @@ export const DrawerNavigator: React.FC = () => {
         options={{
           header: (props) => <HistoryHeader {...props} />,
           drawerIcon: () => {
-            return <FontAwesome5 name='history' size={ICON_SIZE_XL} color='white' />;
+            return <Icons name={IconEnum.history} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           },
         }}
       />
@@ -91,7 +85,7 @@ export const DrawerNavigator: React.FC = () => {
         options={{
           header: (props) => <MyQRHeader {...props} />,
           drawerIcon: () => {
-            return <AntDesign name='qrcode' size={ICON_SIZE_XL} color='white' />;
+            return <Icons name={IconEnum.qrcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           },
         }}
       />
@@ -99,9 +93,9 @@ export const DrawerNavigator: React.FC = () => {
         name='Create QR'
         component={CreateQRNavigation}
         options={{
-          header: (props) => <CreateQRHeader {...props}/>,
+          header: (props) => <CreateQRHeader {...props} />,
           drawerIcon: () => {
-            return <MaterialIcons name='create' size={ICON_SIZE_XL} color='white' />;
+            return <Icons name={IconEnum.create} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           },
         }}
       />
@@ -109,9 +103,9 @@ export const DrawerNavigator: React.FC = () => {
         name='Settings'
         component={SettingsScreen}
         options={{
-          header: (props) => <SettingsHeader {...props}/>,
+          header: (props) => <SettingsHeader {...props} />,
           drawerIcon: () => {
-            return <Ionicons name='settings-outline' size={ICON_SIZE_XL} color='white' />;
+            return <Icons name={IconEnum.settingOutline} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           },
         }}
       />
@@ -119,9 +113,9 @@ export const DrawerNavigator: React.FC = () => {
         name='Share'
         component={ShareScreen}
         options={{
-          header: (props) => <ShareHeader {...props}/>,
+          header: (props) => <ShareHeader {...props} />,
           drawerIcon: () => {
-            return <Entypo name='share' size={ICON_SIZE_XL} color='white' />;
+            return <Icons name={IconEnum.share} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           },
         }}
       />

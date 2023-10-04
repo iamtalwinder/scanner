@@ -2,18 +2,9 @@ import React, { ReactNode } from 'react';
 import { ScrollView, View, Text } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
 import 'react-native-get-random-values';
-import {
-  FontAwesome5,
-  Feather,
-  Entypo,
-  MaterialIcons,
-  AntDesign,
-  Ionicons,
-  FontAwesome,
-} from '@expo/vector-icons';
 import { Button, Divider } from 'react-native-paper';
 import { styles } from './CreateOptionScreen.styles';
-import { ICON_SIZE_XL } from '../../../components/Icons';
+import { DEFAULT_COLOR, ICON_SIZE_L, ICON_SIZE_XL, IconEnum, Icons } from '../../../components/Icons';
 
 export interface CreateQRType {
   id: string;
@@ -27,67 +18,67 @@ export const CreateQRList: CreateQRType[] = [
     id: uuidv4(),
     name: 'Content from clipboard',
     pathname: 'ClipboardScreen',
-    icon: () => <FontAwesome5 name='clipboard' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.clipboard} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
   },
   {
     id: uuidv4(),
     name: 'URL',
     pathname: 'URLScreen',
-    icon: () => <Feather name='link-2' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.link2} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
   },
   {
     id: uuidv4(),
     name: 'Text',
     pathname: 'TextScreen',
-    icon: () => <Entypo name='text' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.text} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
   },
   {
     id: uuidv4(),
     name: 'Contact',
     pathname: 'ContactScreen',
-    icon: () => <AntDesign name='contacts' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.contacts} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
   },
   {
     id: uuidv4(),
     name: 'Email',
     pathname: 'EmailScreen',
-    icon: () => <MaterialIcons name='email' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.email} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
   },
   {
     id: uuidv4(),
     name: 'SMS',
     pathname: 'SMSScreen',
-    icon: () => <MaterialIcons name='sms' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.sms} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
   },
   {
     id: uuidv4(),
     name: 'Geo',
     pathname: 'GeoScreen',
-    icon: () => <Ionicons name='location-outline' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.locationOutline} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
   },
   {
     id: uuidv4(),
     name: 'Phone',
     pathname: 'PhoneScreen',
-    icon: () => <FontAwesome name='phone' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.phone} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
   },
   {
     id: uuidv4(),
     name: 'Calender',
     pathname: 'CalenderScreen',
-    icon: () => <AntDesign name='calendar' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.calenderSharp} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
   },
   {
     id: uuidv4(),
     name: 'Wifi',
     pathname: 'WifiScreen',
-    icon: () => <FontAwesome name='wifi' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.wifi} size={ICON_SIZE_L} color={DEFAULT_COLOR} />
   },
   {
     id: uuidv4(),
     name: 'My QR',
     pathname: 'myqr',
-    icon: () => <AntDesign name='qrcode' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.qrcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
   },
 ];
 
@@ -96,73 +87,73 @@ export const OtherTypeList: CreateQRType[] = [
     id: uuidv4(),
     name: 'EAN_8',
     pathname: 'ean-8',
-    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'EAN_13',
     pathname: 'ean-13',
-    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'UPC_E',
     pathname: 'upc-e',
-    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'UPC_A',
     pathname: 'upc-a',
-    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'CODE_39',
     pathname: 'code-39',
-    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'CODE_93',
     pathname: 'code-93',
-    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'CODE_128',
     pathname: 'code-128',
-    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'ITF',
     pathname: 'itf',
-    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'PDF_417',
     pathname: 'pdf-417',
-    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'CODABAR',
     pathname: 'codabar',
-    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'DATA_MATRIX',
     pathname: 'data-matrix',
-    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'AZTEC',
     pathname: 'aztec',
-    icon: () => <FontAwesome name='barcode' size={ICON_SIZE_XL} color='white' />,
+    icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
 ];
 

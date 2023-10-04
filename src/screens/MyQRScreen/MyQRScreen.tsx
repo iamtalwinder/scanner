@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Text, View, TextInput, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { styles } from './MyQRScreen.styles';
-import { ICON_SIZE_L, ICON_SIZE_XL } from '../../components/Icons';
+import { DEFAULT_COLOR, ICON_SIZE_L, ICON_SIZE_XL, IconEnum, Icons } from '../../components/Icons';
+import { IconButton } from 'react-native-paper';
 
 
 export const MyQRScreen: React.FC = () => {
@@ -28,7 +28,10 @@ export const MyQRScreen: React.FC = () => {
     <ScrollView style={styles.mainContainer}>
       <View style={styles.container}>
         <View style={styles.headline}>
-          <Ionicons name='person' size={ICON_SIZE_XL} color='white' />
+          <IconButton
+            icon={() => <Icons name={IconEnum.personOutline} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
+            }
+          />
           <Text style={styles.heading}>My QR</Text>
         </View>
         <View>

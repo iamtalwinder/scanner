@@ -8,7 +8,8 @@ export const styles = StyleSheet.create({
   },
   headline: {
     fontSize: 18,
-    color: 'white'
+    color: 'white',
+    marginTop: 13
   },
   title: {
     gap: 10,
