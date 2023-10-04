@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Text, View } from 'react-native';
-import { Card, IconButton } from 'react-native-paper';
+import { Card, Divider, IconButton } from 'react-native-paper';
 import { formatDateTime } from '../../utils/dateAndTime';
 import { styles } from './ScanResultCard.styles';
 import { DEFAULT_COLOR, ICON_SIZE_XXL, IconEnum, Icons } from '../Icons';
@@ -38,21 +38,39 @@ export const ScanResultCard: React.FC<ScanResultCardProps> = (props: ScanResultC
               {actions && actions({ item })}
             </View>
           </Card.Content>
+          <Divider style={styles.divider} />
+          <View style={styles.textView}>
+            <View>
+              <Text style={styles.text}>{item.text}</Text>
+            </View>
+          </View>
         </Card>
-        <View style={styles.textView}>
-          <View>
-            <Text style={styles.text}>{item.text}</Text>
+        <View style={styles.icons}>
+          <View style={styles.iconContainer}>
+            <IconButton
+              icon={() =>
+                <Icons name={IconEnum.openInApp} size={ICON_SIZE_XXL} color={DEFAULT_COLOR} />}
+            />
+            <Text style={styles.iconText}>Open</Text>
+          </View>
+          <View style={styles.iconContainer}>
+            <IconButton
+              icon={() =>
+                <Icons name={IconEnum.share} size={ICON_SIZE_XXL} color={DEFAULT_COLOR} />}
+            />
+            <Text style={styles.iconText}>Share</Text>
+          </View>
+          <View style={styles.iconContainer}>
+            <IconButton
+              icon={() =>
+                <Icons name={IconEnum.copy} size={ICON_SIZE_XXL} color={DEFAULT_COLOR} />}
+            />
+            <Text style={styles.iconText}>Copy</Text>
           </View>
         </View>
-        <View style={styles.icons}>
-          <IconButton
-            icon={() =>
-              <Icons name={IconEnum.share} size={ICON_SIZE_XXL} color={DEFAULT_COLOR} />}
-          />
-          <IconButton
-            icon={() =>
-              <Icons name={IconEnum.copy} size={ICON_SIZE_XXL} color={DEFAULT_COLOR} />}
-          />
+
+        <View style={styles.barcodeIcon}>
+          <Icons name={IconEnum.barcode} size={120} color={DEFAULT_COLOR} />
         </View>
       </View>
     </View>

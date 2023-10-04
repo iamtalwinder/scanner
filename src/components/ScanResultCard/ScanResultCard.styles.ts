@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   card: {
-    marginTop: 15,
     paddingBottom: 5,
     backgroundColor: '#050301',
     width: '100%',
@@ -56,12 +55,37 @@ export const styles = StyleSheet.create({
   textView: {
     backgroundColor: 'black',
     padding: 15,
-    marginTop: 10,
     width: '100%',
   },
   icons: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: 10
+    marginTop: 40,
+    gap: 20,
+    justifyContent: 'flex-start',
+    textAlign: 'left',
+    width: '100%',
+    marginLeft: 5
+  },
+  divider: {
+    borderBottomWidth: 1,
+    color: 'white',
+    height: 1,
+    marginTop: 5,
+    borderBottomColor: 'white'
+  },
+  iconText: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center'
+  },
+  barcodeIcon: {
+    marginTop: 50,
+    backgroundColor: 'black',
+    padding: 5
+  },
+  iconContainer: {
+    alignItems: 'center',
+    marginRight: 20,
   }
 });
