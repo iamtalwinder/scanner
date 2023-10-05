@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import { Card, Divider, IconButton } from 'react-native-paper';
 import { formatDateTime } from '../../utils/dateAndTime';
 import { styles } from './ScanResultCard.styles';
@@ -70,7 +70,11 @@ export const ScanResultCard: React.FC<ScanResultCardProps> = (props: ScanResultC
         </View>
 
         <View style={styles.barcodeIcon}>
-          <Icons name={IconEnum.barcode} size={120} color={DEFAULT_COLOR} />
+          <Image
+            source={require('../../../assets/barcodeImage.jpg')}
+            // style={styles.barcodeImage}
+          />
+          {/* <Icons name={IconEnum.barcode} size={100} color={DEFAULT_COLOR} /> */}
         </View>
       </View>
     </View>

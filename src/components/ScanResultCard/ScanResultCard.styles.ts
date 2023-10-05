@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     textAlign: 'left',
     width: '100%',
-    marginLeft: 5
+    marginLeft: 20
   },
   divider: {
     borderBottomWidth: 1,
