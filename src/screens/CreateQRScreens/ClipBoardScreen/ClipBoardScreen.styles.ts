@@ -12,12 +12,10 @@ export const styles = StyleSheet.create({
     marginTop: 12
   },
   title: {
-    gap: 10,
     display: 'flex',
     flexDirection: 'row',
     marginTop: 10,
     marginBottom: 10,
-    marginLeft: 7
   },
   textarea: {
     color: 'white',

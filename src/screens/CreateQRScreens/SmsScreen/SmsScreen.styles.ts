@@ -9,12 +9,10 @@ export const styles = StyleSheet.create({
     paddingTop: 20,
   },
   title: {
-    gap: 10,
     display: 'flex',
     flexDirection: 'row',
     marginTop: 10,
     marginBottom: 10,
-    marginLeft: 16
   },
   mainContainer: {
     flex: 1,
@@ -23,15 +21,12 @@ export const styles = StyleSheet.create({
   },
   headline: {
     display: 'flex',
-    gap: 15,
     fontSize: 18,
     color: 'white',
     flexDirection: 'row',
     marginTop: 13
   },
   formContainer: {
-    paddingLeft: 16,
-    paddingRight: 16,
     backgroundColor: '#212122',
   },
   input: {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, ScrollView, Text, TextInput, Button } from 'react-native';
 import { styles } from './WifiScreen.styles';
-import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../../../components/Icons';
+import { DEFAULT_COLOR, ICON_SIZE_L, IconEnum, Icons } from '../../../components/Icons';
 import { IconButton } from 'react-native-paper';
 
 export const WifiScreen: React.FC = () => {
@@ -29,10 +29,10 @@ export const WifiScreen: React.FC = () => {
     <ScrollView style={styles.mainContainer}>
       <View style={styles.title}>
         <IconButton
-          icon={() => <Icons name={IconEnum.wifi} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
+          icon={() => <Icons name={IconEnum.wifi} size={ICON_SIZE_L} color={DEFAULT_COLOR} />
           }
         />
-        <Text style={styles.headline}>Contact</Text>
+        <Text style={styles.headline}>Wifi</Text>
       </View>
       <View style={styles.formContainer}>
         {formData.map((field) => (
@@ -43,6 +43,7 @@ export const WifiScreen: React.FC = () => {
               value={field.value}
               placeholder={field.name}
               placeholderTextColor='white'
+              numberOfLines={2}
             />
           </View>
         ))}

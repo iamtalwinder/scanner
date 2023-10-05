@@ -1,20 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#212122',
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingTop: 20,
-  },
   title: {
-    gap: 10,
     display: 'flex',
     flexDirection: 'row',
     marginTop: 10,
     marginBottom: 10,
-    marginLeft: 15
   },
   mainContainer: {
     flex: 1,
@@ -30,8 +21,6 @@ export const styles = StyleSheet.create({
     marginTop: 15
   },
   formContainer: {
-    paddingLeft: 16,
-    paddingRight: 16,
     backgroundColor: '#212122',
   },
   input: {
