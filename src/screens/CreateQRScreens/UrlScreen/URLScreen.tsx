@@ -14,7 +14,7 @@ export const URLScreen: React.FC = () => {
           icon={() => <Icons name={IconEnum.link2} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           }
         />
-        <Text style={styles.headline}>Url</Text>
+        <Text style={styles.headline}>URL</Text>
       </View>
       <View>
         <TextInput
@@ -22,7 +22,7 @@ export const URLScreen: React.FC = () => {
           style={styles.input}
           defaultValue='http://'
           onChangeText={text => setText(text)}
-          placeholderTextColor='white'
+          placeholderTextColor='gray'
         />
       </View>
     </View>

@@ -36,7 +36,7 @@ export const GeoScreen: React.FC = () => {
               onChangeText={(text) => handleInputChange(field.name, text)}
               value={field.value}
               placeholder={field.name}
-              placeholderTextColor='white'
+              placeholderTextColor='gray'
               multiline={true}
               numberOfLines={2}
             />

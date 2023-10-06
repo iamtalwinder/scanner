@@ -47,7 +47,7 @@ export const ContactScreen: React.FC = () => {
               placeholder={field.name}
               keyboardType={field.name === 'Email' ? 'email-address' : 'default'}
               multiline={field.name === 'Notes' ? true : false}
-              placeholderTextColor='white'
+              placeholderTextColor='gray'
               numberOfLines={field.name === 'Notes' ? 6 : 2}
             />
           </View>

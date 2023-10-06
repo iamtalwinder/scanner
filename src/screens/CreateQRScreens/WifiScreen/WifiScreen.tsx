@@ -7,7 +7,7 @@ import { IconButton } from 'react-native-paper';
 export const WifiScreen: React.FC = () => {
 
   const [formData, setFormData] = useState([
-    { name: 'NetworkName', value: '' },
+    { name: 'SSID/ Network Name', value: '' },
     { name: 'Password', value: '' },
   ]);
 
@@ -18,12 +18,6 @@ export const WifiScreen: React.FC = () => {
     setFormData(updatedFormData);
   };
 
-  const handleSubmit = () => {
-    console.log('Form submitted:');
-    formData.forEach((field: any) => {
-      console.log(field.name + ': ' + field.value);
-    });
-  };
 
   return (
     <ScrollView style={styles.mainContainer}>
@@ -42,12 +36,11 @@ export const WifiScreen: React.FC = () => {
               onChangeText={(text) => handleInputChange(field.name, text)}
               value={field.value}
               placeholder={field.name}
-              placeholderTextColor='white'
+              placeholderTextColor='gray'
               numberOfLines={2}
             />
           </View>
         ))}
-        <Button title='Submit' onPress={handleSubmit} />
       </View>
     </ScrollView>
   )

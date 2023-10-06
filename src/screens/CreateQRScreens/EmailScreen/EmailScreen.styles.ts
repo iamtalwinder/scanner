@@ -11,7 +11,6 @@ export const styles = StyleSheet.create({
   title: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: 10,
     marginBottom: 10,
   },
   mainContainer: {
@@ -31,15 +30,15 @@ export const styles = StyleSheet.create({
     backgroundColor: '#212122',
   },
   input: {
-    borderColor: '#ccc',
     borderWidth: 1,
-    borderRadius: 5,
-    paddingRight: 10,
-    fontSize: 16,
-    color: 'white',
-    marginBottom: 15,
+    borderColor: 'gray',
+    borderRadius: 8,
+    minHeight: 60,
     padding: 5,
+    fontSize: 16,
     paddingLeft: 20,
-    textAlignVertical: 'top',
+    color: 'gray',
+    marginBottom: 15,
+    textAlignVertical: 'center',
   },
 });

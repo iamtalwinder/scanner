@@ -37,7 +37,7 @@ export const EmailScreen: React.FC = () => {
               placeholder={field.name}
               keyboardType={field.name === 'Email' ? 'email-address' : 'default'}
               multiline={field.name === 'Body' ? true : false}
-              placeholderTextColor='white'
+              placeholderTextColor='gray'
               numberOfLines={field.name === 'Body' ? 10 : 2}
             />
           </View>

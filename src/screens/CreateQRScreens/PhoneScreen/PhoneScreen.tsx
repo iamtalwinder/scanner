@@ -26,7 +26,7 @@ export const PhoneScreen: React.FC = () => {
           onChangeText={handleInputChange}
           value={phone}
           placeholder='Phone'
-          placeholderTextColor='white'
+          placeholderTextColor='gray'
         />
       </View>
     </View>

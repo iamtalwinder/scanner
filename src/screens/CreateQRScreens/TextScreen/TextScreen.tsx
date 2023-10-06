@@ -23,7 +23,7 @@ export const TextScreen: React.FC = () => {
         placeholder='Text'
         onChangeText={(inputText) => setText(inputText)}
         value={text}
-        placeholderTextColor='white'
+        placeholderTextColor='gray'
       />
     </View>
   );

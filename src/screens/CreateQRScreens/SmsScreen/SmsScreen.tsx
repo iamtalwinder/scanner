@@ -36,7 +36,7 @@ export const SMSScreen: React.FC = () => {
               value={field.value}
               placeholder={field.name}
               multiline={field.name === 'Message' ? true : false}
-              placeholderTextColor='white'
+              placeholderTextColor='gray'
               numberOfLines={field.name === 'Message' ? 10 : 2}
             />
           </View>

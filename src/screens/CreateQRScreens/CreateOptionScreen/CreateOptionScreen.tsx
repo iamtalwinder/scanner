@@ -161,7 +161,7 @@ export const CreateOptionScreen: React.FC = ({ navigation }: any) => {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Create QR</Text>
-      <View style={styles.buttonContainer}>
+      <View>
         {CreateQRList.map((item: CreateQRType) => (
           <Button
             key={item.id}
@@ -173,9 +173,8 @@ export const CreateOptionScreen: React.FC = ({ navigation }: any) => {
           </Button>
         ))}
       </View>
-      <Divider />
       <Text style={styles.types}>Other Types</Text>
-      <View style={styles.buttonContainer}>
+      <View>
         {OtherTypeList.map((items: CreateQRType) => (
           <Button key={items.id} icon={items.icon} style={styles.button}>
             <Text style={styles.itemName}>{items.name}</Text>

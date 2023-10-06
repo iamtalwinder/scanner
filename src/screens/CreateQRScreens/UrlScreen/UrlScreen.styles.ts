@@ -9,20 +9,22 @@ export const styles = StyleSheet.create({
   headline: {
     fontSize: 18,
     color: 'white',
-    marginTop: 13
+    marginTop: 13,
+    fontWeight: 'bold'
   },
   title: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: 10,
     marginBottom: 10,
   },
   input: {
     borderWidth: 1,
     borderColor: 'gray',
-    borderRadius: 10,
-    minHeight: 50,
+    borderRadius: 8,
+    minHeight: 60,
     padding: 5,
-    color: 'white'
+    fontSize: 20,
+    paddingLeft: 20,
+    color: 'gray'
   }
 })

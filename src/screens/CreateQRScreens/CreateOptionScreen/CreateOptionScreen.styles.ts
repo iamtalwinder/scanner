@@ -1,11 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  buttonContainer: {
-    padding: 5,
-    backgroundColor: 'white',
-    borderRadius: 6
-  },
   itemName: {
     color: 'white',
   },
@@ -15,7 +10,10 @@ export const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    padding: 15,
+    paddingTop: 10,
+    paddingLeft: 5,
+    paddingRight: 5,
+    paddingBottom: 5,
     backgroundColor: '#212122',
   },
   button: {
@@ -35,7 +33,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 20,
     marginLeft: 10,
     marginBottom: 10,
   },

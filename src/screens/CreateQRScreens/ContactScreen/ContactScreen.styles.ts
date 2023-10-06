@@ -4,7 +4,6 @@ export const styles = StyleSheet.create({
   title: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: 10,
     marginBottom: 10,
   },
   mainContainer: {
@@ -13,11 +12,9 @@ export const styles = StyleSheet.create({
     backgroundColor: '#212122',
   },
   headline: {
-    display: 'flex',
-    gap: 15,
     fontSize: 18,
     color: 'white',
-    flexDirection: 'row',
+    fontWeight: 'bold',
     marginTop: 15
   },
   formContainer: {
@@ -26,13 +23,12 @@ export const styles = StyleSheet.create({
   input: {
     borderColor: '#ccc',
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 8,
     paddingRight: 10,
     fontSize: 16,
-    color: 'white',
     marginBottom: 15,
     padding: 5,
     paddingLeft: 20,
-    textAlignVertical: 'top',
+    textAlignVertical: 'center',
   },
 });
