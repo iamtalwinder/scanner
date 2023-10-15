@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    padding: 10,
     backgroundColor: '#212122',
   },
   container: {
@@ -15,7 +14,8 @@ export const styles = StyleSheet.create({
     paddingBottom: 10
   },
   headline: {
-    gap: 15,
+    color: 'white',
+    marginTop: 15,
     display: 'flex',
     flexDirection: 'row',
   },
@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
-    marginTop: 13
+    marginTop: 15
   },
   share: {
     color: 'white',
@@ -55,6 +55,58 @@ export const styles = StyleSheet.create({
     marginBottom: 15,
     padding: 5,
     paddingLeft: 20,
-    textAlignVertical: 'top',
+    textAlignVertical: 'center',
   },
+  icons: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  code: {
+    backgroundColor: 'white',
+    padding: 10,
+    paddingTop: 20,
+    paddingBottom: 20,
+    alignItems: 'center',
+    marginRight: 10,
+    marginLeft: 10
+  },
+  qrCodeContainer: {
+    marginTop: 15
+  },
+  commonIcons: {
+    gap: 20,
+    marginLeft: 20,
+    marginTop: 20,
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    textAlign: 'left',
+    justifyContent: 'flex-start',
+  },
+  iconContainer: {
+    alignItems: 'center',
+    marginRight: 20,
+  },
+  iconText: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center'
+  },
+  textWritten: {
+    color: 'white',
+    fontSize: 15,
+    marginLeft: 30,
+    marginTop: 30,
+    marginBottom: 30
+  },
+  codeHeader: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginBottom: 10,
+    justifyContent: 'space-between'
+  },
+  text: {
+    display: 'flex',
+    flexDirection: 'row'
+  }
 });

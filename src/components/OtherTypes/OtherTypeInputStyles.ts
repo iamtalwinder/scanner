@@ -1,59 +1,59 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+  eanType: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 8,
+    minHeight: 60,
+    padding: 5,
+    fontSize: 16,
+    paddingLeft: 20,
+    color: 'white',
+    textAlignVertical: 'center',
+  },
   mainContainer: {
     flex: 1,
+    display: 'flex',
     padding: 15,
     backgroundColor: '#212122',
-  },
-  headline: {
-    fontSize: 18,
-    color: 'white',
-    marginTop: 13,
-    fontWeight: 'bold'
   },
   title: {
     display: 'flex',
     flexDirection: 'row',
     marginBottom: 10,
   },
-  codeHeader: {
+  headline: {
     display: 'flex',
+    gap: 15,
+    fontSize: 18,
+    color: 'white',
     flexDirection: 'row',
-    marginBottom: 10,
-    justifyContent: 'space-between'
+    marginTop: 13
   },
-  text: {
-    display: 'flex',
-    flexDirection: 'row'
-  },
-  textarea: {
+  input: {
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 8,
-    fontSize: 20,
-    minHeight: 300,
-    maxHeight: 350,
-    textAlign: 'left',
-    marginTop: 0,
     padding: 5,
+    fontSize: 20,
     paddingLeft: 20,
-    paddingTop: 20,
-    color: 'white',
-    textAlignVertical: 'top',
+    color: 'gray'
+  },
+  limit: {
+    alignItems: 'flex-end',
   },
   icons: {
     display: 'flex',
     flexDirection: 'row',
   },
   code: {
-    backgroundColor: 'white',
-    padding: 10,
+    padding: 30,
     paddingTop: 20,
     paddingBottom: 20,
     alignItems: 'center',
     marginRight: 10,
-    marginLeft: 10
+    marginLeft: 10,
   },
   qrCodeContainer: {
     marginTop: 15
@@ -106,5 +106,44 @@ export const styles = StyleSheet.create({
   },
   button: {
     marginTop: 15
+  },
+  codeHeader: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginBottom: 10,
+    justifyContent: 'space-between'
+  },
+  text: {
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  submitButton: {
+    marginTop: 10
+  },
+  container: {
+     justifyContent: 'center',
+     alignItems: 'center',
+    backgroundColor: 'white',
+    padding: 30,
+    width: '100%',
+   height:'50%'
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+  barcodeWrapper: {
+    width: '100%',
+  },
+  barcode: {
+    width: '100%',
+    height: 200,
+    color: 'black'
   }
 })

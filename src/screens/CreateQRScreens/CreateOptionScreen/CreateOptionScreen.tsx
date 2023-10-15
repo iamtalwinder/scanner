@@ -77,7 +77,7 @@ export const CreateQRList: CreateQRType[] = [
   {
     id: uuidv4(),
     name: 'My QR',
-    pathname: 'myqr',
+    pathname: 'MyQRScreen',
     icon: () => <Icons name={IconEnum.qrcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
   },
 ];
@@ -86,31 +86,31 @@ export const OtherTypeList: CreateQRType[] = [
   {
     id: uuidv4(),
     name: 'EAN_8',
-    pathname: 'ean-8',
+    pathname: 'EANEightScreen',
     icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'EAN_13',
-    pathname: 'ean-13',
+    pathname: 'EANThirteenScreen',
     icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'UPC_E',
-    pathname: 'upc-e',
+    pathname: 'UpcEScreen',
     icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'UPC_A',
-    pathname: 'upc-a',
+    pathname: 'UpcAScreen',
     icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'CODE_39',
-    pathname: 'code-39',
+    pathname: 'CodeThreeNineScreen',
     icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
@@ -176,7 +176,12 @@ export const CreateOptionScreen: React.FC = ({ navigation }: any) => {
       <Text style={styles.types}>Other Types</Text>
       <View>
         {OtherTypeList.map((items: CreateQRType) => (
-          <Button key={items.id} icon={items.icon} style={styles.button}>
+          <Button
+            key={items.id}
+            icon={items.icon}
+            style={styles.button}
+            onPress={() => navigation.navigate(items.pathname)}
+          >
             <Text style={styles.itemName}>{items.name}</Text>
           </Button>
         ))}

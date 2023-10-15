@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, ScrollView } from 'react-native';
+import { Text, View, TextInput, ScrollView, Button } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { styles } from './MyQRScreen.styles';
 import { DEFAULT_COLOR, ICON_SIZE_L, ICON_SIZE_XL, IconEnum, Icons } from '../../components/Icons';
 import { IconButton } from 'react-native-paper';
+import QRCode from 'react-native-qrcode-svg';
+import { RenameComponent } from '../../components/Rename';
+import { StarOutlineComponent } from '../../components/StarOutline/StarOutline';
 
 
 export const MyQRScreen: React.FC = () => {
@@ -17,11 +20,21 @@ export const MyQRScreen: React.FC = () => {
     { name: 'Notes', value: '' },
   ]);
 
+  const [showQRCode, setShowQRCode] = useState(false);
+
   const handleInputChange = (name: string, text: string) => {
     const updatedFormData = formData.map((field: any) =>
       field.name === name ? { ...field, value: text } : field
     );
     setFormData(updatedFormData);
+  };
+
+  const handleSubmit = () => {
+    console.log('Form submitted:');
+    formData.forEach((field: any) => {
+      console.log(field.name + ': ' + field.value);
+    });
+    setShowQRCode(true);
   };
 
   return (
@@ -56,12 +69,59 @@ export const MyQRScreen: React.FC = () => {
               placeholder={field.name}
               keyboardType={field.name === 'Email' ? 'email-address' : 'default'}
               multiline={field.name === 'Notes' ? true : false}
-              placeholderTextColor='white'
-              numberOfLines={field.name === 'Notes' ? 4 : 2}
+              placeholderTextColor='gray'
+              numberOfLines={field.name === 'Notes' ? 8 : 2}
             />
           </View>
         ))}
       </View>
+
+      <Button title='Submit' onPress={handleSubmit} />
+
+      {showQRCode && (
+        <View style={styles.qrCodeContainer}>
+          <View style={styles.codeHeader}>
+            <View style={styles.text}>
+              <IconButton
+                icon={() => <Icons name={IconEnum.personOutline} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
+                }
+              />
+              <Text style={styles.headline}>My QR</Text>
+            </View>
+            <View style={styles.icons}>
+              <RenameComponent />
+              <StarOutlineComponent />
+            </View>
+          </View>
+          <View style={styles.code}>
+            <QRCode value={JSON.stringify(formData)} size={250} />
+          </View>
+
+          <View style={styles.commonIcons}>
+            <View style={styles.iconContainer}>
+              <IconButton
+                icon={() =>
+                  <Icons name={IconEnum.save} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
+              />
+              <Text style={styles.iconText}>Save</Text>
+            </View>
+            <View style={styles.iconContainer}>
+              <IconButton
+                icon={() =>
+                  <Icons name={IconEnum.share} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
+              />
+              <Text style={styles.iconText}>Share</Text>
+            </View>
+          </View>
+          <View>
+            <Text style={styles.textWritten}>
+              {formData.map((field) => `${field.value}`).join('\n')}
+            </Text>
+          </View>
+        </View>
+      )
+      }
+
     </ScrollView>
   );
 }

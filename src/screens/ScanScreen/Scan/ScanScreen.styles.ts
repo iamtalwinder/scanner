@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#212122'
   },
   card: {
@@ -48,5 +49,20 @@ export const styles = StyleSheet.create({
   },
   typeName: {
     color: 'white'
-  }
+  },
+  scannerContainer: {
+    flex: 1,
+    width: '100%',
+  },
+  marker: {
+    borderColor: '#FFF',
+  },
+  scanResultContainer: {
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: '#FFF',
+  },
+  scanResultText: {
+    fontWeight: 'bold',
+  },
 });

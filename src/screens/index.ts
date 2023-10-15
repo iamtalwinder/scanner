@@ -1,5 +1,5 @@
 export * from './FavoritiesScreen';
-export * from './ScanScreen';
+export * from './ScanScreen/Scan';
 export * from './ScanImageScreen';
 export * from './HistoryScreen';
 export * from './MyQRScreen';

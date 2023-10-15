@@ -2,7 +2,11 @@ import { format, parseISO } from 'date-fns';
 
 export const formatDate = (timestamp) => {
   try {
-    const date = parseISO(timestamp);
+    const date = new Date(timestamp);
+    if (isNaN(date)) {
+      return 'Invalid Date';
+    }
+    // const date = parseISO(timestamp);
     const formattedDate = format(date, 'dd/MM/yyyy');
 
     return formattedDate;

@@ -37,5 +37,6 @@ export const ICON_MAPPING = {
   [IconEnum.contacts]: IconLibEnum.AntDesign,
   [IconEnum.clipboard]: IconLibEnum.Entypo,
   [IconEnum.calendar] : IconLibEnum.AntDesign,
-  [IconEnum.openInApp]: IconLibEnum.MaterialCommunityIcons
+  [IconEnum.openInApp]: IconLibEnum.MaterialCommunityIcons,
+  [IconEnum.save]: IconLibEnum.Ionicons
 }

@@ -4,7 +4,7 @@ import {
   createDrawerNavigator,
 } from '@react-navigation/drawer';
 import {
-  ScanScreen,
+  QRCodeScannerScreen,
   ScanImageScreen,
   ScanImageHeader,
   HistoryScreen,

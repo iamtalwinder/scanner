@@ -1,36 +1,70 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 15,
+    backgroundColor: '#212122',
+  },
+  dateInputs: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  inputFields: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 8,
+    minHeight: 60,
+    padding: 5,
+    fontSize: 16,
+    paddingLeft: 20,
+    color: 'gray',
+    marginBottom: 15,
+    textAlignVertical: 'center',
+  },
+  startEndDateInput: {
+    minHeight: 60,
+    padding: 5,
+    fontSize: 20,
+    paddingLeft: 20,
+    color: 'white',
+    textAlignVertical: 'center',
+  },
+  headline: {
+    display: 'flex',
+    gap: 15,
+    fontSize: 18,
+    color: 'white',
+    flexDirection: 'row',
+    marginTop: 15
+  },
   title: {
     display: 'flex',
     flexDirection: 'row',
     marginBottom: 10,
   },
-  mainContainer: {
-    flex: 1,
-    padding: 15,
-    backgroundColor: '#212122',
-  },
-  headline: {
-    fontSize: 18,
-    color: 'white',
-    fontWeight: 'bold',
-    marginTop: 15
-  },
   formContainer: {
     backgroundColor: '#212122',
   },
-  input: {
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingRight: 10,
-    fontSize: 16,
-    marginBottom: 15,
-    padding: 5,
-    paddingLeft: 20,
+  dates: {
+    display: 'flex',
+    flexDirection: 'row'  
+  },
+  calenderContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  timeContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  startTitle: {
     color: 'white',
-    textAlignVertical: 'center',
+    fontSize: 20
   },
   icons: {
     display: 'flex',
@@ -85,3 +119,4 @@ export const styles = StyleSheet.create({
     flexDirection: 'row'
   }
 });
+

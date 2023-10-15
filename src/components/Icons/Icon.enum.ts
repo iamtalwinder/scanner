@@ -34,5 +34,6 @@ export enum IconEnum {
   contacts = 'contacts',
   clipboard = 'clipboard-outline',
   calendar = 'calender',
-  openInApp = 'open-in-app'
+  openInApp = 'open-in-app',
+  save = 'save-sharp'
 }

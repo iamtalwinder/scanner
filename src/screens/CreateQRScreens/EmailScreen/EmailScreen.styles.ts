@@ -37,8 +37,71 @@ export const styles = StyleSheet.create({
     padding: 5,
     fontSize: 16,
     paddingLeft: 20,
-    color: 'gray',
+    color: 'white',
     marginBottom: 15,
     textAlignVertical: 'center',
   },
+  textarea: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 8,
+    minHeight: 60,
+    padding: 5,
+    fontSize: 16,
+    paddingLeft: 20,
+    color: 'white',
+    marginBottom: 15,
+  },
+  icons: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  code: {
+    backgroundColor: 'white',
+    padding: 10,
+    paddingTop: 20,
+    paddingBottom: 20,
+    alignItems: 'center',
+    marginRight: 10,
+    marginLeft: 10
+  },
+  qrCodeContainer: {
+    marginTop: 15
+  },
+  commonIcons: {
+    gap: 20,
+    marginLeft: 20,
+    marginTop: 20,
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    textAlign: 'left',
+    justifyContent: 'flex-start',
+  },
+  iconContainer: {
+    alignItems: 'center',
+    marginRight: 20,
+  },
+  iconText: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center'
+  },
+  textWritten: {
+    color: 'white',
+    fontSize: 15,
+    marginLeft: 30,
+    marginTop: 30,
+    marginBottom: 30
+  },
+  codeHeader: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginBottom: 10,
+    justifyContent: 'space-between'
+  },
+  text: {
+    display: 'flex',
+    flexDirection: 'row'
+  }
 });
