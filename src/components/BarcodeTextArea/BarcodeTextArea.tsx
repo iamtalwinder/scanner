@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Button } from 'react-native';
 import { IconButton, TextInput } from 'react-native-paper';
-import { styles } from './OtherTypeInputStyles';
+import { styles } from './BarcodeTextArea.styles';
 import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../Icons';
 import { RenameComponent } from '../Rename';
 import { StarOutlineComponent } from '../StarOutline/StarOutline';
@@ -11,10 +11,10 @@ export type QRCodeOtherTypesProps = {
   title: string,
   limit?: number,
   value?: string,
-  format?: BarcodeFormat
+  format?: BarcodeFormat,
 }
 
-export const OtherTypesInput: React.FC<QRCodeOtherTypesProps> = (
+export const BarcodeTextArea: React.FC<QRCodeOtherTypesProps> = (
   { title, limit, value, format }: QRCodeOtherTypesProps) => {
 
   const [text, setText] = useState('');
@@ -48,6 +48,8 @@ export const OtherTypesInput: React.FC<QRCodeOtherTypesProps> = (
           onChangeText={data => setText(data)}
           placeholderTextColor='gray'
           placeholder={value}
+          multiline={true}
+          numberOfLines={8}
         />
       </View>
 

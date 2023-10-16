@@ -1,14 +1,14 @@
 import React from 'react';
 import { View } from 'react-native';
-import { styles } from './EanEightScreen.styles';
+import { styles } from './CodaBar.styles';
 import { OtherTypesInput } from '../../../components/OtherTypes/OtherTypesInput';
 
-export const EanEightScreen: React.FC = () => {
-  const EAN8 = '20123451';
+export const CodaBar: React.FC = () => {
+  const CODABAR = '123456789';
 
   return (
     <View style={styles.mainContainer}>
-      <OtherTypesInput title='EAN_8' value={EAN8} format='EAN8'/>
+      <OtherTypesInput title='CODABAR' value={CODABAR} format='codabar' />
     </View>
   )
 };

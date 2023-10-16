@@ -122,13 +122,13 @@ export const OtherTypeList: CreateQRType[] = [
   {
     id: uuidv4(),
     name: 'CODE_128',
-    pathname: 'code-128',
+    pathname: 'CodeOneTwoEight',
     icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'ITF',
-    pathname: 'itf',
+    pathname: 'ITFBarcode',
     icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
@@ -140,7 +140,7 @@ export const OtherTypeList: CreateQRType[] = [
   {
     id: uuidv4(),
     name: 'CODABAR',
-    pathname: 'codabar',
+    pathname: 'CodaBar',
     icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {

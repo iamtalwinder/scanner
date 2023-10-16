@@ -1,6 +1,6 @@
 import React from 'react';
 import 'react-native-get-random-values';
-import { StackNavigationOptions, createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import { ClipboardScreen } from './ClipBoardScreen/ClipBoardScreen';
 import { CreateOptionScreen } from './CreateOptionScreen/CreateOptionScreen';
 import { URLScreen } from './UrlScreen/URLScreen';
@@ -19,14 +19,11 @@ import { EanThirteenScreen } from './EanThirteenScreen/EanThirteenScreen';
 import { UpcEScreen } from './UpcEScreen/UpcEScreen';
 import { UpcAScreen } from './UpcAScreen/UpcAScreen';
 import { CodeThreeNineScreen } from './CodeThreeNine/CodeThreeNine';
+import { CodeOneTwoEight } from './CodeOneTwoEight/CodeOneTwoEight';
+import { ITFBarcode } from './ITFBarcode/ITFBarcode';
+import { CodaBar } from './CodaBar/CodaBar';
 
 const Stack = createStackNavigator();
-
-const headerOptions: StackNavigationOptions = {
-  headerStyle: {
-    backgroundColor: '#333333',
-  },
-};
 
 export const CreateQRNavigation: React.FC = () => {
 
@@ -53,6 +50,9 @@ export const CreateQRNavigation: React.FC = () => {
         <Stack.Screen name='UpcEScreen' component={UpcEScreen} />
         <Stack.Screen name='UpcAScreen' component={UpcAScreen} />
         <Stack.Screen name='CodeThreeNineScreen' component={CodeThreeNineScreen} />
+        <Stack.Screen name='CodeOneTwoEight' component={CodeOneTwoEight} />
+        <Stack.Screen name='ITFBarcode' component={ITFBarcode} />
+        <Stack.Screen name='CodaBar' component={CodaBar} />
       </Stack.Navigator>
     </>
   );
