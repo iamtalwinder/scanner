@@ -23,7 +23,7 @@ export interface ScannedItems {
   timeStamp: string;
   isFavorite: boolean;
   text: string;
-  typeName: string
+  typeName?: string
 }
 
 export type Action =

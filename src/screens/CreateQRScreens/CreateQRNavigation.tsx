@@ -22,6 +22,7 @@ import { CodeThreeNineScreen } from './CodeThreeNine/CodeThreeNine';
 import { CodeOneTwoEight } from './CodeOneTwoEight/CodeOneTwoEight';
 import { ITFBarcode } from './ITFBarcode/ITFBarcode';
 import { CodaBar } from './CodaBar/CodaBar';
+import { CodeNineThree } from './CodeNineThree/CodeNineThree';
 
 const Stack = createStackNavigator();
 
@@ -50,6 +51,7 @@ export const CreateQRNavigation: React.FC = () => {
         <Stack.Screen name='UpcEScreen' component={UpcEScreen} />
         <Stack.Screen name='UpcAScreen' component={UpcAScreen} />
         <Stack.Screen name='CodeThreeNineScreen' component={CodeThreeNineScreen} />
+        <Stack.Screen name='CodeNineThree' component={CodeNineThree} />
         <Stack.Screen name='CodeOneTwoEight' component={CodeOneTwoEight} />
         <Stack.Screen name='ITFBarcode' component={ITFBarcode} />
         <Stack.Screen name='CodaBar' component={CodaBar} />
