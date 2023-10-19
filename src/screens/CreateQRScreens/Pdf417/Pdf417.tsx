@@ -1,9 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
-import { styles } from './PDFFourOneSeven.styles';
+import { styles } from './Pdf417.styles';
 import { BarcodeTextArea } from '../../../components/BarcodeTextArea/BarcodeTextArea';
 
-export const PDFFourOneSeven: React.FC = () => {
+export const Pdf417: React.FC = () => {
   const PDF = 'ABCDE20123451';
 
   return (

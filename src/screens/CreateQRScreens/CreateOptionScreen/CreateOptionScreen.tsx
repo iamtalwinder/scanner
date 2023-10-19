@@ -62,12 +62,12 @@ export const CreateQRList: CreateQRType[] = [
     pathname: 'PhoneScreen',
     icon: () => <Icons name={IconEnum.phone} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
   },
-  {
-    id: uuidv4(),
-    name: 'Calender',
-    pathname: 'CalenderScreen',
-    icon: () => <Icons name={IconEnum.calenderSharp} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
-  },
+  // {
+  //   id: uuidv4(),
+  //   name: 'Calender',
+  //   pathname: 'CalenderScreen',
+  //   icon: () => <Icons name={IconEnum.calenderSharp} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
+  // },
   {
     id: uuidv4(),
     name: 'Wifi',
@@ -86,43 +86,43 @@ export const OtherTypeList: CreateQRType[] = [
   {
     id: uuidv4(),
     name: 'EAN_8',
-    pathname: 'EANEightScreen',
+    pathname: 'EAN8',
     icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'EAN_13',
-    pathname: 'EANThirteenScreen',
+    pathname: 'EAN13',
     icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'UPC_E',
-    pathname: 'UpcEScreen',
+    pathname: 'UpcE',
     icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'UPC_A',
-    pathname: 'UpcAScreen',
+    pathname: 'UpcA',
     icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
     id: uuidv4(),
     name: 'CODE_39',
-    pathname: 'CodeThreeNineScreen',
+    pathname: 'Code39',
     icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
-  {
-    id: uuidv4(),
-    name: 'CODE_93',
-    pathname: 'CodeNineThree',
-    icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
-  },
+  // {
+  //   id: uuidv4(),
+  //   name: 'CODE_93',
+  //   pathname: 'CodeNineThree',
+  //   icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
+  // },
   {
     id: uuidv4(),
     name: 'CODE_128',
-    pathname: 'CodeOneTwoEight',
+    pathname: 'Code128',
     icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
   {
@@ -131,30 +131,30 @@ export const OtherTypeList: CreateQRType[] = [
     pathname: 'ITFBarcode',
     icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
-  {
-    id: uuidv4(),
-    name: 'PDF_417',
-    pathname: 'pdf-417',
-    icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
-  },
+  // {
+  //   id: uuidv4(),
+  //   name: 'PDF_417',
+  //   pathname: 'pdf-417',
+  //   icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
+  // },
   {
     id: uuidv4(),
     name: 'CODABAR',
     pathname: 'CodaBar',
     icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
   },
-  {
-    id: uuidv4(),
-    name: 'DATA_MATRIX',
-    pathname: 'data-matrix',
-    icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
-  },
-  {
-    id: uuidv4(),
-    name: 'AZTEC',
-    pathname: 'aztec',
-    icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
-  },
+  // {
+  //   id: uuidv4(),
+  //   name: 'DATA_MATRIX',
+  //   pathname: 'data-matrix',
+  //   icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
+  // },
+  // {
+  //   id: uuidv4(),
+  //   name: 'AZTEC',
+  //   pathname: 'aztec',
+  //   icon: () => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />,
+  // },
 ];
 
 export const CreateOptionScreen: React.FC = ({ navigation }: any) => {

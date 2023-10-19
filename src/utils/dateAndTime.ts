@@ -1,8 +1,8 @@
 import { format, parseISO } from 'date-fns';
 
-export const formatDateTime = (timestamp) => {
+export const formatDateTime = (timestamp: any) => {
   try {
-    const date = parseISO(timestamp);
+    const date: Date = parseISO(timestamp);
     const formattedDateTime = format(date, 'dd/MM/yyyy hh:mm:ss a');
 
     return formattedDateTime;

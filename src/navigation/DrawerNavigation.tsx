@@ -99,7 +99,7 @@ export const DrawerNavigator: React.FC = () => {
           },
         }}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name='Settings'
         component={SettingsScreen}
         options={{
@@ -108,7 +108,7 @@ export const DrawerNavigator: React.FC = () => {
             return <Icons name={IconEnum.settingOutline} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           },
         }}
-      />
+      /> */}
       <Drawer.Screen
         name='Share'
         component={ShareScreen}

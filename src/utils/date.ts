@@ -1,8 +1,8 @@
 import { format, parseISO } from 'date-fns';
 
-export const formatDate = (timestamp) => {
+export const formatDate = (timestamp: any) => {
   try {
-    const date = new Date(timestamp);
+    const date: any = new Date(timestamp);
     if (isNaN(date)) {
       return 'Invalid Date';
     }

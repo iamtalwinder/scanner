@@ -1,14 +1,14 @@
 import React from 'react';
 import { View } from 'react-native';
-import { styles } from './CodeNineThree.styles';
+import { styles } from './Code39.styles';
 import { BarcodeTextArea } from '../../../components/BarcodeTextArea/BarcodeTextArea';
 
-export const CodeNineThree: React.FC = () => {
-  const CODE93 = 'ABCD1234';
+const CODE39 = 'CODE-39';
 
+export const Code39: React.FC = () => {
   return (
     <View style={styles.mainContainer}>
-      <BarcodeTextArea title='CODE_93' value={CODE93} format='CODE128' />
+      <BarcodeTextArea title='CODE_39' value={CODE39} format='CODE39' />
     </View>
   )
-};
+}
