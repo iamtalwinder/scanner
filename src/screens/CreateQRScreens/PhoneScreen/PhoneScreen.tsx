@@ -5,7 +5,7 @@ import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../../../component
 import { IconButton } from 'react-native-paper';
 import QRCode from 'react-native-qrcode-svg';
 import { RenameComponent } from '../../../components/Rename';
-import { StarOutlineComponent } from '../../../components/StarOutline/StarOutline';
+import { FavoritiesIcon } from '../../../components/StarOutline/StarOutline';
 
 export const PhoneScreen: React.FC = () => {
   const [phone, setPhone] = useState();
@@ -45,7 +45,7 @@ export const PhoneScreen: React.FC = () => {
             </View>
             <View style={styles.icons}>
               <RenameComponent />
-              <StarOutlineComponent />
+              <FavoritiesIcon />
             </View>
           </View>
           <View style={styles.code}>

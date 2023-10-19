@@ -9,6 +9,17 @@ export enum ScannedItemTypeEnum {
   Text = 'Text'
 }
 
+export enum ScannedItemQRCodeTypeEnum {
+  Url = 'URL',
+  Text = 'Text',
+  Product = 'Product',
+  Email = 'Email',
+  Sms = 'SMS',
+  Phone = 'Phone',
+  Wifi = 'Wifi',
+  Location = 'Location'
+}
+
 export enum ScannedItemActionEnum {
   ADD_SCANNED_ITEM = 'ADD_SCANNED_ITEM',
   REMOVE_SCANNED_ITEM = 'REMOVE_SCANNED_ITEM',

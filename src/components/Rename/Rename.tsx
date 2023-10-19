@@ -3,7 +3,11 @@ import { View } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../Icons';
 
-export const RenameComponent = () => {
+interface RenameComponentProps {
+  onPress?: () => void;
+}
+
+export const RenameComponent: React.FC<RenameComponentProps> = ({ onPress }) => {
   return (
     <View>
       <IconButton
@@ -14,6 +18,7 @@ export const RenameComponent = () => {
             color={DEFAULT_COLOR}
           />
         }
+        onPress={onPress}
       />
     </View>
   )

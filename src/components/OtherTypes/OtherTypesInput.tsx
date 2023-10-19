@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, Button } from 'react-native';
-import { IconButton, TextInput } from 'react-native-paper';
+import { View, Text, Button, Modal } from 'react-native';
+import { Dialog, IconButton, TextInput } from 'react-native-paper';
 import { styles } from './OtherTypeInputStyles';
 import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../Icons';
 import { RenameComponent } from '../Rename';
-import { StarOutlineComponent } from '../StarOutline/StarOutline';
+import { FavoritiesIcon } from '../StarOutline/StarOutline';
 import Barcode, { BarcodeFormat } from '@adrianso/react-native-barcode-builder';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ScannedItemActionEnum, ScannedItemTypeEnum, useScannedItems } from '../../context/ScannedItemsContext';
@@ -26,6 +26,24 @@ export const OtherTypesInput: React.FC<QRCodeOtherTypesProps> = (
   const [newItem, setNewItem] = useState<
     { id: string, type: ScannedItemTypeEnum, timeStamp: string, text: string, isFavorite: boolean } | null>(null);
 
+  const [showTextInput, setShowTextInput] = useState(false);
+  const [visible, setVisible] = React.useState(false);
+
+  const [isDialogVisible, setDialogVisible] = useState(false);
+  const [textInputValue, setTextInputValue] = useState('');
+
+  const openDialog = () => {
+    setDialogVisible(true);
+  };
+
+  const closeDialog = () => {
+    setDialogVisible(false);
+  };
+
+  const handleSave = () => {
+    closeDialog();
+  };
+
   const { dispatch } = useScannedItems();
 
   React.useEffect(() => {
@@ -46,7 +64,7 @@ export const OtherTypesInput: React.FC<QRCodeOtherTypesProps> = (
   const handleSubmit = () => {
     const createdItem = {
       id: generateUniqueId(),
-      type: ScannedItemTypeEnum.Barcode,
+      type: ScannedItemTypeEnum.Product,
       timeStamp: new Date().toISOString(),
       text: text,
       isFavorite: false,
@@ -73,9 +91,16 @@ export const OtherTypesInput: React.FC<QRCodeOtherTypesProps> = (
       });
     }
     else {
-      console.log("newItem is null");
+      console.log('newItem is null');
     }
   };
+
+  const handleRenameClick = () => {
+    console.log('rename icon is clicked')
+    setVisible(true)
+  };
+
+  const hideDialog = () => setVisible(false);
 
   return (
     <ScrollView style={styles.mainContainer}>
@@ -100,6 +125,25 @@ export const OtherTypesInput: React.FC<QRCodeOtherTypesProps> = (
         <View style={styles.submitButton}>
           <Button title='Submit' onPress={handleSubmit} />
         </View>
+        {
+          visible ?
+          <Dialog visible={visible} onDismiss={hideDialog} style={styles.dialog}>
+            <Dialog.Actions>
+              <Button onPress={() => console.log('Cancel')} title='Cancel' />
+              <Button onPress={() => console.log('Ok')} title='Ok' />
+            </Dialog.Actions>
+          </Dialog>
+          : ''
+        }
+        {/* {showTextInput && (
+          <TextInput
+            style={styles.input}
+            value={text}
+            onChangeText={data => setText(data)}
+            placeholderTextColor='gray'
+            placeholder={value}
+          />
+        )} */}
 
         {showQRCode ? (
           <View style={styles.qrCodeContainer}>
@@ -112,8 +156,8 @@ export const OtherTypesInput: React.FC<QRCodeOtherTypesProps> = (
                 <Text style={styles.headline}>{title}</Text>
               </View>
               <View style={styles.icons}>
-                <RenameComponent />
-                <StarOutlineComponent onPress={handleAddToFavorities} isFavorite={isFavorite} />
+                <RenameComponent onPress={handleRenameClick} />
+                <FavoritiesIcon onPress={handleAddToFavorities} isFavorite={isFavorite} />
               </View>
             </View>
             <View style={styles.container}>

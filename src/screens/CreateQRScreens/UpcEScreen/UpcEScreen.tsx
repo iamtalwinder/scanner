@@ -8,7 +8,7 @@ const UPCE = '12345670'
 export const UpcEScreen: React.FC = () => {
   return (
     <View style={styles.mainContainer}>
-    <OtherTypesInput title='UPCE' value={UPCE} format='UPCE'/>
+    <OtherTypesInput title='UPC_E' value={UPCE} format='UPCE'/>
   </View>
   )
 }

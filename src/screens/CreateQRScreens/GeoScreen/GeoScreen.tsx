@@ -5,7 +5,7 @@ import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../../../component
 import { IconButton } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 import QRCode from 'react-native-qrcode-svg';
-import { StarOutlineComponent } from '../../../components/StarOutline/StarOutline';
+import { FavoritiesIcon } from '../../../components/StarOutline/StarOutline';
 import { RenameComponent } from '../../../components/Rename';
 
 export const GeoScreen: React.FC = () => {
@@ -71,7 +71,7 @@ export const GeoScreen: React.FC = () => {
                 </View>
                 <View style={styles.icons}>
                   <RenameComponent />
-                  <StarOutlineComponent />
+                  <FavoritiesIcon />
                 </View>
               </View>
               <View style={styles.code}>

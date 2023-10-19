@@ -6,12 +6,10 @@ import { styles } from './ScanResultCard.styles';
 import { DEFAULT_COLOR, ICON_SIZE_XXL, IconEnum, Icons } from '../Icons';
 import { ScanResultActionProps, ScannedItemResult } from '../../screens/ScanScreen/ScanResult';
 
-
 interface ScanResultCardProps {
   item: ScannedItemResult;
   actions?: (props: ScanResultActionProps) => ReactNode,
 }
-
 
 export const ScanResultCard: React.FC<ScanResultCardProps> = (props: ScanResultCardProps) => {
   const { item, actions } = props
