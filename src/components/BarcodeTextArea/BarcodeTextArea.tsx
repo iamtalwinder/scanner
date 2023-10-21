@@ -6,6 +6,7 @@ import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../Icons';
 import { RenameComponent } from '../Rename';
 import Barcode, { BarcodeFormat } from '@adrianso/react-native-barcode-builder';
 import { FavoritiesIcon } from '../StarOutline/StarOutline';
+import { useThemedStyles } from '../../hooks';
 
 export type QRCodeOtherTypesProps = {
   title: string,
@@ -19,6 +20,7 @@ export const BarcodeTextArea: React.FC<QRCodeOtherTypesProps> = (
 
   const [text, setText] = useState('');
   const [showQRCode, setShowQRCode] = useState(false);
+  const style = useThemedStyles(styles);
 
   React.useEffect(() => {
     setText(value || '');
@@ -32,18 +34,19 @@ export const BarcodeTextArea: React.FC<QRCodeOtherTypesProps> = (
     setShowQRCode(true);
   };
 
+
   return (
-    <View style={styles.mainContainer}>
-      <View style={styles.title}>
+    <View style={style.mainContainer}>
+      <View style={style.title}>
         <IconButton
           icon={() => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           }
         />
-        <Text style={styles.headline}>{title}</Text>
+        <Text style={style.headline}>{title}</Text>
       </View>
       <View>
         <TextInput
-          style={styles.input}
+          style={style.input}
           value={value}
           onChangeText={data => setText(data)}
           placeholderTextColor='gray'
@@ -53,50 +56,50 @@ export const BarcodeTextArea: React.FC<QRCodeOtherTypesProps> = (
         />
       </View>
 
-      <View style={styles.submitButton}>
+      <View style={style.submitButton}>
         <Button title='Submit' onPress={handleSubmit} />
       </View>
 
       {showQRCode ? (
-        <View style={styles.qrCodeContainer}>
-          <View style={styles.codeHeader}>
-            <View style={styles.text}>
+        <View style={style.qrCodeContainer}>
+          <View style={style.codeHeader}>
+            <View style={style.text}>
               <IconButton
                 icon={() => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
                 }
               />
-              <Text style={styles.headline}>{title}</Text>
+              <Text style={style.headline}>{title}</Text>
             </View>
-            <View style={styles.icons}>
+            <View style={style.icons}>
               <RenameComponent />
               <FavoritiesIcon />
             </View>
           </View>
-          <View style={styles.container}>
+          <View style={style.container}>
             {text.length > 0 && (
-              <Barcode style={styles.barcode} value={text} format={format} flat />
+              <Barcode style={style.barcode} value={text} format={format} flat />
             )}
 
           </View>
 
-          <View style={styles.commonIcons}>
-            <View style={styles.iconContainer}>
+          <View style={style.commonIcons}>
+            <View style={style.iconContainer}>
               <IconButton
                 icon={() =>
                   <Icons name={IconEnum.save} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
               />
-              <Text style={styles.iconText}>Save</Text>
+              <Text style={style.iconText}>Save</Text>
             </View>
-            <View style={styles.iconContainer}>
+            <View style={style.iconContainer}>
               <IconButton
                 icon={() =>
                   <Icons name={IconEnum.share} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
               />
-              <Text style={styles.iconText}>Share</Text>
+              <Text style={style.iconText}>Share</Text>
             </View>
           </View>
           <View>
-            <Text style={styles.textWritten}>{value}</Text>
+            <Text style={style.textWritten}>{value}</Text>
           </View>
         </View>
       ) :

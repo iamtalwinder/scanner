@@ -2,9 +2,10 @@ import React, { ReactNode } from 'react';
 import { ScrollView, View, Text } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
 import 'react-native-get-random-values';
-import { Button, Divider } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import { styles } from './CreateOptionScreen.styles';
 import { DEFAULT_COLOR, ICON_SIZE_L, ICON_SIZE_XL, IconEnum, Icons } from '../../../components/Icons';
+import { useThemedStyles } from '../../../hooks';
 
 export interface CreateQRType {
   id: string;
@@ -158,31 +159,33 @@ export const OtherTypeList: CreateQRType[] = [
 ];
 
 export const CreateOptionScreen: React.FC = ({ navigation }: any) => {
+  const style = useThemedStyles(styles);
+
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.title}>Create QR</Text>
+    <ScrollView style={style.container}>
+      <Text style={style.title}>Create QR</Text>
       <View>
         {CreateQRList.map((item: CreateQRType) => (
           <Button
             key={item.id}
             icon={item.icon}
-            style={styles.button}
+            style={style.button}
             onPress={() => navigation.navigate(item.pathname)}
           >
-            <Text style={styles.itemName}>{item.name}</Text>
+            <Text style={style.itemName}>{item.name}</Text>
           </Button>
         ))}
       </View>
-      <Text style={styles.types}>Other Types</Text>
+      <Text style={style.types}>Other Types</Text>
       <View>
         {OtherTypeList.map((items: CreateQRType) => (
           <Button
             key={items.id}
             icon={items.icon}
-            style={styles.button}
+            style={style.button}
             onPress={() => navigation.navigate(items.pathname)}
           >
-            <Text style={styles.itemName}>{items.name}</Text>
+            <Text style={style.itemName}>{items.name}</Text>
           </Button>
         ))}
       </View>

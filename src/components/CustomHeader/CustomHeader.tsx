@@ -21,10 +21,10 @@ type StackCustomHeaderProps = StackHeaderProps & CommonProps;
 type CustomHeaderProps = DrawerCustomHeaderProps | StackCustomHeaderProps;
 
 export const CustomHeader: React.FC<CustomHeaderProps> = ({ route, actions, navigation }: CustomHeaderProps) => {
+  const style =useThemedStyles(styles);
   const screenName = route.name;
   const isDrawerNavigation = ('openDrawer' in navigation);
 
-  const style =useThemedStyles(styles);
   return (
     <Appbar.Header style={style.header}>
       <View style={style.leftComponent}>

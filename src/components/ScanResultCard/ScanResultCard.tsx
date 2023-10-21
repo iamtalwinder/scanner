@@ -5,6 +5,7 @@ import { formatDateTime } from '../../utils/dateAndTime';
 import { styles } from './ScanResultCard.styles';
 import { DEFAULT_COLOR, ICON_SIZE_XXL, IconEnum, Icons } from '../Icons';
 import { ScanResultActionProps, ScannedItemResult } from '../../screens/ScanScreen/ScanResult';
+import { useThemedStyles } from '../../hooks';
 
 interface ScanResultCardProps {
   item: ScannedItemResult;
@@ -13,64 +14,65 @@ interface ScanResultCardProps {
 
 export const ScanResultCard: React.FC<ScanResultCardProps> = (props: ScanResultCardProps) => {
   const { item, actions } = props
+  const style = useThemedStyles(styles);
 
   return (
-    <View style={styles.mainContainer}>
-      <View style={styles.container}>
-        <Card style={styles.card}>
-          <Card.Content style={styles.cardContent}>
-            <IconButton style={styles.logoContainer}
+    <View style={style.mainContainer}>
+      <View style={style.container}>
+        <Card style={style.card}>
+          <Card.Content style={style.cardContent}>
+            <IconButton style={style.logoContainer}
               icon={item.logo}
               iconColor='white'
             />
-            <View style={styles.textContainer}>
-              <Text style={styles.type}>{item.type}</Text>
-              <View style={styles.timeStamp}>
-                <Text style={styles.timeStamp}>
+            <View style={style.textContainer}>
+              <Text style={style.type}>{item.type}</Text>
+              <View>
+                <Text style={style.timeStamp}>
                   {formatDateTime(item.timeStamp)}
                 </Text>
-                <Text style={styles.typeName}>{item.typeName}</Text>
+                <Text style={style.typeName}>{item.typeName}</Text>
               </View>
             </View>
-            <View style={styles.actionsContainer}>
+            <View style={style.actionsContainer}>
               {actions && actions({ item })}
             </View>
           </Card.Content>
-          <Divider style={styles.divider} />
-          <View style={styles.textView}>
+          {/* <Divider style={style.divider} /> */}
+          {/* <View style={style.textView}>
             <View>
-              <Text style={styles.text}>{item.text}</Text>
+              <Text style={style.text}>{item.text}</Text>
             </View>
-          </View>
+          </View> */}
         </Card>
-        <View style={styles.icons}>
-          <View style={styles.iconContainer}>
+        <View style={style.icons}>
+          <View style={style.iconContainer}>
             <IconButton
               icon={() =>
                 <Icons name={IconEnum.openInApp} size={ICON_SIZE_XXL} color={DEFAULT_COLOR} />}
             />
-            <Text style={styles.iconText}>Open</Text>
+            <Text style={style.iconText}>Open</Text>
           </View>
-          <View style={styles.iconContainer}>
+          <View style={style.iconContainer}>
             <IconButton
               icon={() =>
                 <Icons name={IconEnum.share} size={ICON_SIZE_XXL} color={DEFAULT_COLOR} />}
             />
-            <Text style={styles.iconText}>Share</Text>
+            <Text style={style.iconText}>Share</Text>
           </View>
-          <View style={styles.iconContainer}>
+          <View style={style.iconContainer}>
             <IconButton
               icon={() =>
                 <Icons name={IconEnum.copy} size={ICON_SIZE_XXL} color={DEFAULT_COLOR} />}
             />
-            <Text style={styles.iconText}>Copy</Text>
+            <Text style={style.iconText}>Copy</Text>
           </View>
         </View>
 
-        <View style={styles.barcodeIcon}>
+        <View style={style.barcodeIcon}>
           <Image
             source={require('../../../assets/barcodeImage.jpg')}
-            // style={styles.barcodeImage}
+          // style={styles.barcodeImage}
           />
           {/* <Icons name={IconEnum.barcode} size={100} color={DEFAULT_COLOR} /> */}
         </View>

@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { useThemedStyles } from '../../hooks/useThemedStyles';
 
 export const styles = (theme: any) => {
   return StyleSheet.create({

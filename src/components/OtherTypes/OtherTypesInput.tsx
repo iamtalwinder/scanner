@@ -21,6 +21,8 @@ export type QRCodeOtherTypesProps = {
 export const OtherTypesInput: React.FC<QRCodeOtherTypesProps> = (
   { title, limit, value, format }: QRCodeOtherTypesProps) => {
 
+  const style = useThemedStyles(styles);
+  
   const [text, setText] = useState('');
   const [showQRCode, setShowQRCode] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -102,7 +104,6 @@ export const OtherTypesInput: React.FC<QRCodeOtherTypesProps> = (
   };
 
   const hideDialog = () => setVisible(false);
-  const style = useThemedStyles(styles);
 
   return (
     <ScrollView style={style.mainContainer}>

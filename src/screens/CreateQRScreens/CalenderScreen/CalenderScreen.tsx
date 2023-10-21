@@ -11,8 +11,9 @@ import { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { TimePickerOptions } from '@react-native-community/datetimepicker';
 import { ScrollView } from 'react-native-gesture-handler';
 import { RenameComponent } from '../../../components/Rename';
-import { StarOutlineComponent } from '../../../components/StarOutline/StarOutline';
 import QRCode from 'react-native-qrcode-svg';
+import { FavoritiesIcon } from '../../../components/StarOutline/StarOutline';
+import { useThemedStyles } from '../../../hooks';
 
 export const CalendarScreen: React.FC = () => {
   const [startDate, setStartDate] = useState(new Date);
@@ -30,6 +31,7 @@ export const CalendarScreen: React.FC = () => {
   const [endTime, setEndTime] = useState(new Date());
 
   const [showQRCode, setShowQRCode] = useState(false);
+  const style = useThemedStyles(styles);
 
   const handleInputChange = (text: string, fieldName: string) => {
     switch (fieldName) {
@@ -104,26 +106,26 @@ export const CalendarScreen: React.FC = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.container}>
-        <View style={styles.title}>
+    <ScrollView style={style.container}>
+      <View style={style.container}>
+        <View style={style.title}>
           <IconButton
             icon={() => <Icons name={IconEnum.calenderSharp} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
           />
-          <Text style={styles.headline}>Calender</Text>
+          <Text style={style.headline}>Calender</Text>
         </View>
-        <View style={styles.formContainer}>
+        <View style={style.formContainer}>
           <TextInput
-            style={styles.inputFields}
+            style={style.inputFields}
             onChangeText={(text) => handleInputChange(text, 'Event Name')}
             value={eventName}
             placeholder='Event Name'
             placeholderTextColor='gray'
           />
-          <Text style={styles.startTitle}>Start:</Text>
-          <View style={styles.dates}>
+          <Text style={style.startTitle}>Start:</Text>
+          <View style={style.dates}>
             <TouchableOpacity onPress={displayDatepicker}>
-              <Text style={styles.startEndDateInput}>{formatDate(startDate)}</Text>
+              <Text style={style.startEndDateInput}>{formatDate(startDate)}</Text>
 
               {/* <TextInput
               style={styles.startEndDateInput}
@@ -134,7 +136,7 @@ export const CalendarScreen: React.FC = () => {
             </TouchableOpacity>
 
             <TouchableOpacity onPress={displayTimepicker}>
-              <Text style={styles.startEndDateInput}>
+              <Text style={style.startEndDateInput}>
                 {formatCurrentTime(startTime)}
               </Text>
               {/* <TextInput
@@ -144,10 +146,10 @@ export const CalendarScreen: React.FC = () => {
             </TouchableOpacity>
           </View>
 
-          <Text style={styles.startTitle}>End:</Text>
-          <View style={styles.dates}>
+          <Text style={style.startTitle}>End:</Text>
+          <View style={style.dates}>
             <TouchableOpacity onPress={displayDatepicker}>
-              <Text style={styles.startEndDateInput}>{formatDate(endDate)}</Text>
+              <Text style={style.startEndDateInput}>{formatDate(endDate)}</Text>
               {/* <TextInput
               style={styles.startEndDateInput}
               value={formatDate(endDate)}
@@ -156,7 +158,7 @@ export const CalendarScreen: React.FC = () => {
             /> */}
             </TouchableOpacity>
             <TouchableOpacity onPress={displayTimepicker}>
-              <Text style={styles.startEndDateInput}>
+              <Text style={style.startEndDateInput}>
                 {formatCurrentTime(endTime)}
               </Text>
               {/* <TextInput
@@ -170,38 +172,38 @@ export const CalendarScreen: React.FC = () => {
         {/* <Button title='Submit' onPress={handleSubmit} /> */}
 
         {showQRCode && (
-          <View style={styles.qrCodeContainer}>
-            <View style={styles.codeHeader}>
-              <View style={styles.text}>
+          <View style={style.qrCodeContainer}>
+            <View style={style.codeHeader}>
+              <View style={style.text}>
                 <IconButton
                   icon={() => <Icons name={IconEnum.contactsOutline} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
                   }
                 />
-                <Text style={styles.headline}>Contact</Text>
+                <Text style={style.headline}>Contact</Text>
               </View>
-              <View style={styles.icons}>
+              <View style={style.icons}>
                 <RenameComponent />
-                <StarOutlineComponent />
+                <FavoritiesIcon />
               </View>
             </View>
-            <View style={styles.code}>
+            <View style={style.code}>
               <QRCode value={JSON.stringify(formData)} size={250} />
             </View>
 
-            <View style={styles.commonIcons}>
-              <View style={styles.iconContainer}>
+            <View style={style.commonIcons}>
+              <View style={style.iconContainer}>
                 <IconButton
                   icon={() =>
                     <Icons name={IconEnum.save} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
                 />
-                <Text style={styles.iconText}>Save</Text>
+                <Text style={style.iconText}>Save</Text>
               </View>
-              <View style={styles.iconContainer}>
+              <View style={style.iconContainer}>
                 <IconButton
                   icon={() =>
                     <Icons name={IconEnum.share} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
                 />
-                <Text style={styles.iconText}>Share</Text>
+                <Text style={style.iconText}>Share</Text>
               </View>
             </View>
             <View>
@@ -213,7 +215,7 @@ export const CalendarScreen: React.FC = () => {
         )
         }
 
-        <View style={styles.calenderContainer}>
+        <View style={style.calenderContainer}>
           {
             isDisplayDate && (
               <DateTimePicker
@@ -238,7 +240,7 @@ export const CalendarScreen: React.FC = () => {
               />
             )}
         </View>
-        <View style={styles.timeContainer}>
+        <View style={style.timeContainer}>
           {isDisplayDate && (
             <DateTimePicker
               value={date}
@@ -265,14 +267,14 @@ export const CalendarScreen: React.FC = () => {
           )}
         </View>
         <TextInput
-          style={styles.inputFields}
+          style={style.inputFields}
           onChangeText={(text) => handleInputChange(text, 'Location')}
           value={location}
           placeholder='Location'
           placeholderTextColor='gray'
         />
         <TextInput
-          style={styles.inputFields}
+          style={style.inputFields}
           onChangeText={(text) => handleInputChange(text, 'Description')}
           value={description}
           placeholder='Description'
@@ -284,4 +286,3 @@ export const CalendarScreen: React.FC = () => {
     </ScrollView>
   );
 };
-

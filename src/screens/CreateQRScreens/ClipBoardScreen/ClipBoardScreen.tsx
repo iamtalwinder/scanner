@@ -7,22 +7,24 @@ import { RenameComponent } from '../../../components/Rename';
 import QRCode from 'react-native-qrcode-svg';
 import { FavoritiesIcon } from '../../../components/StarOutline/StarOutline';
 import { GenerateQRCode } from '../../../components/QRCodeGenerator/QRCodeGenerator';
+import { useThemedStyles } from '../../../hooks';
 
 export const ClipboardScreen: React.FC = () => {
   const [text, setText] = React.useState('');
+  const style = useThemedStyles(styles);
 
   return (
-    <ScrollView style={styles.mainContainer}>
-      <View style={styles.mainContainer}>
-        <View style={styles.title}>
+    <ScrollView style={style.mainContainer}>
+      <View style={style.mainContainer}>
+        <View style={style.title}>
           <IconButton
             icon={() => <Icons name={IconEnum.text} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
             }
           />
-          <Text style={styles.headline}>Text</Text>
+          <Text style={style.headline}>Text</Text>
         </View>
         <TextInput
-          style={styles.textarea}
+          style={style.textarea}
           multiline={true}
           numberOfLines={8}
           placeholder='Text'
@@ -32,16 +34,16 @@ export const ClipboardScreen: React.FC = () => {
         />
 
         {text ? (
-          <View style={styles.qrCodeContainer}>
-            <View style={styles.codeHeader}>
-              <View style={styles.text}>
+          <View style={style.qrCodeContainer}>
+            <View style={style.codeHeader}>
+              <View style={style.text}>
                 <IconButton
                   icon={() => <Icons name={IconEnum.text} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
                   }
                 />
-                <Text style={styles.headline}>Text</Text>
+                <Text style={style.headline}>Text</Text>
               </View>
-              <View style={styles.icons}>
+              <View style={style.icons}>
                 <RenameComponent />
                 <FavoritiesIcon />
               </View>
@@ -52,24 +54,24 @@ export const ClipboardScreen: React.FC = () => {
             <View>
               <GenerateQRCode text={text} />
             </View>
-            <View style={styles.commonIcons}>
-              <View style={styles.iconContainer}>
+            <View style={style.commonIcons}>
+              <View style={style.iconContainer}>
                 <IconButton
                   icon={() =>
                     <Icons name={IconEnum.save} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
                 />
-                <Text style={styles.iconText}>Save</Text>
+                <Text style={style.iconText}>Save</Text>
               </View>
-              <View style={styles.iconContainer}>
+              <View style={style.iconContainer}>
                 <IconButton
                   icon={() =>
                     <Icons name={IconEnum.share} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
                 />
-                <Text style={styles.iconText}>Share</Text>
+                <Text style={style.iconText}>Share</Text>
               </View>
             </View>
             <View>
-              <Text style={styles.textWritten}>{text}</Text>
+              <Text style={style.textWritten}>{text}</Text>
             </View>
           </View>
         ) :
