@@ -1,17 +1,60 @@
-import React from 'react';
-import { View, Text, TextInput, ScrollView } from 'react-native';
+import React, { useCallback } from 'react';
+import { View, Text, TextInput, ScrollView, Button } from 'react-native';
 import { styles } from './ClipBoardScreen.styles';
 import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../../../components/Icons';
 import { IconButton } from 'react-native-paper';
-import { RenameComponent } from '../../../components/Rename';
-import QRCode from 'react-native-qrcode-svg';
-import { FavoritiesIcon } from '../../../components/StarOutline/StarOutline';
-import { GenerateQRCode } from '../../../components/QRCodeGenerator/QRCodeGenerator';
-import { useThemedStyles } from '../../../hooks';
+import * as Clipboard from 'expo-clipboard';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useFocusEffect } from '@react-navigation/native';
 
-export const ClipboardScreen: React.FC = () => {
-  const [text, setText] = React.useState('');
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+import { useThemedStyles } from '../../../hooks';
+import { useHeaderAction } from '../../../context/HeaderActionContext';
+import { SubmitComponent } from '../../../components';
+
+type FormData = {
+  text: string;
+}
+
+const validationSchema = yup.object<FormData>().shape({
+  text: yup.string().required('Text is required')
+});
+
+type Props = {
+  navigation: StackNavigationProp<any>;
+};
+
+export const ClipboardScreen: React.FC<Props> = ({navigation}) => {
   const style = useThemedStyles(styles);
+
+  const { setActions, resetActions } = useHeaderAction();
+
+  const { control, handleSubmit, setValue, formState } = useForm({
+    resolver: yupResolver(validationSchema)
+  });
+
+  const onSubmit = (data: FormData) => {
+    console.log(data);
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      const fetchCopiedText = async () => {
+        const textFromClipboard = await Clipboard.getStringAsync();
+        setValue('text', textFromClipboard);
+      };
+
+      fetchCopiedText();
+      setActions(<SubmitComponent />);
+
+      return () => {
+        resetActions();
+      }
+    }, [setActions, resetActions])
+  );
 
   return (
     <ScrollView style={style.mainContainer}>
@@ -23,16 +66,27 @@ export const ClipboardScreen: React.FC = () => {
           />
           <Text style={style.headline}>Text</Text>
         </View>
-        <TextInput
-          style={style.textarea}
-          multiline={true}
-          numberOfLines={8}
-          placeholder='Text'
-          onChangeText={(inputText) => setText(inputText)}
-          value={text}
-          placeholderTextColor='gray'
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              style={style.textarea}
+              onBlur={onBlur}
+              onChangeText={value => onChange(value)}
+              value={value}
+              multiline={true}
+              numberOfLines={8}
+              placeholder='Text'
+              placeholderTextColor='gray'
+            />
+          )}
+          name="text"
+          defaultValue=""
         />
+        {formState.errors.text && <Text style={{ color: 'red' }}>{formState.errors.text.message}</Text>}
 
+        <Button title="Submit" onPress={handleSubmit(onSubmit)} />
+        {/*
         {text ? (
           <View style={style.qrCodeContainer}>
             <View style={style.codeHeader}>
@@ -48,9 +102,6 @@ export const ClipboardScreen: React.FC = () => {
                 <FavoritiesIcon />
               </View>
             </View>
-            {/* <View style={styles.code}>
-              <QRCode value={text} size={250} />
-            </View> */}
             <View>
               <GenerateQRCode text={text} />
             </View>
@@ -76,7 +127,7 @@ export const ClipboardScreen: React.FC = () => {
           </View>
         ) :
           ''
-        }
+        } */}
       </View>
     </ScrollView>
   );

@@ -149,14 +149,6 @@ const scannedItemsReducer = (state: State, action: Action): State => {
         ),
       };
 
-    // case ScannedItemActionEnum.TOOGLE_FAVORITE:
-    //   return {
-    //     ...state,
-    //     scannedItems: state.scannedItems.map((item) =>
-    //       item.id === action.item.id ? { ...item, isFavorite: !action.item.isFavorite } : item
-    //     ),
-    //   };
-
     default:
       return state;
   }
