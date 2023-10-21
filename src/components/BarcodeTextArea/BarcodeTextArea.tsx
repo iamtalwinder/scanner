@@ -4,8 +4,8 @@ import { IconButton, TextInput } from 'react-native-paper';
 import { styles } from './BarcodeTextArea.styles';
 import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../Icons';
 import { RenameComponent } from '../Rename';
-import { StarOutlineComponent } from '../StarOutline/StarOutline';
 import Barcode, { BarcodeFormat } from '@adrianso/react-native-barcode-builder';
+import { FavoritiesIcon } from '../StarOutline/StarOutline';
 
 export type QRCodeOtherTypesProps = {
   title: string,
@@ -69,7 +69,7 @@ export const BarcodeTextArea: React.FC<QRCodeOtherTypesProps> = (
             </View>
             <View style={styles.icons}>
               <RenameComponent />
-              <StarOutlineComponent />
+              <FavoritiesIcon />
             </View>
           </View>
           <View style={styles.container}>
