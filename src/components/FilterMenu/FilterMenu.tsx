@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Appbar, Divider, Menu } from 'react-native-paper';
-import { Icons } from '../Icons';
+import { DEFAULT_COLOR, Icons } from '../Icons';
 import { FILTER_MENU_ITEMS } from './MenuItems';
 import { styles } from './FilterMenu.styles';
 
@@ -31,12 +31,16 @@ export const FilterMenuComponent: React.FC<FilterMenuProps> = (props: FilterMenu
           <Appbar.Action icon='filter' onPress={() => {
             setFilterVisible(true);
             setFilterApplied(true);
-          }} />
+          }}
+            color={DEFAULT_COLOR}
+          />
         ) : (
           <Appbar.Action icon='filter-off' onPress={() => {
             setFilterApplied(false);
             setFilterVisible(true);
-          }} />
+          }}
+            color={DEFAULT_COLOR}
+          />
         )
       }
     >
@@ -52,6 +56,9 @@ export const FilterMenuComponent: React.FC<FilterMenuProps> = (props: FilterMenu
               backgroundColor: selectedFilters.includes(menuItem.title)
                 ? 'blue'
                 : '#333333',
+            }}
+            titleStyle={{
+              color: 'white',
             }}
           />
           <Divider />

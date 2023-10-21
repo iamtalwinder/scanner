@@ -9,6 +9,7 @@ import { ImportExportMenuComponent } from '../ImportExportMenu';
 import { ScrollView } from 'react-native-gesture-handler';
 import { formatDate } from '../../utils/date';
 import { styles } from './ScannedItemList.styles';
+import { useThemedStyles } from '../../hooks/useThemedStyles';
 
 interface CustomCardProps {
   items: ScannedItems[];
@@ -21,6 +22,7 @@ export const ScannedItemList: React.FC<CustomCardProps> = (props: CustomCardProp
   const [selectedItem, setSelectedItem] = useState<string>('');
   const [menuVisible, setMenuVisible] = useState(false);
   const { state, dispatch } = useScannedItems();
+  const style = useThemedStyles(styles);
 
   let previousDate = '';
 
@@ -62,11 +64,11 @@ export const ScannedItemList: React.FC<CustomCardProps> = (props: CustomCardProp
       case ScannedItemTypeEnum.Product:
         return <Icons name={IconEnum.shoppingBag} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
       case ScannedItemTypeEnum.Barcode:
-        return <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR}/>
+        return <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
       case ScannedItemTypeEnum.Text:
-        return <Icons name={IconEnum.fileText} size={ICON_SIZE_XL} color={DEFAULT_COLOR}/>
+        return <Icons name={IconEnum.fileText} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
       case ScannedItemTypeEnum.Url:
-        return <Icons name={IconEnum.link2} size={ICON_SIZE_XL} color={DEFAULT_COLOR}/>
+        return <Icons name={IconEnum.link2} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
       default:
         return null;
     }
@@ -80,7 +82,7 @@ export const ScannedItemList: React.FC<CustomCardProps> = (props: CustomCardProp
 
 
   return (
-    <ScrollView style={styles.mainContainer}>
+    <ScrollView style={style.mainContainer}>
       {sortedItems.map((data: ScannedItems, index: number) => {
 
         const itemDate = formatDate(data.timeStamp);
@@ -91,9 +93,9 @@ export const ScannedItemList: React.FC<CustomCardProps> = (props: CustomCardProp
           // {sortedItems.map((data: ScannedItems, index: number) => (
           <View key={data.id}>
             {displayDate && (
-              <View style={styles.cardDate}>
-                <Text style={styles.dateHeader}>
-                  <Text style={styles.dateHeader}>
+              <View style={style.cardDate}>
+                <Text style={style.dateHeader}>
+                  <Text style={style.dateHeader}>
                     {itemDate}
                   </Text>
                   {/* {formatDate(data.timeStamp)} */}

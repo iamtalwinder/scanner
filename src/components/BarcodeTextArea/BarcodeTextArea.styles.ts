@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
-export const styles = StyleSheet.create({
+export const styles = (theme: any) => { 
+  return StyleSheet.create({
   eanType: {
     borderWidth: 1,
     borderColor: 'gray',
@@ -9,7 +10,7 @@ export const styles = StyleSheet.create({
     padding: 5,
     fontSize: 16,
     paddingLeft: 20,
-    color: 'white',
+    color: theme.colors.onPrimary,
     textAlignVertical: 'center',
   },
   mainContainer: {
@@ -27,7 +28,7 @@ export const styles = StyleSheet.create({
     display: 'flex',
     gap: 15,
     fontSize: 18,
-    color: 'white',
+    color: theme.colors.onPrimary,
     flexDirection: 'row',
     marginTop: 13
   },
@@ -73,7 +74,7 @@ export const styles = StyleSheet.create({
     marginRight: 20,
   },
   iconText: {
-    color: 'white',
+    color: theme.colors.onPrimary,
     fontSize: 16,
     textAlign: 'center'
   },
@@ -147,3 +148,4 @@ export const styles = StyleSheet.create({
     color: 'black'
   }
 })
+}

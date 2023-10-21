@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Appbar, Divider, Menu } from 'react-native-paper';
-import { Icons } from '../Icons';
+import { DEFAULT_COLOR, Icons } from '../Icons';
 import { HISTORY_CARD_MENU_ITEMS } from './MenuItems';
 import { styles } from './HistoryCardMenu.styles';
 
@@ -25,7 +25,7 @@ export const HistoryMenuComponent: React.FC<HistoryMenuProps> = (props: HistoryM
       onDismiss={() => setVisible(false)}
       style={styles.item}
       anchor={
-        <Appbar.Action icon='dots-vertical' onPress={() => setVisible(true)} />
+        <Appbar.Action icon='dots-vertical' onPress={() => setVisible(true)} color={DEFAULT_COLOR} />
       }
     >
       {HISTORY_CARD_MENU_ITEMS.map((menuItem) => (
@@ -37,6 +37,9 @@ export const HistoryMenuComponent: React.FC<HistoryMenuProps> = (props: HistoryM
             leadingIcon={() => <Icons name={menuItem.icon} size={menuItem.size} />}
             title={menuItem.title}
             style={styles.menuItem}
+            titleStyle={{
+              color: 'white'
+            }}
           />
           <Divider />
         </React.Fragment>

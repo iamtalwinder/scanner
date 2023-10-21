@@ -9,6 +9,7 @@ import Barcode, { BarcodeFormat } from '@adrianso/react-native-barcode-builder';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ScannedItemActionEnum, ScannedItemTypeEnum, useScannedItems } from '../../context/ScannedItemsContext';
 import 'react-native-get-random-values';
+import { useThemedStyles } from '../../hooks';
 
 export type QRCodeOtherTypesProps = {
   title: string,
@@ -101,20 +102,21 @@ export const OtherTypesInput: React.FC<QRCodeOtherTypesProps> = (
   };
 
   const hideDialog = () => setVisible(false);
+  const style = useThemedStyles(styles);
 
   return (
-    <ScrollView style={styles.mainContainer}>
-      <View style={styles.mainContainer}>
-        <View style={styles.title}>
+    <ScrollView style={style.mainContainer}>
+      <View style={style.mainContainer}>
+        <View style={style.title}>
           <IconButton
             icon={() => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
             }
           />
-          <Text style={styles.headline}>{title}</Text>
+          <Text style={style.headline}>{title}</Text>
         </View>
         <View>
           <TextInput
-            style={styles.input}
+            style={style.input}
             value={value}
             onChangeText={data => setText(data)}
             placeholderTextColor='gray'
@@ -122,18 +124,18 @@ export const OtherTypesInput: React.FC<QRCodeOtherTypesProps> = (
           />
         </View>
 
-        <View style={styles.submitButton}>
+        <View style={style.submitButton}>
           <Button title='Submit' onPress={handleSubmit} />
         </View>
         {
           visible ?
-          <Dialog visible={visible} onDismiss={hideDialog} style={styles.dialog}>
-            <Dialog.Actions>
-              <Button onPress={() => console.log('Cancel')} title='Cancel' />
-              <Button onPress={() => console.log('Ok')} title='Ok' />
-            </Dialog.Actions>
-          </Dialog>
-          : ''
+            <Dialog visible={visible} onDismiss={hideDialog} style={style.dialog}>
+              <Dialog.Actions>
+                <Button onPress={() => console.log('Cancel')} title='Cancel' />
+                <Button onPress={() => console.log('Ok')} title='Ok' />
+              </Dialog.Actions>
+            </Dialog>
+            : ''
         }
         {/* {showTextInput && (
           <TextInput
@@ -146,44 +148,44 @@ export const OtherTypesInput: React.FC<QRCodeOtherTypesProps> = (
         )} */}
 
         {showQRCode ? (
-          <View style={styles.qrCodeContainer}>
-            <View style={styles.codeHeader}>
-              <View style={styles.text}>
+          <View style={style.qrCodeContainer}>
+            <View style={style.codeHeader}>
+              <View style={style.text}>
                 <IconButton
                   icon={() => <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
                   }
                 />
-                <Text style={styles.headline}>{title}</Text>
+                <Text style={style.headline}>{title}</Text>
               </View>
-              <View style={styles.icons}>
+              <View style={style.icons}>
                 <RenameComponent onPress={handleRenameClick} />
                 <FavoritiesIcon onPress={handleAddToFavorities} isFavorite={isFavorite} />
               </View>
             </View>
-            <View style={styles.container}>
+            <View style={style.container}>
               {text.length > 0 && (
-                <Barcode style={styles.barcode} value={text} format={format} flat />
+                <Barcode style={style.barcode} value={text} format={format} flat />
               )}
             </View>
 
-            <View style={styles.commonIcons}>
-              <View style={styles.iconContainer}>
+            <View style={style.commonIcons}>
+              <View style={style.iconContainer}>
                 <IconButton
                   icon={() =>
                     <Icons name={IconEnum.save} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
                 />
-                <Text style={styles.iconText}>Save</Text>
+                <Text style={style.iconText}>Save</Text>
               </View>
-              <View style={styles.iconContainer}>
+              <View style={style.iconContainer}>
                 <IconButton
                   icon={() =>
                     <Icons name={IconEnum.share} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
                 />
-                <Text style={styles.iconText}>Share</Text>
+                <Text style={style.iconText}>Share</Text>
               </View>
             </View>
             <View>
-              <Text style={styles.textWritten}>{value}</Text>
+              <Text style={style.textWritten}>{value}</Text>
             </View>
           </View>
         ) :

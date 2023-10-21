@@ -4,6 +4,8 @@ import { View } from 'react-native';
 import { DrawerHeaderProps } from '@react-navigation/drawer';
 import { styles } from './CustomHeader.styles';
 import { StackHeaderProps } from '@react-navigation/stack';
+import { DEFAULT_COLOR } from '../Icons';
+import { useThemedStyles } from '../../hooks';
 
 // type CustomHeaderProps = DrawerHeaderProps {
 //   actions?: ReactNode
@@ -22,15 +24,16 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({ route, actions, navi
   const screenName = route.name;
   const isDrawerNavigation = ('openDrawer' in navigation);
 
+  const style =useThemedStyles(styles);
   return (
-    <Appbar.Header style={styles.header}>
-      <View style={styles.leftComponent}>
+    <Appbar.Header style={style.header}>
+      <View style={style.leftComponent}>
         {isDrawerNavigation && (
-          <Appbar.Action icon="menu" onPress={() => navigation.openDrawer()} />
+          <Appbar.Action icon="menu" onPress={() => navigation.openDrawer()} color={DEFAULT_COLOR}/>
         )}
       </View>
-      <Appbar.Content title={screenName} titleStyle={styles.title} style={styles.centerComponent} />
-      <View style={styles.rightComponent}>
+      <Appbar.Content title={screenName} titleStyle={style.title} style={style.centerComponent} />
+      <View style={style.rightComponent}>
         {actions && actions}
       </View>
     </Appbar.Header>

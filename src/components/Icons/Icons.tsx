@@ -58,7 +58,7 @@ const getIconComponent = (lib: IconLibEnum): IconComponentType => {
   }
 };
 
-export const Icons: React.FC<IconProps> = ({ name, size = DEFAULT_SIZE, color = DEFAULT_COLOR}: IconProps) => {
+export const Icons: React.FC<IconProps> = ({ name, size = DEFAULT_SIZE, color = DEFAULT_COLOR }: IconProps) => {
   const iconLib: IconLibEnum = ICON_MAPPING[name];
 
   const IconComponent: IconComponentType = getIconComponent(iconLib);

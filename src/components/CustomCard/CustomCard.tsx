@@ -4,6 +4,7 @@ import { Card, Text } from 'react-native-paper';
 import { styles } from './CustomCard.styles';
 import { ScannedItems } from '../../context/ScannedItemsContext';
 import { formatDateTime } from '../../utils/dateAndTime';
+import { useThemedStyles } from '../../hooks/useThemedStyles';
 
 export type CustomCardActionProps = {
   item: ScannedItems;
@@ -18,24 +19,26 @@ export type CustomCardProps = {
 export const CustomCard: React.FC<CustomCardProps> = ({
   item, logo, actions }: CustomCardProps) => {
 
+  const style = useThemedStyles(styles);
+
   return (
     <ScrollView>
-      <Card style={styles.card}>
-        <Card.Content style={styles.cardContent}>
-          <View style={styles.logoContainer}>
+      <Card style={style.card}>
+        <Card.Content style={style.cardContent}>
+          <View style={style.logoContainer}>
             {logo}
           </View>
-          <View style={styles.textContainer}>
-            <Text style={styles.type}>{item.type}</Text>
-            <View style={styles.timeStamp}>
-              <Text style={styles.timeStamp}>
+          <View style={style.textContainer}>
+            <Text style={style.type}>{item.type}</Text>
+            <View style={style.timeStamp}>
+              <Text style={style.timeStamp}>
                 {formatDateTime(item.timeStamp)}
               </Text>
-              <Text>{item.typeName}</Text>
+              <Text style={style.typeName}>{item.typeName}</Text>
             </View>
-            <Text>{item.text}</Text>
+            <Text style={style.text}>{item.text}</Text>
           </View>
-          <View style={styles.actionsContainer}>
+          <View style={style.actionsContainer}>
             {actions && actions({ item })}
           </View>
         </Card.Content>

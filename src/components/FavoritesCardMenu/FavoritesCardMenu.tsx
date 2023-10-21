@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Appbar, Divider, Menu } from 'react-native-paper';
-import { Icons } from '../Icons';
+import { DEFAULT_COLOR, Icons } from '../Icons';
 import { FAVORITE_CARD_MENU_ITEMS } from './MenuItems';
 import { styles } from './FavoritesCardMenu.styles';
 
@@ -25,7 +25,7 @@ export const FavoritesMenuComponent: React.FC<FavoritesMenuProps> = (props: Favo
       onDismiss={() => setVisible(false)}
       style={styles.item}
       anchor={
-        <Appbar.Action icon='dots-vertical' onPress={() => setVisible(true)} />
+        <Appbar.Action icon='dots-vertical' onPress={() => setVisible(true)} color={DEFAULT_COLOR} />
       }
     >
       {FAVORITE_CARD_MENU_ITEMS.map((menuItem) => (
@@ -36,6 +36,9 @@ export const FavoritesMenuComponent: React.FC<FavoritesMenuProps> = (props: Favo
             }}
             leadingIcon={() => <Icons name={menuItem.icon} size={menuItem.size} />}
             title={menuItem.title}
+            titleStyle={{
+              color: 'white', 
+            }}
             style={styles.menuItem}
           />
           <Divider />
