@@ -90,7 +90,7 @@ export const DrawerNavigator: React.FC = () => {
         }}
       />
       <Drawer.Screen
-        name='Create QR'
+        name='Create'
         component={CreateQRNavigation}
         options={{
           header: (props) => <CreateQRHeader {...props} />,

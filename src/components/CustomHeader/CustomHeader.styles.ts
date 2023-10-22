@@ -28,7 +28,8 @@ export const styles = (theme: any) => {
       display: 'flex',
       flex: 1,
       flexDirection: 'row',
-      marginRight: 10
+      justifyContent: 'flex-end',
+      marginRight: 20
     },
   })
 };

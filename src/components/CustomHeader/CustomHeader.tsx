@@ -6,13 +6,10 @@ import { styles } from './CustomHeader.styles';
 import { StackHeaderProps } from '@react-navigation/stack';
 import { DEFAULT_COLOR } from '../Icons';
 import { useThemedStyles } from '../../hooks';
-
-// type CustomHeaderProps = DrawerHeaderProps {
-//   actions?: ReactNode
-// }
+import { useHeaderAction } from '../../context/HeaderActionContext';
 
 type CommonProps = {
-  actions?: ReactNode;
+  actions?: ReactNode | undefined;
 };
 
 type DrawerCustomHeaderProps = DrawerHeaderProps & CommonProps;
@@ -21,7 +18,11 @@ type StackCustomHeaderProps = StackHeaderProps & CommonProps;
 type CustomHeaderProps = DrawerCustomHeaderProps | StackCustomHeaderProps;
 
 export const CustomHeader: React.FC<CustomHeaderProps> = ({ route, actions, navigation }: CustomHeaderProps) => {
-  const style =useThemedStyles(styles);
+  const style = useThemedStyles(styles);
+  const { state } = useHeaderAction();
+
+  const actionsToRender: ReactNode =  actions || state.actions;
+
   const screenName = route.name;
   const isDrawerNavigation = ('openDrawer' in navigation);
 
@@ -34,7 +35,7 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({ route, actions, navi
       </View>
       <Appbar.Content title={screenName} titleStyle={style.title} style={style.centerComponent} />
       <View style={style.rightComponent}>
-        {actions && actions}
+        {actionsToRender && actionsToRender}
       </View>
     </Appbar.Header>
   );

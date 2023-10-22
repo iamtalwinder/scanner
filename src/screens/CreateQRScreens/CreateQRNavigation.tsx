@@ -11,8 +11,6 @@ import { SMSScreen } from './SmsScreen/SmsScreen';
 import { GeoScreen } from './GeoScreen/GeoScreen';
 import { PhoneScreen } from './PhoneScreen/PhoneScreen';
 import { WifiScreen } from './WifiScreen/WifiScreen';
-import { CalendarScreen } from './CalenderScreen/CalenderScreen';
-import { TextHeader } from './TextScreen/Header';
 import { MyQRScreen } from '../MyQRScreen';
 import { Ean8 } from './Ean8/Ean8';
 import { Ean13 } from './Ean13/Ean13';
@@ -22,7 +20,6 @@ import { Code39 } from './Code39/Code39';
 import { Code128 } from './Code128/Code128';
 import { ITFBarcode } from './ITFBarcode/ITFBarcode';
 import { CodaBar } from './CodaBar/CodaBar';
-import { Code93 } from './Code93/Code93';
 
 const Stack = createStackNavigator();
 
@@ -34,10 +31,7 @@ export const CreateQRNavigation: React.FC = () => {
         <Stack.Screen name='CreateOptoinScreen' component={CreateOptionScreen} />
         <Stack.Screen name='URLScreen' component={URLScreen} />
         <Stack.Screen name='ClipboardScreen' component={ClipboardScreen} />
-        <Stack.Screen name='TextScreen' component={TextScreen}
-          options={{
-            header: (props) => <TextHeader {...props} />,
-          }} />
+        <Stack.Screen name='TextScreen' component={TextScreen} />
         <Stack.Screen name='ContactScreen' component={ContactScreen} />
         <Stack.Screen name='EmailScreen' component={EmailScreen} />
         <Stack.Screen name='SMSScreen' component={SMSScreen} />
