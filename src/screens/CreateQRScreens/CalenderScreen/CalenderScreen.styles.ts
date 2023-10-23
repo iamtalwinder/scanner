@@ -4,8 +4,8 @@ export const styles = (theme: any) => {
   return StyleSheet.create({
     container: {
       flex: 1,
-      padding: 15,
-      backgroundColor: '#212122',
+      padding: 5,
+      backgroundColor: theme.colors.backgroundColorMain,
     },
     dateInputs: {
       flexDirection: 'row',
@@ -47,7 +47,7 @@ export const styles = (theme: any) => {
       marginBottom: 10,
     },
     formContainer: {
-      backgroundColor: '#212122',
+      backgroundColor: theme.colors.backgroundColorMain,
     },
     dates: {
       display: 'flex',

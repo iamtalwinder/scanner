@@ -1,9 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-export const styles = StyleSheet.create({
-  mainContainer: {
-    display: 'flex',
-    flex: 1,
-    backgroundColor: '#212122',
-  }
-})
+export const styles = (theme: any) => {
+  return StyleSheet.create({
+    mainContainer: {
+      display: 'flex',
+      flex: 1,
+      backgroundColor: theme.colors.backgroundColorMain,
+    }
+  })
+}

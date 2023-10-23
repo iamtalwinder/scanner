@@ -6,8 +6,9 @@ import { IconButton } from 'react-native-paper';
 import { Picker } from '@react-native-picker/picker';
 import { CheckBox } from 'react-native-elements';
 import { RenameComponent } from '../../../components/Rename';
-import { StarOutlineComponent } from '../../../components/StarOutline/StarOutline';
 import QRCode from 'react-native-qrcode-svg';
+import { useThemedStyles } from '../../../hooks';
+import { FavoritiesIcon } from '../../../components/StarOutline/StarOutline';
 
 export const WifiScreen: React.FC = () => {
 
@@ -20,6 +21,7 @@ export const WifiScreen: React.FC = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [showQRCode, setShowQRCode] = useState(false);
   const [error, setError] = React.useState('');
+  const style = useThemedStyles(styles);
 
   const handleInputChange = (name: string, text: string) => {
     const updatedFormData = formData.map((field: any) =>
@@ -45,19 +47,19 @@ export const WifiScreen: React.FC = () => {
   };
 
   return (
-    <ScrollView style={styles.mainContainer}>
-      <View style={styles.title}>
+    <ScrollView style={style.mainContainer}>
+      <View style={style.title}>
         <IconButton
           icon={() => <Icons name={IconEnum.wifi} size={ICON_SIZE_L} color={DEFAULT_COLOR} />
           }
         />
-        <Text style={styles.headline}>Wifi</Text>
+        <Text style={style.headline}>Wifi</Text>
       </View>
-      <View style={styles.formContainer}>
+      <View style={style.formContainer}>
         {formData.map((field) => (
           <View key={field.name}>
             <TextInput
-              style={styles.input}
+              style={style.input}
               onChangeText={(text) => handleInputChange(field.name, text)}
               value={field.value}
               placeholder={field.name}
@@ -72,7 +74,7 @@ export const WifiScreen: React.FC = () => {
       <Picker
         selectedValue={selectedValue}
         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-        style={styles.dropdown}
+        style={style.dropdown}
         dropdownIconColor='white'
       >
         <Picker.Item label='WPA/WPA2' value='WPA/WPA2' />
@@ -90,42 +92,42 @@ export const WifiScreen: React.FC = () => {
       <Button title='Submit' onPress={handleSubmit} />
 
       {showQRCode && (
-        <View style={styles.qrCodeContainer}>
-          <View style={styles.codeHeader}>
-            <View style={styles.text}>
+        <View style={style.qrCodeContainer}>
+          <View style={style.codeHeader}>
+            <View style={style.text}>
               <IconButton
                 icon={() => <Icons name={IconEnum.wifi} size={ICON_SIZE_L} color={DEFAULT_COLOR} />
                 }
               />
-              <Text style={styles.headline}>Wifi</Text>
+              <Text style={style.headline}>Wifi</Text>
             </View>
-            <View style={styles.icons}>
+            <View style={style.icons}>
               <RenameComponent />
-              <StarOutlineComponent />
+              <FavoritiesIcon />
             </View>
           </View>
-          <View style={styles.code}>
+          <View style={style.code}>
             <QRCode value={JSON.stringify(formData)} size={250} />
           </View>
 
-          <View style={styles.commonIcons}>
-            <View style={styles.iconContainer}>
+          <View style={style.commonIcons}>
+            <View style={style.iconContainer}>
               <IconButton
                 icon={() =>
                   <Icons name={IconEnum.save} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
               />
-              <Text style={styles.iconText}>Save</Text>
+              <Text style={style.iconText}>Save</Text>
             </View>
-            <View style={styles.iconContainer}>
+            <View style={style.iconContainer}>
               <IconButton
                 icon={() =>
                   <Icons name={IconEnum.share} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
               />
-              <Text style={styles.iconText}>Share</Text>
+              <Text style={style.iconText}>Share</Text>
             </View>
           </View>
           <View>
-            <Text style={styles.textWritten}>
+            <Text style={style.textWritten}>
               WIFI:S:{formData.find(field => field.name === 'SSID/ Network Name')?.value ?? ''};T:{selectedValue};P:{formData.find(field => field.name === 'Password')?.value ?? ''};H: {isChecked ? 'true' : 'false'}
             </Text>
           </View>

@@ -6,10 +6,12 @@ import { IconButton } from 'react-native-paper';
 import QRCode from 'react-native-qrcode-svg';
 import { RenameComponent } from '../../../components/Rename';
 import { FavoritiesIcon } from '../../../components/StarOutline/StarOutline';
+import { useThemedStyles } from '../../../hooks';
 
 export const TextScreen: React.FC = () => {
   const [text, setText] = React.useState('');
   const [error, setError] = React.useState('');
+  const style = useThemedStyles(styles);
 
   const handleInputChange = (inputText: any) => {
     setText(inputText);
@@ -23,18 +25,18 @@ export const TextScreen: React.FC = () => {
   };
 
   return (
-    <ScrollView style={styles.mainContainer}>
-      <View style={styles.mainContainer}>
-        <View style={styles.title}>
+    <ScrollView style={style.mainContainer}>
+      <View style={style.mainContainer}>
+        <View style={style.title}>
           <IconButton
             icon={() => <Icons name={IconEnum.text} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
             }
           />
-          <Text style={styles.headline}>Text</Text>
+          <Text style={style.headline}>Text</Text>
         </View>
         <TextInput
           value={text}
-          style={error ? styles.errorInput : styles.textarea}
+          style={error ? style.errorInput : style.textarea}
           multiline={true}
           numberOfLines={8}
           placeholder='Text'
@@ -43,13 +45,13 @@ export const TextScreen: React.FC = () => {
           placeholderTextColor='gray'
           onBlur={handleBlur}
         />
-      <View style={styles.button}>
-        <Button onPress={handleBlur} title='Submit'/>
-      </View>
+        <View style={style.button}>
+          <Button onPress={handleBlur} title='Submit' />
+        </View>
 
         {error ?
           <TextInput
-            style={styles.errorText}
+            style={style.errorText}
             multiline={true}
             numberOfLines={8}
           >
@@ -59,42 +61,42 @@ export const TextScreen: React.FC = () => {
         }
 
         {text ? (
-          <View style={styles.qrCodeContainer}>
-            <View style={styles.codeHeader}>
-              <View style={styles.text}>
+          <View style={style.qrCodeContainer}>
+            <View style={style.codeHeader}>
+              <View style={style.text}>
                 <IconButton
                   icon={() => <Icons name={IconEnum.text} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
                   }
                 />
-                <Text style={styles.headline}>Text</Text>
+                <Text style={style.headline}>Text</Text>
               </View>
-              <View style={styles.icons}>
+              <View style={style.icons}>
                 <RenameComponent />
                 <FavoritiesIcon />
               </View>
             </View>
-            <View style={styles.code}>
+            <View style={style.code}>
               <QRCode value={text} size={250} />
             </View>
 
-            <View style={styles.commonIcons}>
-              <View style={styles.iconContainer}>
+            <View style={style.commonIcons}>
+              <View style={style.iconContainer}>
                 <IconButton
                   icon={() =>
                     <Icons name={IconEnum.save} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
                 />
-                <Text style={styles.iconText}>Save</Text>
+                <Text style={style.iconText}>Save</Text>
               </View>
-              <View style={styles.iconContainer}>
+              <View style={style.iconContainer}>
                 <IconButton
                   icon={() =>
                     <Icons name={IconEnum.share} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
                 />
-                <Text style={styles.iconText}>Share</Text>
+                <Text style={style.iconText}>Share</Text>
               </View>
             </View>
             <View>
-              <Text style={styles.textWritten}>{text}</Text>
+              <Text style={style.textWritten}>{text}</Text>
             </View>
           </View>
         ) :

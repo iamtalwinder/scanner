@@ -7,8 +7,10 @@ import { ScrollView } from 'react-native-gesture-handler';
 import QRCode from 'react-native-qrcode-svg';
 import { FavoritiesIcon } from '../../../components/StarOutline/StarOutline';
 import { RenameComponent } from '../../../components/Rename';
+import { useThemedStyles } from '../../../hooks';
 
 export const GeoScreen: React.FC = () => {
+  const style = useThemedStyles(styles);
 
   const [formData, setFormData] = useState([
     { name: 'Latitude', value: '' },
@@ -33,20 +35,20 @@ export const GeoScreen: React.FC = () => {
   };
 
   return (
-    <ScrollView style={styles.mainContainer}>
-      <View style={styles.mainContainer}>
-        <View style={styles.title}>
+    <ScrollView style={style.mainContainer}>
+      <View style={style.mainContainer}>
+        <View style={style.title}>
           <IconButton
             icon={() => <Icons name={IconEnum.locationOutline} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
             }
           />
-          <Text style={styles.headline}>Geo</Text>
+          <Text style={style.headline}>Geo</Text>
         </View>
-        <View style={styles.formContainer}>
+        <View style={style.formContainer}>
           {formData.map((field) => (
             <View key={field.name}>
               <TextInput
-                style={styles.input}
+                style={style.input}
                 onChangeText={(text) => handleInputChange(field.name, text)}
                 value={field.value}
                 placeholder={field.name}
@@ -60,42 +62,42 @@ export const GeoScreen: React.FC = () => {
           <Button title='Submit' onPress={handleSubmit} />
 
           {showQRCode && (
-            <View style={styles.qrCodeContainer}>
-              <View style={styles.codeHeader}>
-                <View style={styles.text}>
+            <View style={style.qrCodeContainer}>
+              <View style={style.codeHeader}>
+                <View style={style.text}>
                   <IconButton
                     icon={() => <Icons name={IconEnum.locationOutline} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
                     }
                   />
-                  <Text style={styles.headline}>Geo</Text>
+                  <Text style={style.headline}>Geo</Text>
                 </View>
-                <View style={styles.icons}>
+                <View style={style.icons}>
                   <RenameComponent />
                   <FavoritiesIcon />
                 </View>
               </View>
-              <View style={styles.code}>
+              <View style={style.code}>
                 <QRCode value={JSON.stringify(formData)} size={250} />
               </View>
 
-              <View style={styles.commonIcons}>
-                <View style={styles.iconContainer}>
+              <View style={style.commonIcons}>
+                <View style={style.iconContainer}>
                   <IconButton
                     icon={() =>
                       <Icons name={IconEnum.save} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
                   />
-                  <Text style={styles.iconText}>Save</Text>
+                  <Text style={style.iconText}>Save</Text>
                 </View>
-                <View style={styles.iconContainer}>
+                <View style={style.iconContainer}>
                   <IconButton
                     icon={() =>
                       <Icons name={IconEnum.share} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
                   />
-                  <Text style={styles.iconText}>Share</Text>
+                  <Text style={style.iconText}>Share</Text>
                 </View>
               </View>
               <View>
-                <Text style={styles.textWritten}>
+                <Text style={style.textWritten}>
                   {formData.map((field) => `${field.value}`).join('\n')}
                 </Text>
               </View>

@@ -39,7 +39,7 @@ export const styles = (theme: any) => {
     },
     mainContainer: {
       flex: 1,
-      backgroundColor: '#212122',
+      backgroundColor: theme.colors.backgroundColorMain,
     },
     typeName: {
       color: theme.colors.onPrimary
@@ -47,7 +47,6 @@ export const styles = (theme: any) => {
     container: {
       flex: 1,
       alignItems: 'center',
-      backgroundColor: '#212122'
     },
     text: {
       color: theme.colors.onPrimary,

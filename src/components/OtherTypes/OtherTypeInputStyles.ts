@@ -17,7 +17,7 @@ export const styles = (theme: any) => {
       flex: 1,
       display: 'flex',
       padding: 5,
-      backgroundColor: '#212122',
+      backgroundColor: theme.colors.backgroundColorMain,
     },
     title: {
       display: 'flex',

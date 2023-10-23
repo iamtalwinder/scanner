@@ -15,7 +15,7 @@ export const styles = (theme: any) => {
       paddingLeft: 5,
       paddingRight: 5,
       paddingBottom: 5,
-      backgroundColor: '#212122',
+      backgroundColor: theme.colors.backgroundColorMain,
     },
     button: {
       marginVertical: 5,

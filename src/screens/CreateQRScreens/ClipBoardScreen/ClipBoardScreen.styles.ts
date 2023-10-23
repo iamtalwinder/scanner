@@ -4,8 +4,8 @@ export const styles = (theme: any) => {
   return StyleSheet.create({
     mainContainer: {
       flex: 1,
-      padding: 15,
-      backgroundColor: '#212122',
+      padding: 5,
+      backgroundColor: theme.colors.backgroundColorMain,
     },
     headline: {
       fontSize: 18,

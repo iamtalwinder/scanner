@@ -3,12 +3,14 @@ import { View, TextInput, Text, Button } from 'react-native';
 import { styles } from './SmsScreen.styles';
 import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../../../components/Icons';
 import { IconButton } from 'react-native-paper';
-import { StarOutlineComponent } from '../../../components/StarOutline/StarOutline';
 import { RenameComponent } from '../../../components/Rename';
 import QRCode from 'react-native-qrcode-svg';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useThemedStyles } from '../../../hooks';
+import { FavoritiesIcon } from '../../../components/StarOutline/StarOutline';
 
 export const SMSScreen: React.FC = () => {
+  const style = useThemedStyles(styles);
 
   const [formData, setFormData] = useState([
     { name: 'Phone', value: '' },
@@ -31,22 +33,21 @@ export const SMSScreen: React.FC = () => {
     setShowQRCode(true);
   };
 
-
   return (
-    <ScrollView style={styles.mainContainer}>
-      <View style={styles.mainContainer}>
-        <View style={styles.title}>
+    <ScrollView style={style.mainContainer}>
+      <View style={style.mainContainer}>
+        <View style={style.title}>
           <IconButton
             icon={() => <Icons name={IconEnum.sms} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
             }
           />
-          <Text style={styles.headline}>SMS</Text>
+          <Text style={style.headline}>SMS</Text>
         </View>
-        <View style={styles.formContainer}>
+        <View style={style.formContainer}>
           {formData.map((field) => (
             <View key={field.name}>
               <TextInput
-                style={styles.input}
+                style={style.input}
                 onChangeText={(text) => handleInputChange(field.name, text)}
                 value={field.value}
                 placeholder={field.name}
@@ -60,42 +61,42 @@ export const SMSScreen: React.FC = () => {
           <Button title='Submit' onPress={handleSubmit} />
 
           {showQRCode && (
-            <View style={styles.qrCodeContainer}>
-              <View style={styles.codeHeader}>
-                <View style={styles.text}>
+            <View style={style.qrCodeContainer}>
+              <View style={style.codeHeader}>
+                <View style={style.text}>
                   <IconButton
                     icon={() => <Icons name={IconEnum.email} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
                     }
                   />
-                  <Text style={styles.headline}>Email</Text>
+                  <Text style={style.headline}>Email</Text>
                 </View>
-                <View style={styles.icons}>
+                <View style={style.icons}>
                   <RenameComponent />
-                  <StarOutlineComponent />
+                  <FavoritiesIcon />
                 </View>
               </View>
-              <View style={styles.code}>
+              <View style={style.code}>
                 <QRCode value={JSON.stringify(formData)} size={250} />
               </View>
 
-              <View style={styles.commonIcons}>
-                <View style={styles.iconContainer}>
+              <View style={style.commonIcons}>
+                <View style={style.iconContainer}>
                   <IconButton
                     icon={() =>
                       <Icons name={IconEnum.save} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
                   />
-                  <Text style={styles.iconText}>Save</Text>
+                  <Text style={style.iconText}>Save</Text>
                 </View>
-                <View style={styles.iconContainer}>
+                <View style={style.iconContainer}>
                   <IconButton
                     icon={() =>
                       <Icons name={IconEnum.share} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
                   />
-                  <Text style={styles.iconText}>Share</Text>
+                  <Text style={style.iconText}>Share</Text>
                 </View>
               </View>
               <View>
-                <Text style={styles.textWritten}>
+                <Text style={style.textWritten}>
                   {formData.map((field) => `${field.value}`).join('\n')}
                 </Text>
               </View>

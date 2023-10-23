@@ -10,7 +10,7 @@ export const styles = (theme: any) => {
     mainContainer: {
       flex: 1,
       padding: 15,
-      backgroundColor: '#212122',
+      backgroundColor: theme.colors.backgroundColorMain,
     },
     headline: {
       fontSize: 18,
@@ -19,7 +19,7 @@ export const styles = (theme: any) => {
       marginTop: 15
     },
     formContainer: {
-      backgroundColor: '#212122',
+      backgroundColor: theme.colors.backgroundColorMain,
     },
     input: {
       borderColor: '#ccc',
