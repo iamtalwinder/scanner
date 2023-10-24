@@ -1,20 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import { styles } from './ShareScreen.styles';
+import { useThemedStyles } from '../../hooks';
 
 export const ShareScreen: React.FC = () => {
+  const style = useThemedStyles(styles);
+
   return (
-    <View style={styles.container}>
+    <View style={style.container}>
       <Text>Share Screen</Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#212122'
-  },
-});
+
 

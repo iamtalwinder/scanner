@@ -124,7 +124,7 @@ export const styles = (theme: any) => {
     container: {
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: 'white',
+      backgroundColor: theme.colors.background,
       padding: 30,
       width: '100%',
       height: '50%'
@@ -157,7 +157,7 @@ export const styles = (theme: any) => {
     },
     modalView: {
       margin: 20,
-      backgroundColor: 'white',
+      backgroundColor: theme.colors.background,
       borderRadius: 20,
       padding: 35,
       alignItems: 'center',

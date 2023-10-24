@@ -4,11 +4,11 @@ export const styles = (theme: any) => {
   return StyleSheet.create({
     mainContainer: {
       flex: 1,
-      backgroundColor: '#212122',
+      backgroundColor: theme.colors.backgroundColorMain,
     },
     container: {
       flex: 1,
-      backgroundColor: '#212122',
+      backgroundColor: theme.colors.backgroundColorMain,
       paddingLeft: 20,
       paddingRight: 20,
       paddingTop: 20,
@@ -44,7 +44,7 @@ export const styles = (theme: any) => {
     formContainer: {
       paddingLeft: 16,
       paddingRight: 16,
-      backgroundColor: '#212122',
+      backgroundColor: theme.colors.backgroundColorMain,
     },
     input: {
       borderColor: '#ccc',
@@ -63,7 +63,7 @@ export const styles = (theme: any) => {
       flexDirection: 'row',
     },
     code: {
-      backgroundColor: 'white',
+      backgroundColor: theme.colors.background,
       padding: 10,
       paddingTop: 20,
       paddingBottom: 20,

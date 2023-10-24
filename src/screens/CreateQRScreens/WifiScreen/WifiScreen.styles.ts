@@ -4,7 +4,7 @@ export const styles = (theme: any) => {
   return StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#212122',
+      backgroundColor: theme.colors.backgroundColorMain,
       paddingLeft: 20,
       paddingRight: 20,
       paddingTop: 20,
@@ -17,7 +17,7 @@ export const styles = (theme: any) => {
     mainContainer: {
       flex: 1,
       padding: 15,
-      backgroundColor: '#212122',
+      backgroundColor: theme.colors.backgroundColorMain,
     },
     headline: {
       display: 'flex',
@@ -28,7 +28,7 @@ export const styles = (theme: any) => {
       fontWeight: 'bold'
     },
     formContainer: {
-      backgroundColor: '#212122',
+      backgroundColor: theme.colors.backgroundColorMain,
     },
     input: {
       borderColor: '#ccc',
@@ -50,7 +50,7 @@ export const styles = (theme: any) => {
       flexDirection: 'row',
     },
     code: {
-      backgroundColor: 'white',
+      backgroundColor: theme.colors.background,
       padding: 10,
       paddingTop: 20,
       paddingBottom: 20,

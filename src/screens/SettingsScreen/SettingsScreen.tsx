@@ -1,21 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import { styles } from './Settings.styles';
+import { useThemedStyles } from '../../hooks';
 
 export const SettingsScreen: React.FC = () => {
+  const style = useThemedStyles(styles);
+
   return (
-    <View style={styles.container}>
-      <Text>Favorties Screen</Text>
+    <View style={style.container}>
+      <Text>Settings Screen</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#212122'
-  },
-});
-
-

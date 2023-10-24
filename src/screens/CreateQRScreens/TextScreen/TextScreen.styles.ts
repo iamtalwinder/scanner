@@ -48,7 +48,7 @@ export const styles = (theme: any) => {
       flexDirection: 'row',
     },
     code: {
-      backgroundColor: 'white',
+      backgroundColor: theme.colors.background,
       padding: 10,
       paddingTop: 20,
       paddingBottom: 20,

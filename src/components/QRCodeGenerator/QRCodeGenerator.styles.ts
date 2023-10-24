@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export const styles = (theme: any) => {
   return StyleSheet.create({
     code: {
-      backgroundColor: 'white',
+      backgroundColor: theme.colors.background,
       padding: 10,
       paddingTop: 20,
       paddingBottom: 20,

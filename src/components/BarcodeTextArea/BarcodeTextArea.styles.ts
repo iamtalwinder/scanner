@@ -124,7 +124,7 @@ export const styles = (theme: any) => {
     container: {
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: 'white',
+      backgroundColor: theme.colors.background,
       padding: 30,
       width: '100%',
       height: '50%'
