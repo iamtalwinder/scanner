@@ -3,6 +3,7 @@ import { Appbar, Divider, Menu } from 'react-native-paper';
 import { IMPORT_EXPORT_MENU_ITEMS } from './MenuItems';
 import { DEFAULT_COLOR, Icons } from '../Icons';
 import { styles } from './ImportExportMenu.styles';
+import { useThemedStyles } from '../../hooks';
 
 type ImportExportMenuProps = {};
 
@@ -10,6 +11,7 @@ export const ImportExportMenuComponent: React.FC<ImportExportMenuProps> = (props
 
   const [visible, setVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState('');
+  const style = useThemedStyles(styles);
 
   const toggleItem = (item: string) => {
     if (selectedItem === item) {
@@ -24,7 +26,7 @@ export const ImportExportMenuComponent: React.FC<ImportExportMenuProps> = (props
     <Menu
       visible={visible}
       onDismiss={() => setVisible(false)}
-      style={styles.item}
+      style={style.item}
       anchor={
         <Appbar.Action icon='dots-vertical' onPress={() => setVisible(true)} color={DEFAULT_COLOR} />
       }
@@ -40,7 +42,7 @@ export const ImportExportMenuComponent: React.FC<ImportExportMenuProps> = (props
             titleStyle={{
               color: 'white',
             }}
-            style={styles.menuItem}
+            style={style.menuItem}
           />
           <Divider />
         </React.Fragment>

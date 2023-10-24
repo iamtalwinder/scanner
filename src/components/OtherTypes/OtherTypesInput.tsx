@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Button, Modal } from 'react-native';
 import { Dialog, IconButton, TextInput } from 'react-native-paper';
-import { styles } from './OtherTypeInputStyles';
+import { styles } from './OtherTypeInput.styles';
 import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../Icons';
 import { RenameComponent } from '../Rename';
 import { FavoritiesIcon } from '../StarOutline/StarOutline';
@@ -122,6 +122,7 @@ export const OtherTypesInput: React.FC<QRCodeOtherTypesProps> = (
             onChangeText={data => setText(data)}
             placeholderTextColor='gray'
             placeholder={value}
+            textColor='white'
           />
         </View>
 

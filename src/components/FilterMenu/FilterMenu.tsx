@@ -3,6 +3,7 @@ import { Appbar, Divider, Menu } from 'react-native-paper';
 import { DEFAULT_COLOR, Icons } from '../Icons';
 import { FILTER_MENU_ITEMS } from './MenuItems';
 import { styles } from './FilterMenu.styles';
+import { useThemedStyles } from '../../hooks';
 
 type FilterMenuProps = {};
 
@@ -10,6 +11,7 @@ export const FilterMenuComponent: React.FC<FilterMenuProps> = (props: FilterMenu
   const [filterVisible, setFilterVisible] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [filterApplied, setFilterApplied] = useState(false);
+  const style = useThemedStyles(styles);
 
   const toggleFilter = (filter: string) => {
     if (selectedFilters.includes(filter)) {
@@ -25,7 +27,7 @@ export const FilterMenuComponent: React.FC<FilterMenuProps> = (props: FilterMenu
     <Menu
       visible={filterVisible}
       onDismiss={() => setFilterVisible(false)}
-      style={styles.item}
+      style={style.item}
       anchor={
         isFilterSelected || filterApplied ? (
           <Appbar.Action icon='filter' onPress={() => {

@@ -14,7 +14,7 @@ export const styles = (theme: any) => {
       color: theme.colors.onPrimary
     },
     item: {
-      backgroundColor: '#333333',
+      backgroundColor: theme.colors.darkBackgroundColor,
       marginTop: 50,
     },
     leftComponent: {

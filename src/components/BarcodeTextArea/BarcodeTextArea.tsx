@@ -53,6 +53,7 @@ export const BarcodeTextArea: React.FC<QRCodeOtherTypesProps> = (
           placeholder={value}
           multiline={true}
           numberOfLines={8}
+          textColor='white'
         />
       </View>
 

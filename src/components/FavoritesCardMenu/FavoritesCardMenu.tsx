@@ -3,12 +3,14 @@ import { Appbar, Divider, Menu } from 'react-native-paper';
 import { DEFAULT_COLOR, Icons } from '../Icons';
 import { FAVORITE_CARD_MENU_ITEMS } from './MenuItems';
 import { styles } from './FavoritesCardMenu.styles';
+import { useThemedStyles } from '../../hooks';
 
 type FavoritesMenuProps = {};
 
 export const FavoritesMenuComponent: React.FC<FavoritesMenuProps> = (props: FavoritesMenuProps) => {
   const [visible, setVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState('');
+  const style = useThemedStyles(styles);
 
   const toggleItem = (item: string) => {
     if (selectedItem === item) {
@@ -23,7 +25,7 @@ export const FavoritesMenuComponent: React.FC<FavoritesMenuProps> = (props: Favo
     <Menu
       visible={visible}
       onDismiss={() => setVisible(false)}
-      style={styles.item}
+      style={style.item}
       anchor={
         <Appbar.Action icon='dots-vertical' onPress={() => setVisible(true)} color={DEFAULT_COLOR} />
       }
@@ -37,9 +39,9 @@ export const FavoritesMenuComponent: React.FC<FavoritesMenuProps> = (props: Favo
             leadingIcon={() => <Icons name={menuItem.icon} size={menuItem.size} />}
             title={menuItem.title}
             titleStyle={{
-              color: 'white', 
+              color: 'white',
             }}
-            style={styles.menuItem}
+            style={style.menuItem}
           />
           <Divider />
         </React.Fragment>

@@ -39,7 +39,8 @@ export const styles = (theme: any) => {
       padding: 5,
       fontSize: 20,
       paddingLeft: 20,
-      color: 'gray'
+      color: theme.colors.onPrimary,
+      backgroundColor: theme.colors.darkBackgroundColor
     },
     limit: {
       alignItems: 'flex-end',
@@ -133,11 +134,6 @@ export const styles = (theme: any) => {
       fontSize: 20,
       textAlign: 'center',
       margin: 10,
-    },
-    instructions: {
-      textAlign: 'center',
-      color: '#333333',
-      marginBottom: 5,
     },
     barcodeWrapper: {
       width: '100%',
