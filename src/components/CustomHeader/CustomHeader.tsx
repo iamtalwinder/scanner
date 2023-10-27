@@ -30,7 +30,7 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({ route, actions, navi
     <Appbar.Header style={style.header}>
       <View style={style.leftComponent}>
         {isDrawerNavigation && (
-          <Appbar.Action icon="menu" onPress={() => navigation.openDrawer()} color={DEFAULT_COLOR}/>
+          <Appbar.Action icon='menu' onPress={() => navigation.openDrawer()} color={DEFAULT_COLOR}/>
         )}
       </View>
       <Appbar.Content title={screenName} titleStyle={style.title} style={style.centerComponent} />
