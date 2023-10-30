@@ -1,28 +1,65 @@
-import React from 'react';
-import { View, Text, TextInput, ScrollView, Button } from 'react-native';
+import React, { useCallback } from 'react';
+import { View, Text, TextInput, ScrollView } from 'react-native';
 import { styles } from './TextScreen.styles';
 import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../../../components/Icons';
 import { IconButton } from 'react-native-paper';
-import QRCode from 'react-native-qrcode-svg';
-import { RenameComponent } from '../../../components/Rename';
-import { FavoritiesIcon } from '../../../components/StarOutline/StarOutline';
 import { useThemedStyles } from '../../../hooks';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useFocusEffect } from '@react-navigation/native';
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { useHeaderAction } from '../../../context/HeaderActionContext';
+import { SubmitComponent } from '../../../components';
+import { ScannedItemQRCodeTypeEnum } from '../../../context/ScannedItemsContext';
 
-export const TextScreen: React.FC = () => {
-  const [text, setText] = React.useState('');
+type FormData = {
+  text: string;
+}
+
+type DataWithType = {
+  type: ScannedItemQRCodeTypeEnum.Text;
+  data: any;
+};
+
+const validationSchema = yup.object<FormData>().shape({
+  text: yup.string().required('Text is required')
+});
+
+type Props = {
+  navigation: StackNavigationProp<any>;
+};
+
+export const TextScreen: React.FC<Props> = ({ navigation }) => {
+  // const [text, setText] = React.useState('');
   const [error, setError] = React.useState('');
   const style = useThemedStyles(styles);
 
-  const handleInputChange = (inputText: any) => {
-    setText(inputText);
-    setError('');
+  const { setActions, resetActions } = useHeaderAction();
+
+  const { control, handleSubmit, setValue, formState } = useForm({
+    resolver: yupResolver(validationSchema)
+  });
+
+  const onSubmit = (data: FormData) => {
+    const urlData: DataWithType = {
+      type: ScannedItemQRCodeTypeEnum.Text,
+      data: data,
+    };
+    navigation.navigate('TextQRCodeResultScreen', { data: urlData });
+    console.log('screen-data', data.text);
   };
 
-  const handleBlur = () => {
-    if (text.trim() === '') {
-      setError('This field is required');
-    }
-  };
+  useFocusEffect(
+    useCallback(() => {
+      setActions(<SubmitComponent onPress={handleSubmit(onSubmit)} />);
+
+      return () => {
+        resetActions();
+      }
+    }, [setActions, resetActions])
+  );
+
 
   return (
     <ScrollView style={style.mainContainer}>
@@ -32,76 +69,27 @@ export const TextScreen: React.FC = () => {
             icon={() => <Icons name={IconEnum.text} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
             }
           />
-          <Text style={style.headline}>Text</Text>
+          <Text style={style.headline}>{ScannedItemQRCodeTypeEnum.Text}</Text>
         </View>
-        <TextInput
-          value={text}
-          style={error ? style.errorInput : style.textarea}
-          multiline={true}
-          numberOfLines={8}
-          placeholder='Text'
-          // onChangeText={(inputText) => setText(inputText)}
-          onChangeText={handleInputChange}
-          placeholderTextColor='gray'
-          onBlur={handleBlur}
-        />
-        <View style={style.button}>
-          <Button onPress={handleBlur} title='Submit' />
+        <View>
+          <Controller
+            control={control}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                value={value}
+                style={error ? style.errorInput : style.textarea}
+                multiline={true}
+                numberOfLines={8}
+                placeholder='Text'
+                onBlur={onBlur}
+                onChangeText={value => onChange(value)}
+                placeholderTextColor='gray'
+              />
+            )}
+            name='text'
+          />
         </View>
-
-        {error ?
-          <TextInput
-            style={style.errorText}
-            multiline={true}
-            numberOfLines={8}
-          >
-            {error}
-          </TextInput>
-          : null
-        }
-
-        {text ? (
-          <View style={style.qrCodeContainer}>
-            <View style={style.codeHeader}>
-              <View style={style.text}>
-                <IconButton
-                  icon={() => <Icons name={IconEnum.text} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
-                  }
-                />
-                <Text style={style.headline}>Text</Text>
-              </View>
-              <View style={style.icons}>
-                <RenameComponent />
-                <FavoritiesIcon />
-              </View>
-            </View>
-            <View style={style.code}>
-              <QRCode value={text} size={250} />
-            </View>
-
-            <View style={style.commonIcons}>
-              <View style={style.iconContainer}>
-                <IconButton
-                  icon={() =>
-                    <Icons name={IconEnum.save} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
-                />
-                <Text style={style.iconText}>Save</Text>
-              </View>
-              <View style={style.iconContainer}>
-                <IconButton
-                  icon={() =>
-                    <Icons name={IconEnum.share} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
-                />
-                <Text style={style.iconText}>Share</Text>
-              </View>
-            </View>
-            <View>
-              <Text style={style.textWritten}>{text}</Text>
-            </View>
-          </View>
-        ) :
-          ''
-        }
+        {formState.errors.text && <Text style={{ color: 'red' }}>{formState.errors.text.message}</Text>}
       </View>
     </ScrollView>
   );

@@ -17,7 +17,12 @@ export enum ScannedItemQRCodeTypeEnum {
   Sms = 'SMS',
   Phone = 'Phone',
   Wifi = 'Wifi',
-  Location = 'Location'
+  Location = 'Location',
+  Contact = 'Contact'
+}
+
+export enum ScannedItemBarCodeTypeEnum {
+  Product = 'Product'
 }
 
 export enum ScannedItemActionEnum {
@@ -30,7 +35,7 @@ export enum ScannedItemActionEnum {
 
 export interface ScannedItems {
   id: string;
-  type: ScannedItemTypeEnum;
+  type: ScannedItemQRCodeTypeEnum;
   timeStamp: string;
   isFavorite: boolean;
   text: string;
@@ -48,7 +53,7 @@ export type Action =
 const scannedItems: ScannedItems[] = [
   {
     id: uuidv4(),
-    type: ScannedItemTypeEnum.Url,
+    type: ScannedItemQRCodeTypeEnum.Url,
     timeStamp: '2023-09-05T08:42:43Z',
     typeName: 'QR_CODE',
     text: 'exp://192.168.100.16:19000',
@@ -56,15 +61,15 @@ const scannedItems: ScannedItems[] = [
   },
   {
     id: uuidv4(),
-    type: ScannedItemTypeEnum.Product,
+    type: ScannedItemQRCodeTypeEnum.Sms,
     timeStamp: '2023-08-07T08:10:20Z',
     typeName: 'UPC_A',
-    text: 'exp://192.168.100.16:19000',
+    text: 'this is the message',
     isFavorite: true,
   },
   {
     id: uuidv4(),
-    type: ScannedItemTypeEnum.Product,
+    type: ScannedItemQRCodeTypeEnum.Product,
     timeStamp: '2023-06-07T08:10:20Z',
     typeName: 'UPC_E',
     text: 'exp://192.168.100.16:12000',
@@ -72,7 +77,7 @@ const scannedItems: ScannedItems[] = [
   },
   {
     id: uuidv4(),
-    type: ScannedItemTypeEnum.Url,
+    type: ScannedItemQRCodeTypeEnum.Url,
     timeStamp: '2023-09-29T08:42:43Z',
     typeName: 'QR_CODE',
     text: 'exp://192.168.100.16:19000',
@@ -80,34 +85,34 @@ const scannedItems: ScannedItems[] = [
   },
   {
     id: uuidv4(),
-    type: ScannedItemTypeEnum.Barcode,
+    type: ScannedItemQRCodeTypeEnum.Email,
     timeStamp: '2023-07-03T10:30:20Z',
     typeName: 'QR_CODE',
-    text: 'exp://192.168.100.16:19000',
+    text: 'test123@gmail.com',
     isFavorite: true,
   },
   {
     id: uuidv4(),
-    type: ScannedItemTypeEnum.Barcode,
+    type: ScannedItemQRCodeTypeEnum.Phone,
     timeStamp: '2023-07-03T11:30:20Z',
     typeName: 'QR_CODE',
-    text: 'exp://192.168.100.16:19000',
+    text: '8657483854',
     isFavorite: true,
   },
   {
     id: uuidv4(),
-    type: ScannedItemTypeEnum.Text,
+    type: ScannedItemQRCodeTypeEnum.Text,
     timeStamp: '2023-08-16T05:20:30Z',
     typeName: 'CODE_128',
-    text: 'exp://192.168.100.16:19000',
+    text: 'qrCode',
     isFavorite: false,
   },
   {
     id: uuidv4(),
-    type: ScannedItemTypeEnum.Text,
+    type: ScannedItemQRCodeTypeEnum.Text,
     timeStamp: '2023-08-20T05:10:20Z',
     typeName: 'CODE_93',
-    text: 'exp://192.168.100.16:17000',
+    text: 'image-scanner',
     isFavorite: false,
   }
 ];

@@ -56,7 +56,7 @@ export const FilterMenuComponent: React.FC<FilterMenuProps> = (props: FilterMenu
             title={menuItem.title}
             style={{
               backgroundColor: selectedFilters.includes(menuItem.title)
-                ? 'blue'
+                ? 'black'
                 : '#333333',
             }}
             titleStyle={{

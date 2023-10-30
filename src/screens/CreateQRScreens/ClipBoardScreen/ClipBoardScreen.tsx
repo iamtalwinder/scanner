@@ -1,23 +1,28 @@
-import React, { useCallback } from 'react';
-import { View, Text, TextInput, ScrollView, Button } from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { View, Text, TextInput, ScrollView } from 'react-native';
 import { styles } from './ClipBoardScreen.styles';
 import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../../../components/Icons';
 import { IconButton } from 'react-native-paper';
 import * as Clipboard from 'expo-clipboard';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useFocusEffect } from '@react-navigation/native';
-
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-
 import { useThemedStyles } from '../../../hooks';
 import { useHeaderAction } from '../../../context/HeaderActionContext';
 import { SubmitComponent } from '../../../components';
+import { ScannedItemQRCodeTypeEnum } from '../../../context/ScannedItemsContext';
 
 type FormData = {
   text: string;
 }
+
+type DataWithType = {
+  type: ScannedItemQRCodeTypeEnum.Url | ScannedItemQRCodeTypeEnum.Email |
+  ScannedItemQRCodeTypeEnum.Phone | ScannedItemQRCodeTypeEnum.Text | ScannedItemQRCodeTypeEnum.Product;
+  data: any;
+};
 
 const validationSchema = yup.object<FormData>().shape({
   text: yup.string().required('Text is required')
@@ -27,7 +32,7 @@ type Props = {
   navigation: StackNavigationProp<any>;
 };
 
-export const ClipboardScreen: React.FC<Props> = ({navigation}) => {
+export const ClipboardScreen: React.FC<Props> = ({ navigation }) => {
   const style = useThemedStyles(styles);
 
   const { setActions, resetActions } = useHeaderAction();
@@ -37,7 +42,12 @@ export const ClipboardScreen: React.FC<Props> = ({navigation}) => {
   });
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
+    const urlData: DataWithType = {
+      type: ScannedItemQRCodeTypeEnum.Url,
+      data: data,
+    };
+    navigation.navigate('QRCodeResultScreen', { data: urlData });
+    console.log('screen-data', data.text);
   };
 
   useFocusEffect(
@@ -48,7 +58,7 @@ export const ClipboardScreen: React.FC<Props> = ({navigation}) => {
       };
 
       fetchCopiedText();
-      setActions(<SubmitComponent />);
+      setActions(<SubmitComponent onPress={handleSubmit(onSubmit)} />);
 
       return () => {
         resetActions();
@@ -80,54 +90,11 @@ export const ClipboardScreen: React.FC<Props> = ({navigation}) => {
               placeholderTextColor='gray'
             />
           )}
-          name="text"
-          defaultValue=""
+          name='text'
+          defaultValue=''
         />
         {formState.errors.text && <Text style={{ color: 'red' }}>{formState.errors.text.message}</Text>}
 
-        <Button title="Submit" onPress={handleSubmit(onSubmit)} />
-        {/*
-        {text ? (
-          <View style={style.qrCodeContainer}>
-            <View style={style.codeHeader}>
-              <View style={style.text}>
-                <IconButton
-                  icon={() => <Icons name={IconEnum.text} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
-                  }
-                />
-                <Text style={style.headline}>Text</Text>
-              </View>
-              <View style={style.icons}>
-                <RenameComponent />
-                <FavoritiesIcon />
-              </View>
-            </View>
-            <View>
-              <GenerateQRCode text={text} />
-            </View>
-            <View style={style.commonIcons}>
-              <View style={style.iconContainer}>
-                <IconButton
-                  icon={() =>
-                    <Icons name={IconEnum.save} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
-                />
-                <Text style={style.iconText}>Save</Text>
-              </View>
-              <View style={style.iconContainer}>
-                <IconButton
-                  icon={() =>
-                    <Icons name={IconEnum.share} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
-                />
-                <Text style={style.iconText}>Share</Text>
-              </View>
-            </View>
-            <View>
-              <Text style={style.textWritten}>{text}</Text>
-            </View>
-          </View>
-        ) :
-          ''
-        } */}
       </View>
     </ScrollView>
   );

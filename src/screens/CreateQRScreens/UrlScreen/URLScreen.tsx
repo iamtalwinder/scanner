@@ -1,17 +1,62 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { styles } from './UrlScreen.styles';
 import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../../../components/Icons';
 import { IconButton } from 'react-native-paper';
-import { RenameComponent } from '../../../components/Rename';
-import QRCode from 'react-native-qrcode-svg';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useThemedStyles } from '../../../hooks';
-import { FavoritiesIcon } from '../../../components/StarOutline/StarOutline';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useFocusEffect } from '@react-navigation/native';
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { useHeaderAction } from '../../../context/HeaderActionContext';
+import { SubmitComponent } from '../../../components';
+import { ScannedItemQRCodeTypeEnum } from '../../../context/ScannedItemsContext';
 
-export const URLScreen: React.FC = () => {
-  const [url, setUrl] = React.useState('');
+type FormData = {
+  url: string;
+}
+
+type DataWithType = {
+  type: ScannedItemQRCodeTypeEnum.Url;
+  data: any;
+};
+
+const validationSchema = yup.object<FormData>().shape({
+  url: yup.string().required('URL is required').url('Invalid URL format'),
+});
+
+type Props = {
+  navigation: StackNavigationProp<any>;
+};
+
+export const URLScreen: React.FC<Props> = ({ navigation }) => {
   const style = useThemedStyles(styles);
+  const { setActions, resetActions } = useHeaderAction();
+
+  const { control, handleSubmit, setValue, formState } = useForm({
+    resolver: yupResolver(validationSchema)
+  });
+
+  const onSubmit = (data: FormData) => {
+    const urlData: DataWithType = {
+      type: ScannedItemQRCodeTypeEnum.Url,
+      data: data,
+    };
+    navigation.navigate('URLResultScreen', { data: urlData });
+    console.log('screen-data', data.url);
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      setActions(<SubmitComponent onPress={handleSubmit(onSubmit)} />);
+
+      return () => {
+        resetActions();
+      }
+    }, [setActions, resetActions])
+  );
 
   return (
     <ScrollView style={style.mainContainer}>
@@ -21,58 +66,24 @@ export const URLScreen: React.FC = () => {
             icon={() => <Icons name={IconEnum.link2} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
             }
           />
-          <Text style={style.headline}>URL</Text>
+          <Text style={style.headline}>{ScannedItemQRCodeTypeEnum.Url}</Text>
         </View>
         <View>
-          <TextInput
-            value={url}
-            style={style.input}
-            // defaultValue='http://'
-            onChangeText={url => setUrl(url)}
-            placeholderTextColor='white'
+          <Controller
+            control={control}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                value={value}
+                style={style.input}
+                defaultValue='http://'
+                onBlur={onBlur}
+                onChangeText={value => onChange(value)}
+                placeholderTextColor='white'
+              />
+            )}
+            name='url'
           />
-          {url ? (
-            <View style={style.qrCodeContainer}>
-              <View style={style.codeHeader}>
-                <View style={style.text}>
-                  <IconButton
-                    icon={() => <Icons name={IconEnum.link2} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
-                    }
-                  />
-                  <Text style={style.headline}>URL</Text>
-                </View>
-                <View style={style.icons}>
-                  <RenameComponent />
-                  <FavoritiesIcon />
-                </View>
-              </View>
-              <View style={style.code}>
-                <QRCode value={url} size={250} />
-              </View>
-
-              <View style={style.commonIcons}>
-                <View style={style.iconContainer}>
-                  <IconButton
-                    icon={() =>
-                      <Icons name={IconEnum.save} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
-                  />
-                  <Text style={style.iconText}>Save</Text>
-                </View>
-                <View style={style.iconContainer}>
-                  <IconButton
-                    icon={() =>
-                      <Icons name={IconEnum.share} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />}
-                  />
-                  <Text style={style.iconText}>Share</Text>
-                </View>
-              </View>
-              <View>
-                <Text style={style.textWritten}>{url}</Text>
-              </View>
-            </View>
-          ) :
-            ''
-          }
+          {formState.errors.url && <Text style={{ color: 'red' }}>{formState.errors.url.message}</Text>}
         </View>
       </View>
     </ScrollView>
