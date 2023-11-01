@@ -4,6 +4,7 @@ import { DEFAULT_COLOR, Icons } from '../Icons';
 import { FILTER_MENU_ITEMS } from './MenuItems';
 import { styles } from './FilterMenu.styles';
 import { useThemedStyles } from '../../hooks';
+import { ScannedItemQRCodeTypeEnum, useScannedItems } from '../../context/ScannedItemsContext';
 
 type FilterMenuProps = {};
 
@@ -13,7 +14,7 @@ export const FilterMenuComponent: React.FC<FilterMenuProps> = (props: FilterMenu
   const [filterApplied, setFilterApplied] = useState(false);
   const style = useThemedStyles(styles);
 
-  const toggleFilter = (filter: string) => {
+  const toggleFilter = (filter: ScannedItemQRCodeTypeEnum) => {
     if (selectedFilters.includes(filter)) {
       setSelectedFilters(selectedFilters.filter((item) => item !== filter));
     } else {
@@ -50,7 +51,7 @@ export const FilterMenuComponent: React.FC<FilterMenuProps> = (props: FilterMenu
         <React.Fragment key={menuItem.title}>
           <Menu.Item
             onPress={() => {
-              toggleFilter(menuItem.title);
+              toggleFilter(menuItem.type);
             }}
             leadingIcon={() => <Icons name={menuItem.icon} size={menuItem.size} />}
             title={menuItem.title}

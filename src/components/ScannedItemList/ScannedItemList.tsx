@@ -1,7 +1,7 @@
 import React, { useState, ReactNode } from 'react';
 import { View } from 'react-native';
 import { Text } from 'react-native-paper';
-import { ScannedItemTypeEnum, ScannedItems, useScannedItems } from '../../context/ScannedItemsContext';
+import { ScannedItemQRCodeTypeEnum, ScannedItems, useScannedItems } from '../../context/ScannedItemsContext';
 import { ScannedItemActionEnum } from '../../context/ScannedItemsContext'
 import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../Icons';
 import { CustomCard, CustomCardActionProps } from '../CustomCard/CustomCard';
@@ -59,15 +59,15 @@ export const ScannedItemList: React.FC<CustomCardProps> = (props: CustomCardProp
     }
   };
 
-  const renderIconBasedOnType = (itemType: ScannedItemTypeEnum) => {
+  const renderIconBasedOnType = (itemType: ScannedItemQRCodeTypeEnum) => {
     switch (itemType) {
-      case ScannedItemTypeEnum.Product:
+      case ScannedItemQRCodeTypeEnum.Product:
         return <Icons name={IconEnum.shoppingBag} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
-      case ScannedItemTypeEnum.Barcode:
+      case ScannedItemQRCodeTypeEnum.Barcode:
         return <Icons name={IconEnum.barcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
-      case ScannedItemTypeEnum.Text:
+      case ScannedItemQRCodeTypeEnum.Text:
         return <Icons name={IconEnum.fileText} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
-      case ScannedItemTypeEnum.Url:
+      case ScannedItemQRCodeTypeEnum.Url:
         return <Icons name={IconEnum.link2} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
       default:
         return null;

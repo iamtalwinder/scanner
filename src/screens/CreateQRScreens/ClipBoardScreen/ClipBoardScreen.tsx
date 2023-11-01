@@ -74,7 +74,7 @@ export const ClipboardScreen: React.FC<Props> = ({ navigation }) => {
             icon={() => <Icons name={IconEnum.text} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
             }
           />
-          <Text style={style.headline}>Text</Text>
+          <Text style={style.headline}>{ScannedItemQRCodeTypeEnum.Text}</Text>
         </View>
         <Controller
           control={control}

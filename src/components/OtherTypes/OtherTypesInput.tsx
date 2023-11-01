@@ -7,7 +7,7 @@ import { RenameComponent } from '../Rename';
 import { FavoritiesIcon } from '../StarOutline/StarOutline';
 import Barcode, { BarcodeFormat } from '@adrianso/react-native-barcode-builder';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ScannedItemActionEnum, ScannedItemTypeEnum, useScannedItems } from '../../context/ScannedItemsContext';
+import { ScannedItemActionEnum, ScannedItemQRCodeTypeEnum, useScannedItems } from '../../context/ScannedItemsContext';
 import 'react-native-get-random-values';
 import { useThemedStyles } from '../../hooks';
 
@@ -22,12 +22,12 @@ export const OtherTypesInput: React.FC<QRCodeOtherTypesProps> = (
   { title, limit, value, format }: QRCodeOtherTypesProps) => {
 
   const style = useThemedStyles(styles);
-  
+
   const [text, setText] = useState('');
   const [showQRCode, setShowQRCode] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [newItem, setNewItem] = useState<
-    { id: string, type: ScannedItemTypeEnum, timeStamp: string, text: string, isFavorite: boolean } | null>(null);
+    { id: string, type: ScannedItemQRCodeTypeEnum, timeStamp: string, text: string, isFavorite: boolean } | null>(null);
 
   const [showTextInput, setShowTextInput] = useState(false);
   const [visible, setVisible] = React.useState(false);
@@ -67,7 +67,7 @@ export const OtherTypesInput: React.FC<QRCodeOtherTypesProps> = (
   const handleSubmit = () => {
     const createdItem = {
       id: generateUniqueId(),
-      type: ScannedItemTypeEnum.Product,
+      type: ScannedItemQRCodeTypeEnum.Product,
       timeStamp: new Date().toISOString(),
       text: text,
       isFavorite: false,

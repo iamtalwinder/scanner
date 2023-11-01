@@ -17,8 +17,10 @@ export enum ScannedItemQRCodeTypeEnum {
   Sms = 'SMS',
   Phone = 'Phone',
   Wifi = 'Wifi',
-  Location = 'Location',
-  Contact = 'Contact'
+  Geo = 'Geo',
+  Contact = 'Contact',
+  Barcode = 'Barcode',
+  ISBN = 'ISBN'
 }
 
 export enum ScannedItemBarCodeTypeEnum {
@@ -30,7 +32,11 @@ export enum ScannedItemActionEnum {
   REMOVE_SCANNED_ITEM = 'REMOVE_SCANNED_ITEM',
   ADD_TO_FAVORITE = 'ADD_TO_FAVORITE',
   REMOVE_FROM_FAVORITE = 'REMOVE_FROM_FAVORITE',
-  TOOGLE_FAVORITE = 'TOOGLE_FAVORITE'
+  TOOGLE_FAVORITE = 'TOOGLE_FAVORITE',
+  ADD_FAVORITE_FILTER = 'ADD_FAVORITE_FILTER',
+  REMOVE_FAVORITE_FILTER = 'REMOVE_FAVORITE_FILTER',
+  ADD_HISTORY_FILLTER = 'ADD_HISTORY_FILLTER',
+  REMOVE_HISTORY_FILTER = 'REMOVE_HISTORY_FILTER'
 }
 
 export interface ScannedItems {
@@ -47,7 +53,11 @@ export type Action =
   | { type: ScannedItemActionEnum.REMOVE_SCANNED_ITEM; id: string }
   | { type: ScannedItemActionEnum.ADD_TO_FAVORITE; id: string }
   | { type: ScannedItemActionEnum.REMOVE_FROM_FAVORITE; id: string }
-  | { type: ScannedItemActionEnum.TOOGLE_FAVORITE; item: ScannedItems };
+  | { type: ScannedItemActionEnum.TOOGLE_FAVORITE; item: ScannedItems }
+  | { type: ScannedItemActionEnum.ADD_FAVORITE_FILTER; filter: ScannedItemQRCodeTypeEnum }
+  | { type: ScannedItemActionEnum.REMOVE_FAVORITE_FILTER; filter: ScannedItemQRCodeTypeEnum }
+  | { type: ScannedItemActionEnum.ADD_HISTORY_FILLTER; filter: ScannedItemQRCodeTypeEnum }
+  | { type: ScannedItemActionEnum.REMOVE_FAVORITE_FILTER; filter: ScannedItemQRCodeTypeEnum }
 
 
 const scannedItems: ScannedItems[] = [
@@ -119,10 +129,14 @@ const scannedItems: ScannedItems[] = [
 
 export interface State {
   scannedItems: ScannedItems[];
+  selectedFavoritesFilters: ScannedItemQRCodeTypeEnum[];
+  selectedHistoryFilters: ScannedItemQRCodeTypeEnum[];
 }
 
 const initialState: State = {
   scannedItems: scannedItems,
+  selectedFavoritesFilters: [],
+  selectedHistoryFilters: []
 };
 
 const ScannedItemsContext = createContext<{ state: State; dispatch: Dispatch<Action> } | undefined>(undefined);
@@ -153,6 +167,18 @@ const scannedItemsReducer = (state: State, action: Action): State => {
           item.id === action.id ? { ...item, isFavorite: false } : item
         ),
       };
+
+    case ScannedItemActionEnum.ADD_FAVORITE_FILTER:
+      state.selectedFavoritesFilters.push(action.filter);
+
+      return { ...state };
+
+    case ScannedItemActionEnum.REMOVE_FAVORITE_FILTER:
+      state.selectedFavoritesFilters = state.selectedFavoritesFilters.filter(
+        (filter) => filter !== action.filter,
+      );
+      
+      return { ...state };
 
     default:
       return state;
