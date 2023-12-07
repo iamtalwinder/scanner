@@ -1,105 +1,121 @@
 import React from 'react';
-import { DrawerNavigationOptions, createDrawerNavigator } from '@react-navigation/drawer';
-import { ScanScreen, ScanImageScreen, FavortiesScreen, HistoryScreen, MyQRScreen, CreateQRScreen, SettingsScreen, ShareScreen } from '../screens';
-import { Ionicons } from '@expo/vector-icons';
-import { Entypo } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
-import ViewMoreIcon from '../components/ViewMoreIcon';
-import { Pressable } from 'react-native';
+import {
+  DrawerNavigationOptions,
+  createDrawerNavigator,
+} from '@react-navigation/drawer';
+import {
+  QRCodeScannerScreen,
+  ScanImageScreen,
+  ScanImageHeader,
+  HistoryScreen,
+  HistoryHeader,
+  MyQRScreen,
+  MyQRHeader,
+  CreateQRNavigation,
+  CreateQRHeader,
+  SettingsScreen,
+  ShareScreen,
+  ScanHeader,
+  FavortieScreen,
+  FavoriteHeader,
+  SettingsHeader,
+  ShareHeader,
+} from '../screens';
+
+import { DEFAULT_COLOR, ICON_SIZE_XL, IconEnum, Icons } from '../components/Icons';
+import { ScanNavigation } from '../screens/ScanScreen/ScanNavigation';
 
 const Drawer = createDrawerNavigator();
 
 const headerOptions: DrawerNavigationOptions = {
-  headerTitleAlign: 'center',
-  headerStyle: {
-    backgroundColor: '#f5f5f5',
+  drawerStyle: {
+    backgroundColor: '#333333',
   },
-  headerRight: () => {
-    return (
-      <>
-        <Pressable>
-          <ViewMoreIcon />
-        </Pressable>
-      </>
-    );
+  drawerLabelStyle: {
+    color: 'white',
   },
 };
 
 export const DrawerNavigator: React.FC = () => {
   return (
-    <Drawer.Navigator initialRouteName="Scan" screenOptions={headerOptions}
-    >
-      <Drawer.Screen name="Scan" component={ScanScreen}
+    <Drawer.Navigator initialRouteName='Scan' screenOptions={headerOptions}>
+      <Drawer.Screen
+        name='Scan'
+        component={ScanNavigation}
         options={{
+          header: (props) => <ScanHeader {...props} />,
           drawerIcon: () => {
-            return (
-              <Ionicons name="scan" size={24} color="black" />
-            );
+            return <Icons name={IconEnum.scan} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           },
         }}
       />
-      <Drawer.Screen name="ScanImage" component={ScanImageScreen}
+      <Drawer.Screen
+        name='ScanImage'
+        component={ScanImageScreen}
         options={{
+          header: (props) => <ScanImageHeader {...props} />,
           drawerIcon: () => {
-            return (
-              <AntDesign name="scan1" size={24} color="black" />
-            );
+            return <Icons name={IconEnum.scan1} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           },
         }}
       />
-      <Drawer.Screen name="Favorties" component={FavortiesScreen}
+      <Drawer.Screen
+        name='Favorites'
+        component={FavortieScreen}
         options={{
+          header: (props) => <FavoriteHeader {...props} />,
           drawerIcon: () => {
-            return (
-              <Entypo name="star-outlined" size={24} color="black" />
-            );
+            return <Icons name={IconEnum.starOutline} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           },
         }}
       />
-      <Drawer.Screen name="History" component={HistoryScreen}
+      <Drawer.Screen
+        name='History'
+        component={HistoryScreen}
         options={{
+          header: (props) => <HistoryHeader {...props} />,
           drawerIcon: () => {
-            return (
-              <FontAwesome5 name="history" size={24} color="black" />
-            );
+            return <Icons name={IconEnum.history} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           },
         }}
       />
-      <Drawer.Screen name="My QR" component={MyQRScreen}
+      <Drawer.Screen
+        name='My QR'
+        component={MyQRScreen}
         options={{
+          header: (props) => <MyQRHeader {...props} />,
           drawerIcon: () => {
-            return (
-              <AntDesign name="qrcode" size={24} color="black" />
-            );
+            return <Icons name={IconEnum.qrcode} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           },
         }}
       />
-      <Drawer.Screen name="Create QR" component={CreateQRScreen}
+      <Drawer.Screen
+        name='Create'
+        component={CreateQRNavigation}
         options={{
+          header: (props) => <CreateQRHeader {...props} />,
           drawerIcon: () => {
-            return (
-              <MaterialIcons name="create" size={24} color="black" />
-            );
+            return <Icons name={IconEnum.create} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           },
         }}
       />
-      <Drawer.Screen name="Settings" component={SettingsScreen}
+      {/* <Drawer.Screen
+        name='Settings'
+        component={SettingsScreen}
         options={{
+          header: (props) => <SettingsHeader {...props} />,
           drawerIcon: () => {
-            return (
-              <Ionicons name="settings-outline" size={24} color="black" />
-            );
+            return <Icons name={IconEnum.settingOutline} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           },
         }}
-      />
-      <Drawer.Screen name="Share" component={ShareScreen}
+      /> */}
+      <Drawer.Screen
+        name='Share'
+        component={ShareScreen}
         options={{
+          header: (props) => <ShareHeader {...props} />,
           drawerIcon: () => {
-            return (
-              <Entypo name="share" size={24} color="black" />
-            );
+            return <Icons name={IconEnum.share} size={ICON_SIZE_XL} color={DEFAULT_COLOR} />
           },
         }}
       />
